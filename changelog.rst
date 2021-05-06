@@ -1,3 +1,7 @@
+0.2.0
+=====
+- Added static and dynamic stacks
+
 0.1.0
 =====
 - libds dev started :)

@@ -37,6 +37,9 @@ test/list/test_array_list: src/list/array_list.o test/list/test_array_list.o
 test/list/test_linked_list: src/list/linked_list.o test/list/test_linked_list.o
 test/list/test_doubly_linked_list: src/list/doubly_linked_list.o test/list/test_doubly_linked_list.o
 
+test/stack/test_static_stack: src/stack/static_stack.o test/stack/test_static_stack.o
+test/stack/test_dynamic_stack: src/stack/dynamic_stack.o test/stack/test_dynamic_stack.o
+
 
 # cleaning
 .PHONY: clean veryclean
