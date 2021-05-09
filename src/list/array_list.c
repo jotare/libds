@@ -1,4 +1,3 @@
-#include <assert.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -19,8 +18,6 @@ typedef struct {
  * Public functions
  */
 int8_t array_list_init(array_list_t *alist, uint8_t n) {
-    assert(n > 0);
-
     _array_list_t *list;
     list = malloc(sizeof(_array_list_t));
     if (list == NULL)

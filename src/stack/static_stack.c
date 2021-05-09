@@ -1,4 +1,3 @@
-#include <assert.h>
 #include <stdlib.h>
 
 #include "stack/static_stack.h"
@@ -11,8 +10,6 @@ typedef struct {
 
 
 int8_t static_stack_init(static_stack_t *sstack, uint8_t n) {
-    assert(n > 0);
-    
     _stack_t *stack;
 
     stack = malloc(sizeof(_stack_t));
