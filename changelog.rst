@@ -1,3 +1,7 @@
+0.3.0
+=====
+- Added static and dynamic queues
+
 0.2.0
 =====
 - Added static and dynamic stacks

@@ -24,7 +24,7 @@ LDLIBS += $(addprefix -l,$(libraries))
 
 
 .PHONY: all
-all:
+all: tests
 	@echo ALL
 
 
@@ -33,12 +33,21 @@ all:
 
 
 # tests
+tests: test_lists test_stacks test_queues
+
+test_lists: test/list/test_array_list test/list/test_linked_list test/list/test_doubly_linked_list
 test/list/test_array_list: src/list/array_list.o test/list/test_array_list.o
 test/list/test_linked_list: src/list/linked_list.o test/list/test_linked_list.o
 test/list/test_doubly_linked_list: src/list/doubly_linked_list.o test/list/test_doubly_linked_list.o
 
+test_stacks: test/stack/test_static_stack test/stack/test_dynamic_stack
 test/stack/test_static_stack: src/stack/static_stack.o test/stack/test_static_stack.o
 test/stack/test_dynamic_stack: src/stack/dynamic_stack.o test/stack/test_dynamic_stack.o
+
+test_queues: test/queue/test_static_queue test/queue/test_dynamic_queue 
+test/queue/test_static_queue: src/queue/static_queue.o test/queue/test_static_queue.o
+test/queue/test_dynamic_queue: src/queue/dynamic_queue.o test/queue/test_dynamic_queue.o
+
 
 
 # cleaning
