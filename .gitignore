@@ -99,3 +99,6 @@ flycheck_*.el
 
 # network security
 /network-security.data
+
+# TAGS file
+TAGS
