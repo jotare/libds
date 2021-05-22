@@ -6,16 +6,6 @@
 
 #include "list/array_list.h"
 
-
-static void print_list(array_list_t l) {
-    int length = array_list_length(l);
-    printf("\n");
-    for (int i = 0; i < length; i++) {
-	printf("list[%d] = %d\n", i, array_list_get(l, i));
-    }
-    printf("\n");
-}
-
 int init_array_list_suite(void) { return 0; }
 int clean_array_list_suite(void) { return 0; }
 

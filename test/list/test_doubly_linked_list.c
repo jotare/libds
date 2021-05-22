@@ -7,15 +7,6 @@
 #include "list/doubly_linked_list.h"
 
 
-static void print_list(doubly_linked_list_t l) {
-    int length = doubly_linked_list_length(l);
-    printf("\n");
-    for (int i = 0; i < length; i++) {
-	printf("list[%d] = %d\n", i, doubly_linked_list_get(l, i));
-    }
-    printf("\n");
-}
-
 int init_doubly_linked_list_suite(void) { return 0; }
 int clean_doubly_linked_list_suite(void) { return 0; }
 
