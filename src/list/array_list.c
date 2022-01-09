@@ -77,8 +77,11 @@ int8_t array_list_insert(array_list_t alist, uint8_t n, array_list_element_t ele
 
     list = alist;
     
-    if (list->n == list->max_length) // TODO: return error
+    if (list->n >= list->max_length)
 	return -1;
+
+    if (n > list->n)
+        return -1;              /* can't insert in this position */
 
     memmove(list->l+n+1,
 	    list->l+n,
@@ -100,16 +103,17 @@ int8_t array_list_prepend(array_list_t alist, array_list_element_t elem) {
     return array_list_insert(alist, 0, elem);
 }
 
-void array_list_remove(array_list_t alist, uint8_t n) {
+array_list_element_t array_list_remove(array_list_t alist, uint8_t n) {
     _array_list_t *list;
-    /* array_list_element_t removed; */
+    array_list_element_t removed;
 
     list = alist;
-    /* removed = list->l[n]; */
+    removed = list->l[n];
     memmove(list->l+n,
 	    list->l+n+1,
 	    (list->n-n-1)*sizeof(array_list_element_t));
     list->n--;
+    return removed;
 }
 
 void array_list_clear(array_list_t alist) {

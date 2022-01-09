@@ -85,11 +85,15 @@ int8_t doubly_linked_list_insert(doubly_linked_list_t dllist, uint8_t n, doubly_
     node_t *new_node;
     int length;
 
+    list = dllist;
+
+    if (n > list->n)
+        return -1;              /* can't insert in this position */
+
     new_node = malloc(sizeof(node_t));
     if (new_node == NULL)
 	return -1;
     new_node->elem = elem;
-    list = dllist;
     length = doubly_linked_list_length(dllist);
 
     if (n == 0) {
@@ -139,10 +143,11 @@ int8_t doubly_linked_list_prepend(doubly_linked_list_t dllist, doubly_linked_lis
     return doubly_linked_list_insert(dllist, 0, elem);
 }
 
-void doubly_linked_list_remove(doubly_linked_list_t dllist, uint8_t n) {
+doubly_linked_list_element_t doubly_linked_list_remove(doubly_linked_list_t dllist, uint8_t n) {
     _doubly_linked_list_t *list;
     node_t *remove_node;
     int length;
+    doubly_linked_list_element_t removed;
 
     list = dllist;
     length = doubly_linked_list_length(dllist);
@@ -176,8 +181,11 @@ void doubly_linked_list_remove(doubly_linked_list_t dllist, uint8_t n) {
 	remove_node->next->prev = remove_node->prev;
     }
 
+    removed = remove_node->elem;
     free(remove_node);
     list->n--;
+
+    return removed;
 }
 
 void doubly_linked_list_clear(doubly_linked_list_t dllist) {

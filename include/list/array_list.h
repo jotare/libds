@@ -38,7 +38,7 @@ int8_t array_list_prepend(array_list_t alist, array_list_element_t elem);
 /**
  * Remove
  */
-void array_list_remove(array_list_t alist, uint8_t n);
+array_list_element_t array_list_remove(array_list_t alist, uint8_t n);
 void array_list_clear(array_list_t alist);
 
 /**

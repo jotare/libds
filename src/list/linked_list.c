@@ -82,6 +82,9 @@ int8_t linked_list_insert(linked_list_t llist, uint8_t n, linked_list_element_t 
     list = llist;
     node = list->first;
 
+    if (n > list->n)
+        return -1;              /* can't insert in this position */
+
     if (node == NULL) {		/* fisrt node */
 	node = malloc(sizeof(node_t));
 	if (node == NULL)
@@ -119,9 +122,10 @@ int8_t linked_list_prepend(linked_list_t llist, linked_list_element_t elem) {
     return linked_list_insert(llist, 0, elem);
 }
 
-void linked_list_remove(linked_list_t llist, uint8_t n) {
+linked_list_element_t linked_list_remove(linked_list_t llist, uint8_t n) {
     _linked_list_t *list;
     node_t *node, *remove_node;
+    linked_list_element_t removed;
 
     list = llist;
     node = list->first;
@@ -135,11 +139,14 @@ void linked_list_remove(linked_list_t llist, uint8_t n) {
 	remove_node = node->next;
 	node->next = remove_node->next;
     }
+    removed = remove_node->elem;
     free(remove_node);
     list->n--;
 
     if (list->n == 0)
 	list->first = NULL;
+
+    return removed;
 }
 
 void linked_list_clear(linked_list_t llist) {
@@ -172,8 +179,7 @@ int8_t linked_list_locate(linked_list_t llist, linked_list_element_t elem,
 }
 
 void linked_list_destroy(linked_list_t *llist) {
-    _linked_list_t *list;
-    list = *llist;
+    _linked_list_t *list = *llist;
 
     linked_list_clear(llist);
     free(list);

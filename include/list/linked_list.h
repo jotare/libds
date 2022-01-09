@@ -8,7 +8,7 @@ typedef void *linked_list_t;
 typedef uint8_t linked_list_element_t;
 
 /**
- * Initialize an linked_list of `n` elements.
+ * Initialize an linked_list.
  *
  * @return positive integer if success, -1 if operation fails.
  */
@@ -38,7 +38,7 @@ int8_t linked_list_prepend(linked_list_t llist, linked_list_element_t elem);
 /**
  * Remove
  */
-void linked_list_remove(linked_list_t llist, uint8_t n);
+linked_list_element_t linked_list_remove(linked_list_t llist, uint8_t n);
 void linked_list_clear(linked_list_t llist);
 
 /**
