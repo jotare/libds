@@ -12,7 +12,6 @@ typedef struct {
     uint8_t n;
 } _queue_t;
 
-
 int8_t dynamic_queue_init(dynamic_queue_t *squeue) {
     _queue_t *queue;
 
@@ -38,16 +37,15 @@ bool dynamic_queue_is_empty(dynamic_queue_t squeue) {
     return queue->n == 0;
 }
 
-bool dynamic_queue_is_full(dynamic_queue_t squeue) {
-    return false;
-}
+bool dynamic_queue_is_full(dynamic_queue_t squeue) { return false; }
 
 dynamic_queue_element_t dynamic_queue_front(dynamic_queue_t squeue) {
     _queue_t *queue = squeue;
     return queue->front->elem;
 }
 
-int8_t dynamic_queue_enqueue(dynamic_queue_t squeue, dynamic_queue_element_t elem) {
+int8_t dynamic_queue_enqueue(dynamic_queue_t squeue,
+                             dynamic_queue_element_t elem) {
     _queue_t *queue = squeue;
     node_t *node;
 

@@ -38,7 +38,7 @@ run-tests: tests
 	./test/test_libds
 
 tests: test/test_libds
-test/test_libds: test/test_libds.o test/list/test_list.o src/list/list.o src/list/array_list.o src/list/linked_list.o src/list/doubly_linked_list.o test/stack/test_stack.o src/stack/stack.o src/stack/static_stack.o src/stack/dynamic_stack.o
+test/test_libds: test/test_libds.o $(source_objects) $(test_objects)
 
 # tests: test_lists test_stacks test_queues
 

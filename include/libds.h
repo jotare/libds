@@ -6,5 +6,7 @@
 #include "stack/stack.h"
 #include "stack/static_stack.h"
 #include "stack/dynamic_stack.h"
+
+#include "queue/queue.h"
 #include "queue/static_queue.h"
 #include "queue/dynamic_queue.h"
