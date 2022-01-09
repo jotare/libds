@@ -102,3 +102,6 @@ flycheck_*.el
 
 # TAGS file
 TAGS
+
+# clangd cache
+.cache/
