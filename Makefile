@@ -42,11 +42,6 @@ test/test_libds: test/test_libds.o test/list/test_list.o src/list/list.o src/lis
 
 # tests: test_lists test_stacks test_queues
 
-test_lists: test/list/test_array_list test/list/test_linked_list test/list/test_doubly_linked_list
-test/list/test_array_list: src/list/array_list.o test/list/test_array_list.o
-test/list/test_linked_list: src/list/linked_list.o test/list/test_linked_list.o
-test/list/test_doubly_linked_list: src/list/doubly_linked_list.o test/list/test_doubly_linked_list.o
-
 test_stacks: test/stack/test_static_stack test/stack/test_dynamic_stack
 test/stack/test_static_stack: src/stack/static_stack.o test/stack/test_static_stack.o
 test/stack/test_dynamic_stack: src/stack/dynamic_stack.o test/stack/test_dynamic_stack.o
@@ -64,7 +59,7 @@ clean:
 	find . -type f -name "*~" -exec rm {} +
 
 veryclean: clean
-	$(RM) $(source_objects) $(test_objects) $(test_targets)
+	$(RM) $(source_objects) $(test_objects) $(test_targets) test/test_libds.o test/test_libds
 
 
 

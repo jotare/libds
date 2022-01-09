@@ -105,3 +105,6 @@ TAGS
 
 # clangd cache
 .cache/
+
+# libds project
+test/test_libds
