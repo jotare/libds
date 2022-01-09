@@ -10,7 +10,7 @@ test_objects   := $(subst .c,.o,$(tests))   # test/*/test_z.o
 
 test_targets := $(basename $(tests)) # test/*/test_z
 
-includes  := include/ $(dir $(wildcard include/*/))
+includes  := include/ $(dir $(wildcard include/*/)) $(dir $(wildcard test/)) $(dir $(wildcard test/*/))
 libraries := cunit
 
 CC := gcc
@@ -33,7 +33,14 @@ all: tests
 
 
 # tests
-tests: test_lists test_stacks test_queues
+.PHONY: test
+run-tests: tests
+	./test/test_libds
+
+tests: test/test_libds
+test/test_libds: test/test_libds.o test/list/test_list.o src/list/list.o src/list/array_list.o src/list/linked_list.o src/list/doubly_linked_list.o
+
+# tests: test_lists test_stacks test_queues
 
 test_lists: test/list/test_array_list test/list/test_linked_list test/list/test_doubly_linked_list
 test/list/test_array_list: src/list/array_list.o test/list/test_array_list.o
