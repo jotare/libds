@@ -1,3 +1,7 @@
+0.4.2
+=====
+- Call destroy function at the end of all tests
+
 0.4.1
 =====
 - Add list append and prepend test

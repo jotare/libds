@@ -71,6 +71,7 @@ static void test_list_get_insert_remove(list_type_t type) {
     CU_ASSERT_EQUAL(list_get(list, 2), e0);
     CU_ASSERT_EQUAL(list_get(list, 3), e3);
 
+    list_destroy(&list);
 }
 
 static void test_array_list_get_insert_remove(void) {
@@ -98,6 +99,8 @@ static void test_list_first_last(list_type_t type) {
 
     CU_ASSERT_EQUAL(list_first(list), e0);
     CU_ASSERT_EQUAL(list_last(list), e2);
+
+    list_destroy(&list);
 }
 
 static void test_array_list_first_last(void) {
@@ -164,6 +167,8 @@ static void test_list_is_empty_is_full(list_type_t type) {
     } else {
         CU_ASSERT_TRUE(list_is_full(list));
     }
+
+    list_destroy(&list);
 }
 
 static void test_array_list_is_empty_is_full(void) {
@@ -189,6 +194,8 @@ static void test_list_clear(list_type_t type) {
     CU_ASSERT_EQUAL(list_length(list), 2);
     list_clear(list);
     CU_ASSERT_EQUAL(list_length(list), 0);
+
+    list_destroy(&list);
 }
 
 static void test_array_list_clear(void) {
@@ -223,6 +230,8 @@ void test_list_locate(list_type_t type) {
     CU_ASSERT_EQUAL(list_locate(list, 30, cmp), -1);
     CU_ASSERT_EQUAL(list_locate(list, e0, cmp), 0);
     CU_ASSERT_EQUAL(list_locate(list, e1, cmp), 1);
+
+    list_destroy(&list);
 }
 
 static void test_array_list_locate(void) {
