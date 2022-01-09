@@ -1,3 +1,7 @@
+0.5.0
+=====
+- Add makefile rules to build the library
+
 0.4.2
 =====
 - Call destroy function at the end of all tests

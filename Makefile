@@ -24,22 +24,20 @@ LDLIBS += $(addprefix -l,$(libraries))
 
 
 .PHONY: all
-all: tests
+all: lib tests
 	@echo ALL
 
 
 # sources
-
-
+lib: libds.a
+libds.a: libds.a($(source_objects))
 
 # tests
-.PHONY: test
 run-tests: tests
 	./test/test_libds
 
 tests: test/test_libds
-test/test_libds: test/test_libds.o $(source_objects) $(test_objects)
-
+test/test_libds: test/test_libds.o $(test_objects) $(source_objects)
 
 
 # cleaning
@@ -49,7 +47,7 @@ clean:
 	find . -type f -name "*~" -exec rm {} +
 
 veryclean: clean
-	$(RM) $(source_objects) $(test_objects) $(test_targets) test/test_libds.o test/test_libds
+	$(RM) $(source_objects) $(test_objects) $(test_targets) test/test_libds.o test/test_libds libds.a
 
 
 

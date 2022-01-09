@@ -12,7 +12,12 @@ list` module by its own. The second one is using interface modules like
 `list`. Using this higher level modules is beneficial as you can
 change the data structure interpretation in run-time.
 
-⚠️For the moment, a library file is not generated (it will be in the future).
+To build the *libds* library execute:
+```
+make lib
+```
+A static library file `libds.a` will be created in the root
+directory.
 
 ## Testing with CUnit
 
