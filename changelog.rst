@@ -1,3 +1,9 @@
+0.4.0
+=====
+- Added data structures interfaces for list, stack and queue
+- Improved testing with CUnit, now all the project is tested under
+  multiple test suites using one executable
+
 0.3.0
 =====
 - Added static and dynamic queues
