@@ -3,16 +3,21 @@
 #include <CUnit/CUnit.h>
 #include <CUnit/TestDB.h>
 
-#include "./list/testconf.h"
+#include "list/testconf.h"
+#include "stack/testconf.h"
+
 
 int main(void) {
     if (CU_initialize_registry() != CUE_SUCCESS)
         return CU_get_error();
 
-    CU_TestInfo *list_tests = get_list_tests();
+    CU_TestInfo
+        *list_tests = get_list_tests(),
+        *stack_tests = get_stack_tests();
 
     CU_SuiteInfo suites[] = {
         {"list", init_list_suite, cleanup_list_suite, NULL, NULL, list_tests},
+        {"stack", init_stack_suite, cleanup_stack_suite, NULL, NULL, stack_tests},
         CU_SUITE_INFO_NULL
     };
 

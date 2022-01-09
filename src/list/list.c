@@ -143,6 +143,7 @@ void list_destroy(list_t *list) {
         return ds->fun(header->list, ## __VA_ARGS__);                   \
     })
 
+
 uint8_t list_length(list_t list) {
     call_list_interface_function(length, list);
 }

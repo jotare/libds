@@ -5,9 +5,8 @@
 #include <stdio.h>
 
 #include "list/list.h"
-#include "list/array_list.h"
-#include "list/linked_list.h"
-#include "list/doubly_linked_list.h"
+
+#include "list/testconf.h"
 
 
 int init_list_suite(void) { return 0; }
@@ -174,7 +173,7 @@ static void test_doubly_linked_list_clear(void) {
 }
 
 
-static int8_t cmp(array_list_element_t a, array_list_element_t b) {
+static int8_t cmp(list_element_t a, list_element_t b) {
     if (a < b)
 	return -1;
     else if (a == b)
