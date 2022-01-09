@@ -102,8 +102,13 @@ int8_t linked_list_insert(linked_list_t llist, uint8_t n, linked_list_element_t 
 	    return -1;
 
 	new_node->elem = elem;
-	new_node->next = node->next;
-	node->next = new_node;
+        if (n == 0) {
+            new_node->next = node;
+            list->first = new_node;
+        } else {
+            new_node->next = node->next;
+            node->next = new_node;
+        }
     }
 
     list->n++;

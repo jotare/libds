@@ -113,6 +113,35 @@ static void test_doubly_linked_list_first_last(void) {
 }
 
 
+static void test_list_append_prepend(list_type_t type) {
+    list_t list;
+    list_element_t a = 0, b = 1, c = 2;
+
+    list_init(&list, 5, type);
+
+    list_append(list, a);
+    CU_ASSERT_EQUAL(list_get(list, 0), a);
+    list_append(list, b);
+    CU_ASSERT_EQUAL(list_get(list, 1), b);
+    list_prepend(list, c);
+    CU_ASSERT_EQUAL(list_get(list, 0), c);
+
+    list_destroy(&list);
+}
+
+static void test_array_list_append_prepend(void) {
+    test_list_append_prepend(ARRAY_LIST);
+}
+
+static void test_linked_list_append_prepend(void) {
+    test_list_append_prepend(LINKED_LIST);
+}
+
+static void test_doubly_linked_list_append_prepend(void) {
+    test_list_append_prepend(DOUBLY_LINKED_LIST);
+}
+
+
 static void test_list_is_empty_is_full(list_type_t type) {
     list_t list;
     list_element_t e0 = 0, e1 = 1;
@@ -211,6 +240,7 @@ static CU_TestInfo list_tests[] = {
     {"array list: init, destroy", test_array_list_init_destroy},
     {"array list: get, insert, remove", test_array_list_get_insert_remove},
     {"array list: first, last", test_array_list_first_last},
+    {"array list: append, prepend", test_array_list_append_prepend},
     {"array list: is_empty, is_full", test_array_list_is_empty_is_full},
     {"array list: clear", test_array_list_clear},
     {"array list: locate", test_array_list_locate},
@@ -218,6 +248,7 @@ static CU_TestInfo list_tests[] = {
     {"linked list: init, destroy", test_linked_list_init_destroy},
     {"linked list: get, insert, remove", test_linked_list_get_insert_remove},
     {"linked list: first, last", test_linked_list_first_last},
+    {"linked list: append, prepend", test_linked_list_append_prepend},
     {"linked list: is_empty, is_full", test_linked_list_is_empty_is_full},
     {"linked list: clear", test_linked_list_clear},
     {"linked list: locate", test_linked_list_locate},
@@ -225,6 +256,7 @@ static CU_TestInfo list_tests[] = {
     {"doubly linked list: init, destroy", test_doubly_linked_list_init_destroy},
     {"doubly linked list: get, insert, remove", test_doubly_linked_list_get_insert_remove},
     {"doubly linked list: first, last", test_doubly_linked_list_first_last},
+    {"doubly linked list: append, prepend", test_doubly_linked_list_append_prepend},
     {"doubly linked list: is_empty, is_full", test_doubly_linked_list_is_empty_is_full},
     {"doubly linked list: clear", test_doubly_linked_list_clear},
     {"doubly linked list: locate", test_doubly_linked_list_locate},

@@ -1,3 +1,8 @@
+0.4.1
+=====
+- Add list append and prepend test
+- Fix bug in linked list insert in position 0
+
 0.4.0
 =====
 - Added data structures interfaces for list, stack and queue
