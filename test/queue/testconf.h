@@ -1,6 +1,7 @@
 #ifndef QUEUE_TESTCONF_H
 #define QUEUE_TESTCONF_H
 
+#include <CUnit/CUnit.h>
 #include <CUnit/TestDB.h>
 
 /**

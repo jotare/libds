@@ -1,5 +1,5 @@
 #include <CUnit/CUnit.h>
-#include <CUnit/Basic.h>
+#include <CUnit/TestDB.h>
 
 #include "queue/queue.h"
 

@@ -1,6 +1,7 @@
 #ifndef STACK_TESTCONF_H
 #define STACK_TESTCONF_H
 
+#include <CUnit/CUnit.h>
 #include <CUnit/TestDB.h>
 
 /**

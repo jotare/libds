@@ -1,3 +1,7 @@
+/**
+ * @file stack.h
+ * @brief Stack interface
+ */
 #ifndef STACK_H
 #define STACK_H
 
@@ -36,7 +40,5 @@ void stack_clear(stack_t stack);
  * be used anymore.
 */
 void stack_destroy(stack_t *stack);
-
-
 
 #endif  /* STACK_H */

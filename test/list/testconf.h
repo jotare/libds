@@ -1,6 +1,7 @@
 #ifndef LIST_TESTCONF_H
 #define LIST_TESTCONF_H
 
+#include <CUnit/CUnit.h>
 #include <CUnit/TestDB.h>
 
 /**

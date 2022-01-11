@@ -1,5 +1,5 @@
 #include <CUnit/CUnit.h>
-#include <CUnit/Basic.h>
+#include <CUnit/TestDB.h>
 
 #include <inttypes.h>
 #include <stdio.h>

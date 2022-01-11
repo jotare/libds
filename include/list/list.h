@@ -54,7 +54,7 @@ int8_t list_locate(list_t list, list_element_t elem,
 			 int8_t(*cmp)(list_element_t a, list_element_t b));
 
 /**
- * Destroy the list `list`. It must be called then the list won't be
+ * Destroy the list `list`. It must be called when the list won't be
  * used anymore.
  */
 void list_destroy(list_t *list);
