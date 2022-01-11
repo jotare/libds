@@ -20,6 +20,10 @@ static void test_set_init_destroy(set_type_t type) {
     CU_ASSERT_EQUAL(set, NULL);
 }
 
+static void test_bit_vector_set_init_destroy(void) {
+    test_set_init_destroy(BIT_VECTOR_SET);
+}
+
 static void test_set_insert_member_delete_clear(set_type_t type) {
     set_t set;
     set_element_t e0 = 0, e1 = 1;
@@ -55,7 +59,6 @@ static void test_bit_vector_set_insert_member_delete_clear(void) {
     test_set_insert_member_delete_clear(BIT_VECTOR_SET);
 }
 
-
 static void test_set_union_intersection_difference(set_type_t type) {
     set_t a, b, c;
     set_element_t e0 = 12, e1 = 79, e2 = 99;
@@ -89,7 +92,15 @@ static void test_set_union_intersection_difference(set_type_t type) {
     set_destroy(&c);
 }
 
+static void test_bit_vector_set_union_intersection_difference(void) {
+    test_set_union_intersection_difference(BIT_VECTOR_SET);
+}
+
+
 static CU_TestInfo set_tests[] = {
+    {"bit vector set: init, destroy", test_bit_vector_set_init_destroy},
+    {"bit vector set: insert, member, delete, clear", test_bit_vector_set_insert_member_delete_clear},
+    {"bit vector set: union, intersection, difference", test_bit_vector_set_union_intersection_difference},
 
     CU_TEST_INFO_NULL
 };
