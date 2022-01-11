@@ -1,6 +1,7 @@
 0.6.0
 =====
 - Add set interface header
+- Add set tests
 
 0.5.0
 =====

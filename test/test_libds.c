@@ -6,6 +6,7 @@
 #include "list/testconf.h"
 #include "stack/testconf.h"
 #include "queue/testconf.h"
+#include "set/testconf.h"
 
 
 int main(void) {
@@ -15,12 +16,14 @@ int main(void) {
     CU_TestInfo
         *list_tests = get_list_tests(),
         *stack_tests = get_stack_tests(),
-        *queue_tests = get_queue_tests();
+        *queue_tests = get_queue_tests(),
+        *set_tests = get_set_tests();
 
     CU_SuiteInfo suites[] = {
         {"list", init_list_suite, cleanup_list_suite, NULL, NULL, list_tests},
         {"stack", init_stack_suite, cleanup_stack_suite, NULL, NULL, stack_tests},
         {"queue", init_queue_suite, cleanup_queue_suite, NULL, NULL, queue_tests},
+        {"set", init_set_suite, cleanup_set_suite, NULL, NULL, set_tests},
         CU_SUITE_INFO_NULL
     };
 
