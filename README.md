@@ -19,6 +19,20 @@ make lib
 A static library file `libds.a` will be created in the root
 directory.
 
+## Implemented data structures
+
+*libds* implements de following data structures:
+- list
+  - array list
+  - linked list
+  - doubly liked list
+- stack
+  - static (array) stack
+  - dynamic stack
+- queue
+  - static (array) queue
+  - dynamic queue
+
 ## Testing with CUnit
 
 Al testing is performed with CUnit framework. Al tests are inside the
