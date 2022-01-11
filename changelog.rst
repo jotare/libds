@@ -1,3 +1,7 @@
+0.6.0
+=====
+- Add set interface header
+
 0.5.0
 =====
 - Add makefile rules to build the library
