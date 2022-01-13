@@ -10,7 +10,7 @@ test_objects   := $(subst .c,.o,$(tests))   # test/*/test_z.o
 
 test_targets := $(basename $(tests)) # test/*/test_z
 
-includes  := include/ $(dir $(wildcard include/*/)) $(dir $(wildcard test/)) $(dir $(wildcard test/*/))
+includes  := include/ $(dir $(wildcard include/)) $(dir $(wildcard test/))
 libraries := cunit
 
 CC := gcc

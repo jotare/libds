@@ -9,7 +9,7 @@ typedef struct {
 } set_header_t;
 
 typedef struct {
-    int8_t(*init)(set_t *set, uint8_t n, set_type_t type);
+    int8_t(*init)(set_t *set, int n);
     bool(*member)(set_t set, set_element_t e);
     int8_t(*insert)(set_t set, set_element_t e);
     int8_t(*delete)(set_t set, set_element_t e);

@@ -2,6 +2,7 @@
 =====
 - Add set interface header
 - Add set tests
+- Add bit_vector implementation of basic interface
 
 0.5.0
 =====

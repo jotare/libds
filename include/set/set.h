@@ -9,14 +9,14 @@
 #include <stdbool.h>
 
 typedef void *set_t;
-typedef uint8_t set_element_t;
+typedef int set_element_t;
 typedef enum { DEFAULT_SET, BIT_VECTOR_SET } set_type_t;
 
 /**
  * Initialize an empty set with a universe consisting of 0..n-1 integer elements.
  * @return positive integer or 0 if success, negative one if fails
  */
-int8_t set_init(set_t *set, uint8_t n, set_type_t type);
+int8_t set_init(set_t *set, int n, set_type_t type);
 
 /**
  * Membership, insertion and deletion operations on a set `set`.

@@ -10,3 +10,5 @@
 #include "queue/queue.h"
 #include "queue/static_queue.h"
 #include "queue/dynamic_queue.h"
+
+#include "set/bit_vector.h"
