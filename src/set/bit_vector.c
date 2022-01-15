@@ -21,7 +21,7 @@ int8_t bit_vector_init(bit_vector_t *bv, int n) {
         return -1;
 
     int cuts = (n % 64 == 0) ? n / 64 : n / 64 + 1;
-    _bv->bv = malloc(cuts*sizeof(uint64_t));
+    _bv->bv = calloc(cuts, sizeof(uint64_t));
     if (_bv->bv == NULL) {
         free(_bv);
         return -1;

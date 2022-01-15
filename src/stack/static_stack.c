@@ -16,7 +16,7 @@ int8_t static_stack_init(static_stack_t *sstack, uint8_t n) {
     if (stack == NULL)
 	return -1;
 
-    stack->stack = malloc(n*sizeof(static_stack_element_t));
+    stack->stack = calloc(n, sizeof(static_stack_element_t));
     if (stack->stack == NULL) {
 	free(stack);
 	return -1;

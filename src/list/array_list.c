@@ -22,7 +22,7 @@ int8_t array_list_init(array_list_t *alist, uint8_t n) {
     list = malloc(sizeof(_array_list_t));
     if (list == NULL)
 	return -1;
-    list->l = malloc(n*sizeof(array_list_element_t));
+    list->l = calloc(n, sizeof(array_list_element_t));
     if (list->l == NULL) {
 	free(list);
 	return -1;

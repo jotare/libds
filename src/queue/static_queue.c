@@ -20,7 +20,7 @@ int8_t static_queue_init(static_queue_t *squeue, uint8_t n) {
     if (queue == NULL)
 	return -1;
 
-    queue->queue = malloc((n+1)*sizeof(static_queue_element_t));
+    queue->queue = calloc(n+1, sizeof(static_queue_element_t));
     if (queue->queue == NULL) {
 	free(queue);
 	return -1;
