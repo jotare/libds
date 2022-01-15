@@ -100,7 +100,7 @@ static void test_bit_vector_set_union_intersection_difference(void) {
 static CU_TestInfo set_tests[] = {
     {"bit vector set: init, destroy", test_bit_vector_set_init_destroy},
     {"bit vector set: insert, member, delete, clear", test_bit_vector_set_insert_member_delete_clear},
-    /* {"bit vector set: union, intersection, difference", test_bit_vector_set_union_intersection_difference}, */
+    {"bit vector set: union, intersection, difference", test_bit_vector_set_union_intersection_difference},
 
     CU_TEST_INFO_NULL
 };

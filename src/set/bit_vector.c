@@ -74,16 +74,34 @@ void bit_vector_clear(bit_vector_t bv) {
         _bv->bv[i] = 0;
 }
 
+#define min2(a, b) ((a <= b) ? a : b)
+#define min(a, b, c) min2(min2(a, b), c)
+
 int8_t bit_vector_union(bit_vector_t a, bit_vector_t b, bit_vector_t *c) {
-    return -1;
+    bit_vector_clear(*c);
+    _bit_vector_t *_a = a, *_b = b, *_c = *c;
+    int N = min(_a->cuts, _b->cuts, _c->cuts);
+    for (int i = 0; i < N; i++)
+        _c->bv[i] = _a->bv[i] | _b->bv[i];
+    return 0;
 }
 
 int8_t bit_vector_intersection(bit_vector_t a, bit_vector_t b, bit_vector_t *c) {
-    return -1;
+    bit_vector_clear(*c);
+    _bit_vector_t *_a = a, *_b = b, *_c = *c;
+    int N = min(_a->cuts, _b->cuts, _c->cuts);
+    for (int i = 0; i < N; i++)
+        _c->bv[i] = _a->bv[i] & _b->bv[i];
+    return 0;
 }
 
 int8_t bit_vector_difference(bit_vector_t a, bit_vector_t b, bit_vector_t *c) {
-    return -1;
+    bit_vector_clear(*c);
+    _bit_vector_t *_a = a, *_b = b, *_c = *c;
+    int N = min(_a->cuts, _b->cuts, _c->cuts);
+    for (int i = 0; i < N; i++)
+        _c->bv[i] = _a->bv[i] & ~_b->bv[i];
+    return 0;
 }
 
 void bit_vector_destroy(bit_vector_t *bv) {

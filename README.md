@@ -32,6 +32,8 @@ directory.
 - queue
   - static (array) queue
   - dynamic queue
+- set
+  - bit vector
 
 ## Testing with CUnit
 
