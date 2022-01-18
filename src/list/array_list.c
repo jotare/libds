@@ -33,39 +33,39 @@ int8_t array_list_init(array_list_t *alist, uint8_t n) {
     return 0;
 }
 
-uint8_t array_list_length(array_list_t alist) {
+uint8_t array_list_length(const array_list_t alist) {
     return ((_array_list_t *)alist)->n;
 }
 
-bool array_list_is_empty(array_list_t alist) {
+bool array_list_is_empty(const array_list_t alist) {
     _array_list_t *list;
 
     list = alist;
     return list->n == 0;
 }
 
-bool array_list_is_full(array_list_t alist) {
+bool array_list_is_full(const array_list_t alist) {
     _array_list_t *list;
 
     list = alist;
     return list->n == list->max_length;
 }
 
-array_list_element_t array_list_first(array_list_t alist) {
+array_list_element_t array_list_first(const array_list_t alist) {
     _array_list_t *list;
     list = alist;
 
     return list->l[0];
 }
 
-array_list_element_t array_list_last(array_list_t alist) {
+array_list_element_t array_list_last(const array_list_t alist) {
     _array_list_t *list;
     list = alist;
 
     return list->l[list->n-1];
 }
 
-array_list_element_t array_list_get(array_list_t alist, uint8_t n) {
+array_list_element_t array_list_get(const array_list_t alist, uint8_t n) {
     _array_list_t *list;
 
     list = alist;
@@ -123,7 +123,7 @@ void array_list_clear(array_list_t alist) {
     list->n = 0;
 }
 
-int8_t array_list_locate(array_list_t alist, array_list_element_t elem,
+int8_t array_list_locate(const array_list_t alist, array_list_element_t elem,
 			 int8_t(*cmp)(array_list_element_t a, array_list_element_t b)) {
     _array_list_t *list;
     list = alist;

@@ -22,14 +22,14 @@ int8_t stack_init(stack_t *stack, uint8_t n, stack_type_t type);
 /**
  * Size
  */
-uint8_t stack_length(stack_t stack);
-bool stack_is_empty(stack_t stack);
-bool stack_is_full(stack_t stack);
+uint8_t stack_length(const stack_t stack);
+bool stack_is_empty(const stack_t stack);
+bool stack_is_full(const stack_t stack);
 
 /**
  * Stack operations
  */
-stack_element_t stack_top(stack_t stack);
+stack_element_t stack_top(const stack_t stack);
 int8_t stack_push(stack_t stack, stack_element_t elem);
 stack_element_t stack_pop(stack_t stack);
 

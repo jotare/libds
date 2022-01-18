@@ -34,7 +34,7 @@ int8_t static_queue_init(static_queue_t *squeue, uint8_t n) {
     return 0;
 }
 
-uint8_t static_queue_length(static_queue_t squeue) {
+uint8_t static_queue_length(const static_queue_t squeue) {
     _queue_t *queue = squeue;
 
     if (queue->front == queue->rear)
@@ -45,18 +45,18 @@ uint8_t static_queue_length(static_queue_t squeue) {
 	return queue->size - (queue->front - queue->rear);
 }
 
-bool static_queue_is_empty(static_queue_t squeue) {
+bool static_queue_is_empty(const static_queue_t squeue) {
     _queue_t *queue = squeue;
     return queue->front == queue->rear;
 }
 
-bool static_queue_is_full(static_queue_t squeue) {
+bool static_queue_is_full(const static_queue_t squeue) {
     _queue_t *queue = squeue;
     return ((queue->rear + 1) == queue->front) ||		\
 	((queue->front + queue->size-1) == queue->rear);
 }
 
-static_queue_element_t static_queue_front(static_queue_t squeue) {
+static_queue_element_t static_queue_front(const static_queue_t squeue) {
     _queue_t *queue = squeue;
 
     if (queue->front + 1 == queue->queue + queue->size)

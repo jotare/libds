@@ -17,14 +17,14 @@ int8_t dynamic_stack_init(dynamic_stack_t *dstack);
 /**
  * Size
  */
-uint8_t dynamic_stack_length(dynamic_stack_t dstack);
-bool dynamic_stack_is_empty(dynamic_stack_t dstack);
-bool dynamic_stack_is_full(dynamic_stack_t dstack);
+uint8_t dynamic_stack_length(const dynamic_stack_t dstack);
+bool dynamic_stack_is_empty(const dynamic_stack_t dstack);
+bool dynamic_stack_is_full(const dynamic_stack_t dstack);
 
 /**
  * Stack operations
  */
-dynamic_stack_element_t dynamic_stack_top(dynamic_stack_t dstack);
+dynamic_stack_element_t dynamic_stack_top(const dynamic_stack_t dstack);
 int8_t dynamic_stack_push(dynamic_stack_t dstack, dynamic_stack_element_t elem);
 dynamic_stack_element_t dynamic_stack_pop(dynamic_stack_t dstack);
 

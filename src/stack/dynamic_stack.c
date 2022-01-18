@@ -26,21 +26,21 @@ int8_t dynamic_stack_init(dynamic_stack_t *dstack) {
     return 0;
 }
 
-uint8_t dynamic_stack_length(dynamic_stack_t dstack) {
+uint8_t dynamic_stack_length(const dynamic_stack_t dstack) {
     _stack_t *stack = dstack;
     return stack->n;
 }
 
-bool dynamic_stack_is_empty(dynamic_stack_t dstack) {
+bool dynamic_stack_is_empty(const dynamic_stack_t dstack) {
     _stack_t *stack = dstack;
     return stack->n == 0;
 }
 
-bool dynamic_stack_is_full(dynamic_stack_t dstack) {
+bool dynamic_stack_is_full(const dynamic_stack_t dstack) {
     return false;
 }
 
-dynamic_stack_element_t dynamic_stack_top(dynamic_stack_t dstack) {
+dynamic_stack_element_t dynamic_stack_top(const dynamic_stack_t dstack) {
     _stack_t *stack = dstack;
     return stack->top->elem;
 }

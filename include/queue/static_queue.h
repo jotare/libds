@@ -17,14 +17,14 @@ int8_t static_queue_init(static_queue_t *squeue, uint8_t n);
 /**
  * Size
  */
-uint8_t static_queue_length(static_queue_t squeue);
-bool static_queue_is_empty(static_queue_t squeue);
-bool static_queue_is_full(static_queue_t squeue);
+uint8_t static_queue_length(const static_queue_t squeue);
+bool static_queue_is_empty(const static_queue_t squeue);
+bool static_queue_is_full(const static_queue_t squeue);
 
 /**
  * Queue operations
  */
-static_queue_element_t static_queue_front(static_queue_t squeue);
+static_queue_element_t static_queue_front(const static_queue_t squeue);
 int8_t static_queue_enqueue(static_queue_t squeue, static_queue_element_t elem);
 static_queue_element_t static_queue_dequeue(static_queue_t squeue);
 

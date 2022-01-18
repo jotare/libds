@@ -18,14 +18,14 @@ int8_t queue_init(queue_t *queue, uint8_t n, queue_type_t type);
 /**
  * Size
  */
-uint8_t queue_length(queue_t queue);
-bool queue_is_empty(queue_t queue);
-bool queue_is_full(queue_t queue);
+uint8_t queue_length(const queue_t queue);
+bool queue_is_empty(const queue_t queue);
+bool queue_is_full(const queue_t queue);
 
 /**
  * Queue operations
  */
-queue_element_t queue_front(queue_t queue);
+queue_element_t queue_front(const queue_t queue);
 int8_t queue_enqueue(queue_t queue, queue_element_t elem);
 queue_element_t queue_dequeue(queue_t queue);
 

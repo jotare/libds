@@ -27,19 +27,19 @@ int8_t dynamic_queue_init(dynamic_queue_t *squeue) {
     return 0;
 }
 
-uint8_t dynamic_queue_length(dynamic_queue_t squeue) {
+uint8_t dynamic_queue_length(const dynamic_queue_t squeue) {
     _queue_t *queue = squeue;
     return queue->n;
 }
 
-bool dynamic_queue_is_empty(dynamic_queue_t squeue) {
+bool dynamic_queue_is_empty(const dynamic_queue_t squeue) {
     _queue_t *queue = squeue;
     return queue->n == 0;
 }
 
-bool dynamic_queue_is_full(dynamic_queue_t squeue) { return false; }
+bool dynamic_queue_is_full(const dynamic_queue_t squeue) { return false; }
 
-dynamic_queue_element_t dynamic_queue_front(dynamic_queue_t squeue) {
+dynamic_queue_element_t dynamic_queue_front(const dynamic_queue_t squeue) {
     _queue_t *queue = squeue;
     return queue->front->elem;
 }

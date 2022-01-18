@@ -17,14 +17,14 @@ int8_t dynamic_queue_init(dynamic_queue_t *squeue);
 /**
  * Size
  */
-uint8_t dynamic_queue_length(dynamic_queue_t squeue);
-bool dynamic_queue_is_empty(dynamic_queue_t squeue);
-bool dynamic_queue_is_full(dynamic_queue_t squeue);
+uint8_t dynamic_queue_length(const dynamic_queue_t squeue);
+bool dynamic_queue_is_empty(const dynamic_queue_t squeue);
+bool dynamic_queue_is_full(const dynamic_queue_t squeue);
 
 /**
  * Queue operations
  */
-dynamic_queue_element_t dynamic_queue_front(dynamic_queue_t squeue);
+dynamic_queue_element_t dynamic_queue_front(const dynamic_queue_t squeue);
 int8_t dynamic_queue_enqueue(dynamic_queue_t squeue, dynamic_queue_element_t elem);
 dynamic_queue_element_t dynamic_queue_dequeue(dynamic_queue_t squeue);
 

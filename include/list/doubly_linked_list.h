@@ -17,16 +17,16 @@ int8_t doubly_linked_list_init(doubly_linked_list_t *dlist);
 /**
  * Size
  */
-uint8_t doubly_linked_list_length(doubly_linked_list_t dlist);
-bool doubly_linked_list_is_empty(doubly_linked_list_t dlist);
-bool doubly_linked_list_is_full(doubly_linked_list_t dlist);
+uint8_t doubly_linked_list_length(const doubly_linked_list_t dlist);
+bool doubly_linked_list_is_empty(const doubly_linked_list_t dlist);
+bool doubly_linked_list_is_full(const doubly_linked_list_t dlist);
 
 /**
  * Retrieve elements from the list
  */
-doubly_linked_list_element_t doubly_linked_list_first(doubly_linked_list_t dlist);
-doubly_linked_list_element_t doubly_linked_list_last(doubly_linked_list_t dlist);
-doubly_linked_list_element_t doubly_linked_list_get(doubly_linked_list_t dlist, uint8_t n);
+doubly_linked_list_element_t doubly_linked_list_first(const doubly_linked_list_t dlist);
+doubly_linked_list_element_t doubly_linked_list_last(const doubly_linked_list_t dlist);
+doubly_linked_list_element_t doubly_linked_list_get(const doubly_linked_list_t dlist, uint8_t n);
 
 /**
  * Insert
@@ -44,8 +44,8 @@ void doubly_linked_list_clear(doubly_linked_list_t dlist);
 /**
  * Find
  */
-int8_t doubly_linked_list_locate(doubly_linked_list_t dlist, doubly_linked_list_element_t elem,
-			 int8_t(*cmp)(doubly_linked_list_element_t a, doubly_linked_list_element_t b));
+int8_t doubly_linked_list_locate(const doubly_linked_list_t dlist, doubly_linked_list_element_t elem,
+                                 int8_t(*cmp)(doubly_linked_list_element_t a, doubly_linked_list_element_t b));
 
 /**
  * Destroy the `doubly_linked_list`. It must be called then the doubly

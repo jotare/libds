@@ -29,22 +29,22 @@ int8_t static_stack_init(static_stack_t *sstack, uint8_t n) {
     return 0;
 }
 
-uint8_t static_stack_length(static_stack_t sstack) {
+uint8_t static_stack_length(const static_stack_t sstack) {
     _stack_t *stack = sstack;
     return stack->n;
 }
 
-bool static_stack_is_empty(static_stack_t sstack) {
+bool static_stack_is_empty(const static_stack_t sstack) {
     _stack_t *stack = sstack;
     return stack->n == 0;
 }
 
-bool static_stack_is_full(static_stack_t sstack) {
+bool static_stack_is_full(const static_stack_t sstack) {
     _stack_t *stack = sstack;
     return stack->n == stack->size;
 }
 
-static_stack_element_t static_stack_top(static_stack_t sstack) {
+static_stack_element_t static_stack_top(const static_stack_t sstack) {
     _stack_t *stack = sstack;
     return stack->stack[stack->n-1];
 }

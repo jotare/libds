@@ -17,16 +17,16 @@ int8_t array_list_init(array_list_t *alist, uint8_t n);
 /**
  * Size
  */
-uint8_t array_list_length(array_list_t alist);
-bool array_list_is_empty(array_list_t alist);
-bool array_list_is_full(array_list_t alist);
+uint8_t array_list_length(const array_list_t alist);
+bool array_list_is_empty(const array_list_t alist);
+bool array_list_is_full(const array_list_t alist);
 
 /**
  * Retrieve elements
  */
-array_list_element_t array_list_first(array_list_t alist);
-array_list_element_t array_list_last(array_list_t alist);
-array_list_element_t array_list_get(array_list_t alist, uint8_t n);
+array_list_element_t array_list_first(const array_list_t alist);
+array_list_element_t array_list_last(const array_list_t alist);
+array_list_element_t array_list_get(const array_list_t alist, uint8_t n);
 
 /**
  * Insert
@@ -44,7 +44,7 @@ void array_list_clear(array_list_t alist);
 /**
  * Find
  */
-int8_t array_list_locate(array_list_t alist, array_list_element_t elem,
+int8_t array_list_locate(const array_list_t alist, array_list_element_t elem,
 			 int8_t(*cmp)(array_list_element_t a, array_list_element_t b));
 
 /**

@@ -1,13 +1,12 @@
-/**
- * Private bit_vector definition
- */
 #include <inttypes.h>
 #include <stdbool.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 #include "set/bit_vector.h"
 
+/**
+ * Private bit vector definition
+ */
 typedef struct {
     uint64_t *bv;
     int cuts;
@@ -77,7 +76,7 @@ void bit_vector_clear(bit_vector_t bv) {
 #define min2(a, b) ((a <= b) ? a : b)
 #define min(a, b, c) min2(min2(a, b), c)
 
-int8_t bit_vector_union(bit_vector_t a, bit_vector_t b, bit_vector_t *c) {
+int8_t bit_vector_union(const bit_vector_t a, const bit_vector_t b, bit_vector_t *c) {
     bit_vector_clear(*c);
     _bit_vector_t *_a = a, *_b = b, *_c = *c;
     int N = min(_a->cuts, _b->cuts, _c->cuts);
@@ -86,7 +85,7 @@ int8_t bit_vector_union(bit_vector_t a, bit_vector_t b, bit_vector_t *c) {
     return 0;
 }
 
-int8_t bit_vector_intersection(bit_vector_t a, bit_vector_t b, bit_vector_t *c) {
+int8_t bit_vector_intersection(const bit_vector_t a, const bit_vector_t b, bit_vector_t *c) {
     bit_vector_clear(*c);
     _bit_vector_t *_a = a, *_b = b, *_c = *c;
     int N = min(_a->cuts, _b->cuts, _c->cuts);
@@ -95,7 +94,7 @@ int8_t bit_vector_intersection(bit_vector_t a, bit_vector_t b, bit_vector_t *c) 
     return 0;
 }
 
-int8_t bit_vector_difference(bit_vector_t a, bit_vector_t b, bit_vector_t *c) {
+int8_t bit_vector_difference(const bit_vector_t a, const bit_vector_t b, bit_vector_t *c) {
     bit_vector_clear(*c);
     _bit_vector_t *_a = a, *_b = b, *_c = *c;
     int N = min(_a->cuts, _b->cuts, _c->cuts);

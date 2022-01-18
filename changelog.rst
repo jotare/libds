@@ -1,3 +1,7 @@
+0.7.0
+=====
+- Use const when needed in all data structures
+
 0.6.0
 =====
 - Add set interface header

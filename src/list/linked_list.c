@@ -30,26 +30,26 @@ int8_t linked_list_init(linked_list_t *llist) {
     return 0;
 }
 
-inline uint8_t linked_list_length(linked_list_t llist) {
+inline uint8_t linked_list_length(const linked_list_t llist) {
     return ((_linked_list_t *)llist)->n;
 }
 
-inline bool linked_list_is_empty(linked_list_t llist) {
+inline bool linked_list_is_empty(const linked_list_t llist) {
     return ((_linked_list_t *)llist)->n == 0;
 }
 
-inline bool linked_list_is_full(linked_list_t llist) {
+inline bool linked_list_is_full(const linked_list_t llist) {
     return false;
 }
 
-linked_list_element_t linked_list_first(linked_list_t llist) {
+linked_list_element_t linked_list_first(const linked_list_t llist) {
     _linked_list_t *list;
 
     list = llist;
     return list->first->elem;
 }
 
-linked_list_element_t linked_list_last(linked_list_t llist) {
+linked_list_element_t linked_list_last(const linked_list_t llist) {
     _linked_list_t *list;
     node_t *node;
 
@@ -62,7 +62,7 @@ linked_list_element_t linked_list_last(linked_list_t llist) {
     return node->elem;
 }
 
-linked_list_element_t linked_list_get(linked_list_t llist, uint8_t n) {
+linked_list_element_t linked_list_get(const linked_list_t llist, uint8_t n) {
      _linked_list_t *list;
     node_t *node;
 
@@ -161,7 +161,7 @@ void linked_list_clear(linked_list_t llist) {
 	linked_list_remove(llist, 0);
 }
 
-int8_t linked_list_locate(linked_list_t llist, linked_list_element_t elem,
+int8_t linked_list_locate(const linked_list_t llist, linked_list_element_t elem,
 			  int8_t(*cmp)(linked_list_element_t a, linked_list_element_t b)) {
     _linked_list_t *list;
     node_t *node;

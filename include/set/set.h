@@ -32,9 +32,9 @@ void set_clear(set_t set);
  * not initialized, unexpected behavior might happen.
  * @return positive integer or 0 if success, negative one if fails
 */
-int8_t set_union(set_t a, set_t b, set_t *c);
-int8_t set_intersection(set_t a, set_t b, set_t *c);
-int8_t set_difference(set_t a, set_t b, set_t *c);
+int8_t set_union(const set_t a, const set_t b, set_t *c);
+int8_t set_intersection(const set_t a, const set_t b, set_t *c);
+int8_t set_difference(const set_t a, const set_t b, set_t *c);
 
 /**
  * Destroy the set `set`. It must be called when the set won't be used

@@ -12,18 +12,18 @@ typedef struct {
 
 typedef struct {
     int8_t(*init)(list_t *list, uint8_t n);
-    uint8_t(*length)(list_t list);
-    bool(*is_empty)(list_t list);
-    bool(*is_full)(list_t list);
-    list_element_t(*first)(list_t list);
-    list_element_t(*last)(list_t list);
-    list_element_t(*get)(list_t list, uint8_t n);
+    uint8_t(*length)(const list_t list);
+    bool(*is_empty)(const list_t list);
+    bool(*is_full)(const list_t list);
+    list_element_t(*first)(const list_t list);
+    list_element_t(*last)(const list_t list);
+    list_element_t(*get)(const list_t list, uint8_t n);
     int8_t(*insert)(list_t list, uint8_t n, list_element_t elem);
     int8_t(*append)(list_t list, list_element_t elem);
     int8_t(*prepend)(list_t list, list_element_t elem);
     list_element_t(*remove)(list_t list, uint8_t n);
     void(*clear)(list_t list);
-    int8_t(*locate)(list_t list, list_element_t elem,
+    int8_t(*locate)(const list_t list, list_element_t elem,
 		    int8_t(*cmp)(list_element_t a, list_element_t b));
     void(*destroy)(list_t *list);
 } ilist_t;
@@ -144,27 +144,27 @@ void list_destroy(list_t *list) {
     })
 
 
-uint8_t list_length(list_t list) {
+uint8_t list_length(const list_t list) {
     call_list_interface_function(length, list);
 }
 
-bool list_is_empty(list_t list) {
+bool list_is_empty(const list_t list) {
     call_list_interface_function(is_empty, list);
 }
 
-bool list_is_full(list_t list) {
+bool list_is_full(const list_t list) {
     call_list_interface_function(is_full, list);
 }
 
-list_element_t list_first(list_t list) {
+list_element_t list_first(const list_t list) {
     call_list_interface_function(first, list);
 }
 
-list_element_t list_last(list_t list) {
+list_element_t list_last(const list_t list) {
     call_list_interface_function(last, list);
 }
 
-list_element_t list_get(list_t list, uint8_t n) {
+list_element_t list_get(const list_t list, uint8_t n) {
     call_list_interface_function(get, list, n);
 }
 
@@ -188,7 +188,7 @@ void list_clear(list_t list) {
     call_list_interface_function(clear, list);
 }
 
-int8_t list_locate(list_t list, list_element_t elem,
+int8_t list_locate(const list_t list, list_element_t elem,
 		   int8_t(*cmp)(list_element_t a, list_element_t b)) {
     call_list_interface_function(locate, list, elem, cmp);
 }

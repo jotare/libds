@@ -26,16 +26,16 @@ int8_t list_init(list_t *list, uint8_t n, list_type_t type);
 /**
  * Size
  */
-uint8_t list_length(list_t list);
-bool list_is_empty(list_t list);
-bool list_is_full(list_t list);
+uint8_t list_length(const list_t list);
+bool list_is_empty(const list_t list);
+bool list_is_full(const list_t list);
 
 /**
  * Retrieve elements from the list
  */
-list_element_t list_first(list_t list);
-list_element_t list_last(list_t list);
-list_element_t list_get(list_t list, uint8_t n);
+list_element_t list_first(const list_t list);
+list_element_t list_last(const list_t list);
+list_element_t list_get(const list_t list, uint8_t n);
 
 /**
  * Insert
@@ -50,8 +50,8 @@ int8_t list_prepend(list_t list, list_element_t elem);
 list_element_t list_remove(list_t list, uint8_t n);
 void list_clear(list_t list);
 
-int8_t list_locate(list_t list, list_element_t elem,
-			 int8_t(*cmp)(list_element_t a, list_element_t b));
+int8_t list_locate(const list_t list, list_element_t elem,
+                   int8_t(*cmp)(list_element_t a, list_element_t b));
 
 /**
  * Destroy the list `list`. It must be called when the list won't be
