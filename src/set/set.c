@@ -1,3 +1,4 @@
+#include <bits/stdint-uintn.h>
 #include <stdlib.h>
 
 #include "set/bit_vector.h"
@@ -10,6 +11,8 @@ typedef struct {
 
 typedef struct {
     int8_t(*init)(set_t *set, int n);
+    uint8_t(*length)(set_t set);
+    bool(*is_empty)(set_t set);
     bool(*member)(set_t set, set_element_t e);
     int8_t(*insert)(set_t set, set_element_t e);
     int8_t(*delete)(set_t set, set_element_t e);
@@ -22,6 +25,8 @@ typedef struct {
 
 static const iset_t bit_vector = {
     bit_vector_init,
+    bit_vector_length,
+    bit_vector_is_empty,
     bit_vector_member,
     bit_vector_insert,
     bit_vector_delete,
@@ -79,6 +84,14 @@ void set_destroy(set_t *set) {
         return ds->fun(header->set, ## __VA_ARGS__);    \
     })
 
+
+uint8_t set_length(const set_t set) {
+    call_set_interface_function(length, set);
+}
+
+bool set_is_empty(const set_t set) {
+    call_set_interface_function(is_empty, set);
+}
 
 bool set_member(set_t set, set_element_t e) {
     call_set_interface_function(member, set, e);

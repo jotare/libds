@@ -59,6 +59,36 @@ static void test_bit_vector_set_insert_member_delete_clear(void) {
     test_set_insert_member_delete_clear(BIT_VECTOR_SET);
 }
 
+static void test_set_length_is_empty(set_type_t type) {
+    set_t set;
+    set_element_t e0 = 12, e1 = 79, e2 = 99;
+
+    set_init(&set, 100, type);
+    CU_ASSERT_TRUE(set_is_empty(set));
+    CU_ASSERT_EQUAL(set_length(set), 0);
+
+    set_insert(set, e0);
+    CU_ASSERT_FALSE(set_is_empty(set));
+    CU_ASSERT_EQUAL(set_length(set), 1);
+
+    set_delete(set, e0);
+    CU_ASSERT_TRUE(set_is_empty(set));
+    CU_ASSERT_EQUAL(set_length(set), 0);
+
+    set_insert(set, e1);
+    set_insert(set, e2);
+    CU_ASSERT_FALSE(set_is_empty(set));
+    CU_ASSERT_EQUAL(set_length(set), 2);
+
+    set_clear(set);
+    CU_ASSERT_TRUE(set_is_empty(set));
+    CU_ASSERT_EQUAL(set_length(set), 0);
+}
+
+static void test_bit_vector_set_length_is_empty(void) {
+    test_set_length_is_empty(BIT_VECTOR_SET);
+}
+
 static void test_set_union_intersection_difference(set_type_t type) {
     set_t a, b, c;
     set_element_t e0 = 12, e1 = 79, e2 = 99;
@@ -100,6 +130,7 @@ static void test_bit_vector_set_union_intersection_difference(void) {
 static CU_TestInfo set_tests[] = {
     {"bit vector set: init, destroy", test_bit_vector_set_init_destroy},
     {"bit vector set: insert, member, delete, clear", test_bit_vector_set_insert_member_delete_clear},
+    {"bit vector set: length, is_empty", test_bit_vector_set_length_is_empty},
     {"bit vector set: union, intersection, difference", test_bit_vector_set_union_intersection_difference},
 
     CU_TEST_INFO_NULL

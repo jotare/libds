@@ -1,3 +1,4 @@
+#include <bits/stdint-uintn.h>
 #include <inttypes.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -32,6 +33,32 @@ int8_t bit_vector_init(bit_vector_t *bv, int n) {
     _bv->universe = n;
     *bv = _bv;
     return 0;
+}
+
+uint8_t bit_vector_length(const bit_vector_t bv) {
+    _bit_vector_t *_bv = bv;
+    uint8_t length = 0;
+
+    for (int i = 0; i < _bv->cuts; i++) {
+        uint64_t cut = _bv->bv[i];
+        for (int j = 0; j < 64; j++) {
+            length += (cut & (1UL << j)) ? 1 : 0;
+        }
+    }
+    return length;
+}
+
+bool bit_vector_is_empty(const bit_vector_t bv) {
+    _bit_vector_t *_bv = bv;
+
+    for (int i = 0; i < _bv->cuts; i++) {
+        uint64_t cut = _bv->bv[i];
+        if (cut > 0) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 bool bit_vector_member(bit_vector_t bv, bit_vector_element_t e) {

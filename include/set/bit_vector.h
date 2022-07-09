@@ -15,6 +15,12 @@ typedef int bit_vector_element_t;
 int8_t bit_vector_init(bit_vector_t *bv, int n);
 
 /**
+ * Size
+ */
+uint8_t bit_vector_length(const bit_vector_t bv);
+bool bit_vector_is_empty(const bit_vector_t bv);
+
+/**
  * Membership, insertion and deletion operations on a bit vector `bv`.
  */
 bool bit_vector_member(bit_vector_t bv, bit_vector_element_t e);

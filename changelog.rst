@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+0.8.0
+-----
+- Implement `length` and `is_empty` on bit vector sets
+
 0.7.0
 -----
 - Use const when needed in all data structures

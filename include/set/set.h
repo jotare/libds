@@ -19,6 +19,12 @@ typedef enum { DEFAULT_SET, BIT_VECTOR_SET } set_type_t;
 int8_t set_init(set_t *set, int n, set_type_t type);
 
 /**
+ * Size
+ */
+uint8_t set_length(const set_t set);
+bool set_is_empty(const set_t set);
+
+/**
  * Membership, insertion and deletion operations on a set `set`.
  */
 bool set_member(set_t set, set_element_t e);
