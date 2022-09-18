@@ -15,7 +15,7 @@ typedef struct {
     int universe;
 } _bit_vector_t;
 
-int8_t bit_vector_init(bit_vector_t *bv, int n) {
+int bit_vector_init(bit_vector_t *bv, int n) {
     _bit_vector_t *_bv;
     _bv = malloc(sizeof(_bit_vector_t));
     if (_bv == NULL)
@@ -36,9 +36,9 @@ int8_t bit_vector_init(bit_vector_t *bv, int n) {
     return 0;
 }
 
-uint8_t bit_vector_length(const bit_vector_t bv) {
+unsigned int bit_vector_length(const bit_vector_t bv) {
     _bit_vector_t *_bv = bv;
-    uint8_t length = 0;
+    unsigned int length = 0;
 
     for (int i = 0; i < _bv->cuts; i++) {
         uint64_t cut = _bv->bv[i];
@@ -72,7 +72,7 @@ bool bit_vector_member(bit_vector_t bv, bit_vector_element_t e) {
     return part & (1UL << idx);
 }
 
-int8_t bit_vector_insert(bit_vector_t bv, bit_vector_element_t e) {
+int bit_vector_insert(bit_vector_t bv, bit_vector_element_t e) {
     _bit_vector_t *_bv = bv;
     if (e > _bv->universe)
         return -1;
@@ -83,7 +83,7 @@ int8_t bit_vector_insert(bit_vector_t bv, bit_vector_element_t e) {
     return 0;
 }
 
-int8_t bit_vector_delete(bit_vector_t bv, bit_vector_element_t e) {
+int bit_vector_delete(bit_vector_t bv, bit_vector_element_t e) {
     _bit_vector_t *_bv = bv;
     if (e > _bv->universe)
         return -1;
@@ -104,7 +104,7 @@ void bit_vector_clear(bit_vector_t bv) {
 #define min2(a, b) ((a <= b) ? a : b)
 #define min(a, b, c) min2(min2(a, b), c)
 
-int8_t bit_vector_union(const bit_vector_t a, const bit_vector_t b, bit_vector_t *c) {
+int bit_vector_union(const bit_vector_t a, const bit_vector_t b, bit_vector_t *c) {
     bit_vector_clear(*c);
     _bit_vector_t *_a = a, *_b = b, *_c = *c;
     int N = min(_a->cuts, _b->cuts, _c->cuts);
@@ -113,7 +113,7 @@ int8_t bit_vector_union(const bit_vector_t a, const bit_vector_t b, bit_vector_t
     return 0;
 }
 
-int8_t bit_vector_intersection(const bit_vector_t a, const bit_vector_t b, bit_vector_t *c) {
+int bit_vector_intersection(const bit_vector_t a, const bit_vector_t b, bit_vector_t *c) {
     bit_vector_clear(*c);
     _bit_vector_t *_a = a, *_b = b, *_c = *c;
     int N = min(_a->cuts, _b->cuts, _c->cuts);
@@ -122,7 +122,7 @@ int8_t bit_vector_intersection(const bit_vector_t a, const bit_vector_t b, bit_v
     return 0;
 }
 
-int8_t bit_vector_difference(const bit_vector_t a, const bit_vector_t b, bit_vector_t *c) {
+int bit_vector_difference(const bit_vector_t a, const bit_vector_t b, bit_vector_t *c) {
     bit_vector_clear(*c);
     _bit_vector_t *_a = a, *_b = b, *_c = *c;
     int N = min(_a->cuts, _b->cuts, _c->cuts);

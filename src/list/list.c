@@ -11,20 +11,20 @@ typedef struct {
 } list_header_t;
 
 typedef struct {
-    int8_t(*init)(list_t *list, uint8_t n);
-    uint8_t(*length)(const list_t list);
+    int(*init)(list_t *list, unsigned int n);
+    unsigned int(*length)(const list_t list);
     bool(*is_empty)(const list_t list);
     bool(*is_full)(const list_t list);
     list_element_t(*first)(const list_t list);
     list_element_t(*last)(const list_t list);
-    list_element_t(*get)(const list_t list, uint8_t n);
-    int8_t(*insert)(list_t list, uint8_t n, list_element_t elem);
-    int8_t(*append)(list_t list, list_element_t elem);
-    int8_t(*prepend)(list_t list, list_element_t elem);
-    list_element_t(*remove)(list_t list, uint8_t n);
+    list_element_t(*get)(const list_t list, unsigned int n);
+    int(*insert)(list_t list, unsigned int n, list_element_t elem);
+    int(*append)(list_t list, list_element_t elem);
+    int(*prepend)(list_t list, list_element_t elem);
+    list_element_t(*remove)(list_t list, unsigned int n);
     void(*clear)(list_t list);
-    int8_t(*locate)(const list_t list, list_element_t elem,
-		    int8_t(*cmp)(list_element_t a, list_element_t b));
+    int(*locate)(const list_t list, list_element_t elem,
+		    int(*cmp)(list_element_t a, list_element_t b));
     void(*destroy)(list_t *list);
 } ilist_t;
 
@@ -46,7 +46,7 @@ static const ilist_t array_list = {
     array_list_destroy
 };
 
-static int8_t _linked_list_init(linked_list_t *llist, uint8_t fake_n) {
+static int _linked_list_init(linked_list_t *llist, unsigned int fake_n) {
     return linked_list_init(llist);
 }
 
@@ -67,7 +67,7 @@ static const ilist_t linked_list = {
     linked_list_destroy
 };
 
-static int8_t _doubly_linked_list_init(doubly_linked_list_t *dlist, uint8_t fake_n) {
+static int _doubly_linked_list_init(doubly_linked_list_t *dlist, unsigned int fake_n) {
     return doubly_linked_list_init(dlist);
 }
 
@@ -105,7 +105,7 @@ static const ilist_t *interface(list_type_t type) {
 }
 
 
-int8_t list_init(list_t *list, uint8_t n, list_type_t type) {
+int list_init(list_t *list, unsigned int n, list_type_t type) {
     list_header_t *header;
     const ilist_t *ds = interface(type);
 
@@ -114,7 +114,7 @@ int8_t list_init(list_t *list, uint8_t n, list_type_t type) {
         return -1;
 
     header->type = type;
-    int8_t status = ds->init(&(header->list), n);
+    int status = ds->init(&(header->list), n);
 
     if (status < 0)
         *list = NULL;
@@ -144,7 +144,7 @@ void list_destroy(list_t *list) {
     })
 
 
-uint8_t list_length(const list_t list) {
+unsigned int list_length(const list_t list) {
     call_list_interface_function(length, list);
 }
 
@@ -164,23 +164,23 @@ list_element_t list_last(const list_t list) {
     call_list_interface_function(last, list);
 }
 
-list_element_t list_get(const list_t list, uint8_t n) {
+list_element_t list_get(const list_t list, unsigned int n) {
     call_list_interface_function(get, list, n);
 }
 
-int8_t list_insert(list_t list, uint8_t n, list_element_t elem) {
+int list_insert(list_t list, unsigned int n, list_element_t elem) {
     call_list_interface_function(insert, list, n, elem);
 }
 
-int8_t list_append(list_t list, list_element_t elem) {
+int list_append(list_t list, list_element_t elem) {
     call_list_interface_function(append, list, elem);
 }
 
-int8_t list_prepend(list_t list, list_element_t elem) {
+int list_prepend(list_t list, list_element_t elem) {
     call_list_interface_function(prepend, list, elem);
 }
 
-list_element_t list_remove(list_t list, uint8_t n) {
+list_element_t list_remove(list_t list, unsigned int n) {
     call_list_interface_function(remove, list, n);
 }
 
@@ -188,7 +188,7 @@ void list_clear(list_t list) {
     call_list_interface_function(clear, list);
 }
 
-int8_t list_locate(const list_t list, list_element_t elem,
-		   int8_t(*cmp)(list_element_t a, list_element_t b)) {
+int list_locate(const list_t list, list_element_t elem,
+		   int(*cmp)(list_element_t a, list_element_t b)) {
     call_list_interface_function(locate, list, elem, cmp);
 }

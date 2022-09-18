@@ -126,7 +126,7 @@ static void test_list_append_prepend(list_type_t type) {
     CU_ASSERT_EQUAL(list_get(list, 0), a);
     list_append(list, b);
     CU_ASSERT_EQUAL(list_get(list, 1), b);
-    list_prepend(list, c);
+    printf("PREPREND: %d\n", list_prepend(list, c));
     CU_ASSERT_EQUAL(list_get(list, 0), c);
 
     list_destroy(&list);
@@ -209,7 +209,7 @@ static void test_doubly_linked_list_clear(void) {
 }
 
 
-static int8_t cmp(list_element_t a, list_element_t b) {
+static int cmp(list_element_t a, list_element_t b) {
     if (a < b)
 	return -1;
     else if (a == b)

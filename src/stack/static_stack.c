@@ -4,12 +4,12 @@
 
 typedef struct {
     static_stack_element_t *stack;
-    uint8_t n;			/* number of elements */
-    uint8_t size;		/* stack size */
+    unsigned int n;			/* number of elements */
+    unsigned int size;		/* stack size */
 } _stack_t;
 
 
-int8_t static_stack_init(static_stack_t *sstack, uint8_t n) {
+int static_stack_init(static_stack_t *sstack, unsigned int n) {
     _stack_t *stack;
 
     stack = malloc(sizeof(_stack_t));
@@ -29,7 +29,7 @@ int8_t static_stack_init(static_stack_t *sstack, uint8_t n) {
     return 0;
 }
 
-uint8_t static_stack_length(const static_stack_t sstack) {
+unsigned int static_stack_length(const static_stack_t sstack) {
     _stack_t *stack = sstack;
     return stack->n;
 }
@@ -49,7 +49,7 @@ static_stack_element_t static_stack_top(const static_stack_t sstack) {
     return stack->stack[stack->n-1];
 }
 
-int8_t static_stack_push(static_stack_t sstack, static_stack_element_t elem) {
+int static_stack_push(static_stack_t sstack, static_stack_element_t elem) {
     _stack_t *stack = sstack;
 
     stack->stack[stack->n] = elem;

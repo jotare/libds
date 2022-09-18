@@ -14,11 +14,11 @@ typedef struct node_t {
 typedef struct {
     node_t *first;
     node_t *last;
-    uint8_t n;
+    unsigned int n;
 } _doubly_linked_list_t;
 
 
-int8_t doubly_linked_list_init(doubly_linked_list_t *dllist) {
+int doubly_linked_list_init(doubly_linked_list_t *dllist) {
     _doubly_linked_list_t *list;
 
     list = malloc(sizeof(_doubly_linked_list_t));
@@ -33,7 +33,7 @@ int8_t doubly_linked_list_init(doubly_linked_list_t *dllist) {
     return 0;
 }
 
-inline uint8_t doubly_linked_list_length(const doubly_linked_list_t dllist) {
+inline unsigned int doubly_linked_list_length(const doubly_linked_list_t dllist) {
     return ((_doubly_linked_list_t *)dllist)->n;
 }
 
@@ -59,7 +59,7 @@ doubly_linked_list_element_t doubly_linked_list_last(const doubly_linked_list_t 
     return list->last->elem;
 }
 
-doubly_linked_list_element_t doubly_linked_list_get(const doubly_linked_list_t dllist, uint8_t n) {
+doubly_linked_list_element_t doubly_linked_list_get(const doubly_linked_list_t dllist, unsigned int n) {
      _doubly_linked_list_t *list;
     node_t *node;
     int length;
@@ -80,7 +80,7 @@ doubly_linked_list_element_t doubly_linked_list_get(const doubly_linked_list_t d
     return node->elem;
 }
 
-int8_t doubly_linked_list_insert(doubly_linked_list_t dllist, uint8_t n, doubly_linked_list_element_t elem) {
+int doubly_linked_list_insert(doubly_linked_list_t dllist, unsigned int n, doubly_linked_list_element_t elem) {
     _doubly_linked_list_t *list;
     node_t *new_node;
     int length;
@@ -131,19 +131,19 @@ int8_t doubly_linked_list_insert(doubly_linked_list_t dllist, uint8_t n, doubly_
     return 0;
 }
 
-int8_t doubly_linked_list_append(doubly_linked_list_t dllist, doubly_linked_list_element_t elem) {
+int doubly_linked_list_append(doubly_linked_list_t dllist, doubly_linked_list_element_t elem) {
     if (doubly_linked_list_is_full(dllist))
 	return -1;
     return doubly_linked_list_insert(dllist, doubly_linked_list_length(dllist), elem);
 }
 
-int8_t doubly_linked_list_prepend(doubly_linked_list_t dllist, doubly_linked_list_element_t elem) {
+int doubly_linked_list_prepend(doubly_linked_list_t dllist, doubly_linked_list_element_t elem) {
     if (doubly_linked_list_is_empty(dllist))
 	return -1;
     return doubly_linked_list_insert(dllist, 0, elem);
 }
 
-doubly_linked_list_element_t doubly_linked_list_remove(doubly_linked_list_t dllist, uint8_t n) {
+doubly_linked_list_element_t doubly_linked_list_remove(doubly_linked_list_t dllist, unsigned int n) {
     _doubly_linked_list_t *list;
     node_t *remove_node;
     int length;
@@ -195,8 +195,8 @@ void doubly_linked_list_clear(doubly_linked_list_t dllist) {
     }
 }
 
-int8_t doubly_linked_list_locate(const doubly_linked_list_t dllist, doubly_linked_list_element_t elem,
-                                 int8_t(*cmp)(doubly_linked_list_element_t a, doubly_linked_list_element_t b)) {
+int doubly_linked_list_locate(const doubly_linked_list_t dllist, doubly_linked_list_element_t elem,
+                                 int(*cmp)(doubly_linked_list_element_t a, doubly_linked_list_element_t b)) {
     _doubly_linked_list_t *list;
     node_t *node;
     int index = 0;

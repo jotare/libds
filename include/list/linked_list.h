@@ -5,19 +5,19 @@
 #include <stdbool.h>
 
 typedef void *linked_list_t;
-typedef uint8_t linked_list_element_t;
+typedef int linked_list_element_t;
 
 /**
  * Initialize an linked_list.
  *
  * @return positive integer if success, -1 if operation fails.
  */
-int8_t linked_list_init(linked_list_t *llist);
+int linked_list_init(linked_list_t *llist);
 
 /**
  * Size
  */
-uint8_t linked_list_length(const linked_list_t llist);
+unsigned int linked_list_length(const linked_list_t llist);
 bool linked_list_is_empty(const linked_list_t llist);
 bool linked_list_is_full(const linked_list_t llist);
 
@@ -26,26 +26,26 @@ bool linked_list_is_full(const linked_list_t llist);
  */
 linked_list_element_t linked_list_first(const linked_list_t llist);
 linked_list_element_t linked_list_last(const linked_list_t llist);
-linked_list_element_t linked_list_get(const linked_list_t llist, uint8_t n);
+linked_list_element_t linked_list_get(const linked_list_t llist, unsigned int n);
 
 /**
  * Insert
  */
-int8_t linked_list_insert(linked_list_t llist, uint8_t n, linked_list_element_t elem);
-int8_t linked_list_append(linked_list_t llist, linked_list_element_t elem);
-int8_t linked_list_prepend(linked_list_t llist, linked_list_element_t elem);
+int linked_list_insert(linked_list_t llist, unsigned int n, linked_list_element_t elem);
+int linked_list_append(linked_list_t llist, linked_list_element_t elem);
+int linked_list_prepend(linked_list_t llist, linked_list_element_t elem);
 
 /**
  * Remove
  */
-linked_list_element_t linked_list_remove(linked_list_t llist, uint8_t n);
+linked_list_element_t linked_list_remove(linked_list_t llist, unsigned int n);
 void linked_list_clear(linked_list_t llist);
 
 /**
  * Find
  */
-int8_t linked_list_locate(const linked_list_t llist, linked_list_element_t elem,
-                          int8_t(*cmp)(linked_list_element_t a, linked_list_element_t b));
+int linked_list_locate(const linked_list_t llist, linked_list_element_t elem,
+                          int(*cmp)(linked_list_element_t a, linked_list_element_t b));
 
 /**
  * Destroy the `linked_list`. It must be called then the linked list

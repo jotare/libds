@@ -9,10 +9,10 @@ typedef struct node_t {
 
 typedef struct {
     struct node_t *front, *rear;
-    uint8_t n;
+    unsigned int n;
 } _queue_t;
 
-int8_t dynamic_queue_init(dynamic_queue_t *squeue) {
+int dynamic_queue_init(dynamic_queue_t *squeue) {
     _queue_t *queue;
 
     queue = malloc(sizeof(_queue_t));
@@ -27,7 +27,7 @@ int8_t dynamic_queue_init(dynamic_queue_t *squeue) {
     return 0;
 }
 
-uint8_t dynamic_queue_length(const dynamic_queue_t squeue) {
+unsigned int dynamic_queue_length(const dynamic_queue_t squeue) {
     _queue_t *queue = squeue;
     return queue->n;
 }
@@ -44,7 +44,7 @@ dynamic_queue_element_t dynamic_queue_front(const dynamic_queue_t squeue) {
     return queue->front->elem;
 }
 
-int8_t dynamic_queue_enqueue(dynamic_queue_t squeue,
+int dynamic_queue_enqueue(dynamic_queue_t squeue,
                              dynamic_queue_element_t elem) {
     _queue_t *queue = squeue;
     node_t *node;

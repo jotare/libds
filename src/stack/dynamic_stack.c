@@ -9,11 +9,11 @@ typedef struct node_t {
 
 typedef struct {
     node_t *top;
-    uint8_t n;
+    unsigned int n;
 } _stack_t;
 
 
-int8_t dynamic_stack_init(dynamic_stack_t *dstack) {
+int dynamic_stack_init(dynamic_stack_t *dstack) {
     _stack_t *stack;
 
     stack = malloc(sizeof(_stack_t));
@@ -26,7 +26,7 @@ int8_t dynamic_stack_init(dynamic_stack_t *dstack) {
     return 0;
 }
 
-uint8_t dynamic_stack_length(const dynamic_stack_t dstack) {
+unsigned int dynamic_stack_length(const dynamic_stack_t dstack) {
     _stack_t *stack = dstack;
     return stack->n;
 }
@@ -45,7 +45,7 @@ dynamic_stack_element_t dynamic_stack_top(const dynamic_stack_t dstack) {
     return stack->top->elem;
 }
 
-int8_t dynamic_stack_push(dynamic_stack_t dstack, dynamic_stack_element_t elem) {
+int dynamic_stack_push(dynamic_stack_t dstack, dynamic_stack_element_t elem) {
     _stack_t *stack = dstack;
     node_t *node;
 

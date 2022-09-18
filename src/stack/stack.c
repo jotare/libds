@@ -10,12 +10,12 @@ typedef struct {
 } stack_header_t;
 
 typedef struct {
-    int8_t(*init)(stack_t *stack, uint8_t n);
-    uint8_t(*length)(stack_t stack);
+    int(*init)(stack_t *stack, unsigned int n);
+    unsigned int(*length)(stack_t stack);
     bool(*is_empty)(stack_t stack);
     bool(*is_full)(stack_t stack);
     stack_element_t(*top)(stack_t stack);
-    int8_t(*push)(stack_t stack, stack_element_t elem);
+    int(*push)(stack_t stack, stack_element_t elem);
     stack_element_t(*pop)(stack_t stack);
     void(*clear)(stack_t stack);
     void(*destroy)(stack_t *stack);
@@ -34,7 +34,7 @@ static const istack_t static_stack = {
 };
 
 
-static int8_t _dynamic_stack_init(dynamic_stack_t *dstack, uint8_t fake_n) {
+static int _dynamic_stack_init(dynamic_stack_t *dstack, unsigned int fake_n) {
     return dynamic_stack_init(dstack);
 }
 
@@ -61,7 +61,7 @@ static const istack_t *interface(stack_type_t type) {
     }
 }
 
-int8_t stack_init(stack_t *stack, uint8_t n, stack_type_t type) {
+int stack_init(stack_t *stack, unsigned int n, stack_type_t type) {
     stack_header_t *header;
     const istack_t *ds = interface(type);
 
@@ -70,7 +70,7 @@ int8_t stack_init(stack_t *stack, uint8_t n, stack_type_t type) {
         return -1;
 
     header->type = type;
-    int8_t status = ds->init(&(header->stack), n);
+    int status = ds->init(&(header->stack), n);
 
     if (status < 0)
         *stack = NULL;
@@ -100,7 +100,7 @@ void stack_destroy(stack_t *stack) {
     })
 
 
-uint8_t stack_length(stack_t stack) {
+unsigned int stack_length(stack_t stack) {
     call_stack_interface_function(length, stack);
 }
 
@@ -116,7 +116,7 @@ stack_element_t stack_top(stack_t stack) {
     call_stack_interface_function(top, stack);
 }
 
-int8_t stack_push(stack_t stack, stack_element_t elem) {
+int stack_push(stack_t stack, stack_element_t elem) {
     call_stack_interface_function(push, stack, elem);
 }
 

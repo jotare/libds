@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+0.10.0
+------
+- Change uint8_t and int8_t types to standard int types
+
 0.9.1
 -----
 - Fix linked list set destroy

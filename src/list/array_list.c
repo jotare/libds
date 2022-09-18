@@ -9,15 +9,15 @@
  */
 typedef struct {
     array_list_element_t *l;
-    uint8_t n;
-    uint8_t max_length;
+    unsigned int n;
+    unsigned int max_length;
 } _array_list_t;
 
 
 /*
  * Public functions
  */
-int8_t array_list_init(array_list_t *alist, uint8_t n) {
+int array_list_init(array_list_t *alist, unsigned int n) {
     _array_list_t *list;
     list = malloc(sizeof(_array_list_t));
     if (list == NULL)
@@ -33,7 +33,7 @@ int8_t array_list_init(array_list_t *alist, uint8_t n) {
     return 0;
 }
 
-uint8_t array_list_length(const array_list_t alist) {
+unsigned int array_list_length(const array_list_t alist) {
     return ((_array_list_t *)alist)->n;
 }
 
@@ -65,14 +65,14 @@ array_list_element_t array_list_last(const array_list_t alist) {
     return list->l[list->n-1];
 }
 
-array_list_element_t array_list_get(const array_list_t alist, uint8_t n) {
+array_list_element_t array_list_get(const array_list_t alist, unsigned int n) {
     _array_list_t *list;
 
     list = alist;
     return list->l[n];
 }
 
-int8_t array_list_insert(array_list_t alist, uint8_t n, array_list_element_t elem) {
+int array_list_insert(array_list_t alist, unsigned int n, array_list_element_t elem) {
     _array_list_t *list;
 
     list = alist;
@@ -91,19 +91,19 @@ int8_t array_list_insert(array_list_t alist, uint8_t n, array_list_element_t ele
     return 0;
 }
 
-int8_t array_list_append(array_list_t alist, array_list_element_t elem) {
+int array_list_append(array_list_t alist, array_list_element_t elem) {
     if (array_list_is_full(alist))
 	return -1;
     return array_list_insert(alist, array_list_length(alist), elem);
 }
 
-int8_t array_list_prepend(array_list_t alist, array_list_element_t elem) {
+int array_list_prepend(array_list_t alist, array_list_element_t elem) {
     if (array_list_is_full(alist))
 	return -1;
     return array_list_insert(alist, 0, elem);
 }
 
-array_list_element_t array_list_remove(array_list_t alist, uint8_t n) {
+array_list_element_t array_list_remove(array_list_t alist, unsigned int n) {
     _array_list_t *list;
     array_list_element_t removed;
 
@@ -123,12 +123,12 @@ void array_list_clear(array_list_t alist) {
     list->n = 0;
 }
 
-int8_t array_list_locate(const array_list_t alist, array_list_element_t elem,
-			 int8_t(*cmp)(array_list_element_t a, array_list_element_t b)) {
+int array_list_locate(const array_list_t alist, array_list_element_t elem,
+			 int(*cmp)(array_list_element_t a, array_list_element_t b)) {
     _array_list_t *list;
     list = alist;
 
-    for (uint8_t i = 0; i < list->n; i++)
+    for (unsigned int i = 0; i < list->n; i++)
 	if (cmp(list->l[i], elem) == 0)
 	    return i;
     return -1;

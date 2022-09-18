@@ -5,7 +5,7 @@
 #include <stdbool.h>
 
 typedef void* queue_t;
-typedef uint8_t queue_element_t;
+typedef unsigned int queue_element_t;
 typedef enum {DEFAULT_QUEUE, STATIC_QUEUE, DYNAMIC_QUEUE} queue_type_t;
 
 /**
@@ -13,12 +13,12 @@ typedef enum {DEFAULT_QUEUE, STATIC_QUEUE, DYNAMIC_QUEUE} queue_type_t;
  *
  * @return positive integer if success, -1 if operation fails
  */
-int8_t queue_init(queue_t *queue, uint8_t n, queue_type_t type);
+int queue_init(queue_t *queue, unsigned int n, queue_type_t type);
 
 /**
  * Size
  */
-uint8_t queue_length(const queue_t queue);
+unsigned int queue_length(const queue_t queue);
 bool queue_is_empty(const queue_t queue);
 bool queue_is_full(const queue_t queue);
 
@@ -26,7 +26,7 @@ bool queue_is_full(const queue_t queue);
  * Queue operations
  */
 queue_element_t queue_front(const queue_t queue);
-int8_t queue_enqueue(queue_t queue, queue_element_t elem);
+int queue_enqueue(queue_t queue, queue_element_t elem);
 queue_element_t queue_dequeue(queue_t queue);
 
 void queue_clear(queue_t queue);

@@ -12,20 +12,20 @@ typedef int bit_vector_element_t;
  * integer elements.
  * @return positive integer or 0 if success, negative one if fails
  */
-int8_t bit_vector_init(bit_vector_t *bv, int n);
+int bit_vector_init(bit_vector_t *bv, int n);
 
 /**
  * Size
  */
-uint8_t bit_vector_length(const bit_vector_t bv);
+unsigned int bit_vector_length(const bit_vector_t bv);
 bool bit_vector_is_empty(const bit_vector_t bv);
 
 /**
  * Membership, insertion and deletion operations on a bit vector `bv`.
  */
 bool bit_vector_member(bit_vector_t bv, bit_vector_element_t e);
-int8_t bit_vector_insert(bit_vector_t bv, bit_vector_element_t e);
-int8_t bit_vector_delete(bit_vector_t bv, bit_vector_element_t e);
+int bit_vector_insert(bit_vector_t bv, bit_vector_element_t e);
+int bit_vector_delete(bit_vector_t bv, bit_vector_element_t e);
 void bit_vector_clear(bit_vector_t bv);
 
 /**
@@ -34,9 +34,9 @@ void bit_vector_clear(bit_vector_t bv);
  * not initialized, unexpected behavior might happen.
  * @return positive integer or 0 if success, negative one if fails
 */
-int8_t bit_vector_union(const bit_vector_t a, const bit_vector_t b, bit_vector_t *c);
-int8_t bit_vector_intersection(const bit_vector_t a, const bit_vector_t b, bit_vector_t *c);
-int8_t bit_vector_difference(const bit_vector_t a, const bit_vector_t b, bit_vector_t *c);
+int bit_vector_union(const bit_vector_t a, const bit_vector_t b, bit_vector_t *c);
+int bit_vector_intersection(const bit_vector_t a, const bit_vector_t b, bit_vector_t *c);
+int bit_vector_difference(const bit_vector_t a, const bit_vector_t b, bit_vector_t *c);
 
 /**
  * Destroy the bit vector `bv`. It must be called when the bit vector won't

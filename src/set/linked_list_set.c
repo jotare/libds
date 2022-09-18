@@ -15,11 +15,11 @@ typedef struct node_t {
 
 typedef struct {
     node_t *first;
-    uint8_t n;
+    unsigned int n;
 } _linked_list_set_t;
 
 
-int8_t linked_list_set_init(linked_list_set_t *lls) {
+int linked_list_set_init(linked_list_set_t *lls) {
     _linked_list_set_t *set;
 
     set = malloc(sizeof(_linked_list_set_t));
@@ -33,7 +33,7 @@ int8_t linked_list_set_init(linked_list_set_t *lls) {
     return 0;
 }
 
-uint8_t linked_list_set_length(const linked_list_set_t lls) {
+unsigned int linked_list_set_length(const linked_list_set_t lls) {
     _linked_list_set_t *set = lls;
 
     return set->n;
@@ -57,7 +57,7 @@ bool linked_list_set_member(linked_list_set_t lls, linked_list_set_element_t e) 
 }
 
 /** Insert `e` into a sorted linked list set */
-int8_t linked_list_set_insert(linked_list_set_t lls, linked_list_set_element_t e) {
+int linked_list_set_insert(linked_list_set_t lls, linked_list_set_element_t e) {
     _linked_list_set_t *set = lls;
     node_t *node = set->first;
 
@@ -104,7 +104,7 @@ int8_t linked_list_set_insert(linked_list_set_t lls, linked_list_set_element_t e
 /** Find element `e` into a sorted linked list set and delete it. As
     the set is sorted, if an element greater than e is found, we can
     return safely */
-int8_t linked_list_set_delete(linked_list_set_t lls, linked_list_set_element_t e) {
+int linked_list_set_delete(linked_list_set_t lls, linked_list_set_element_t e) {
 
     _linked_list_set_t *set = lls;
     node_t *node = set->first;
@@ -163,7 +163,7 @@ void linked_list_set_clear(linked_list_set_t lls) {
     set->n = 0;
 }
 
-int8_t linked_list_set_union(const linked_list_set_t lls_a, const linked_list_set_t lls_b, linked_list_set_t *lls_c) {
+int linked_list_set_union(const linked_list_set_t lls_a, const linked_list_set_t lls_b, linked_list_set_t *lls_c) {
     linked_list_set_clear(*lls_c);
 
     _linked_list_set_t *a = lls_a;
@@ -205,7 +205,7 @@ int8_t linked_list_set_union(const linked_list_set_t lls_a, const linked_list_se
     return 0;
 }
 
-int8_t linked_list_set_intersection(const linked_list_set_t lls_a, const linked_list_set_t lls_b, linked_list_set_t *lls_c) {
+int linked_list_set_intersection(const linked_list_set_t lls_a, const linked_list_set_t lls_b, linked_list_set_t *lls_c) {
     linked_list_set_clear(*lls_c);
 
     _linked_list_set_t *a = lls_a;
@@ -233,7 +233,7 @@ int8_t linked_list_set_intersection(const linked_list_set_t lls_a, const linked_
     return 0;
 }
 
-int8_t linked_list_set_difference(const linked_list_set_t lls_a, const linked_list_set_t lls_b, linked_list_set_t *lls_c) {
+int linked_list_set_difference(const linked_list_set_t lls_a, const linked_list_set_t lls_b, linked_list_set_t *lls_c) {
     linked_list_set_clear(*lls_c);
 
     _linked_list_set_t *a = lls_a;

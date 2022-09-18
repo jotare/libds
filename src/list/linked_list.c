@@ -12,11 +12,11 @@ typedef struct node_t {
 
 typedef struct {
     node_t *first;
-    uint8_t n;
+    unsigned int n;
 } _linked_list_t;
 
 
-int8_t linked_list_init(linked_list_t *llist) {
+int linked_list_init(linked_list_t *llist) {
     _linked_list_t *list;
 
     list = malloc(sizeof(_linked_list_t));
@@ -30,7 +30,7 @@ int8_t linked_list_init(linked_list_t *llist) {
     return 0;
 }
 
-inline uint8_t linked_list_length(const linked_list_t llist) {
+inline unsigned int linked_list_length(const linked_list_t llist) {
     return ((_linked_list_t *)llist)->n;
 }
 
@@ -62,7 +62,7 @@ linked_list_element_t linked_list_last(const linked_list_t llist) {
     return node->elem;
 }
 
-linked_list_element_t linked_list_get(const linked_list_t llist, uint8_t n) {
+linked_list_element_t linked_list_get(const linked_list_t llist, unsigned int n) {
      _linked_list_t *list;
     node_t *node;
 
@@ -75,7 +75,7 @@ linked_list_element_t linked_list_get(const linked_list_t llist, uint8_t n) {
     return node->elem;
 }
 
-int8_t linked_list_insert(linked_list_t llist, uint8_t n, linked_list_element_t elem) {
+int linked_list_insert(linked_list_t llist, unsigned int n, linked_list_element_t elem) {
     _linked_list_t *list;
     node_t *node, *new_node;
 
@@ -94,7 +94,7 @@ int8_t linked_list_insert(linked_list_t llist, uint8_t n, linked_list_element_t 
 	node->next = NULL;
 	list->first = node;
     } else {
-	for (int i = 0; i < n-1; i++)
+	for (int i = 0; i < (int)n-1; i++)
 	    node = node->next;
 
 	new_node = malloc(sizeof(node_t));
@@ -115,19 +115,19 @@ int8_t linked_list_insert(linked_list_t llist, uint8_t n, linked_list_element_t 
     return 0;
 }
 
-int8_t linked_list_append(linked_list_t llist, linked_list_element_t elem) {
+int linked_list_append(linked_list_t llist, linked_list_element_t elem) {
     if (linked_list_is_full(llist))
 	return -1;
     return linked_list_insert(llist, linked_list_length(llist), elem);
 }
 
-int8_t linked_list_prepend(linked_list_t llist, linked_list_element_t elem) {
+int linked_list_prepend(linked_list_t llist, linked_list_element_t elem) {
     if (linked_list_is_empty(llist))
 	return -1;
     return linked_list_insert(llist, 0, elem);
 }
 
-linked_list_element_t linked_list_remove(linked_list_t llist, uint8_t n) {
+linked_list_element_t linked_list_remove(linked_list_t llist, unsigned int n) {
     _linked_list_t *list;
     node_t *node, *remove_node;
     linked_list_element_t removed;
@@ -161,8 +161,8 @@ void linked_list_clear(linked_list_t llist) {
 	linked_list_remove(llist, 0);
 }
 
-int8_t linked_list_locate(const linked_list_t llist, linked_list_element_t elem,
-			  int8_t(*cmp)(linked_list_element_t a, linked_list_element_t b)) {
+int linked_list_locate(const linked_list_t llist, linked_list_element_t elem,
+			  int(*cmp)(linked_list_element_t a, linked_list_element_t b)) {
     _linked_list_t *list;
     node_t *node;
     int index = 0;

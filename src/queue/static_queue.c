@@ -10,10 +10,10 @@ typedef struct {
     static_queue_element_t *queue;
     static_queue_element_t *front;
     static_queue_element_t *rear;
-    uint8_t size;
+    unsigned int size;
 } _queue_t;
 
-int8_t static_queue_init(static_queue_t *squeue, uint8_t n) {
+int static_queue_init(static_queue_t *squeue, unsigned int n) {
     _queue_t *queue;
 
     queue = malloc(sizeof(_queue_t));
@@ -34,7 +34,7 @@ int8_t static_queue_init(static_queue_t *squeue, uint8_t n) {
     return 0;
 }
 
-uint8_t static_queue_length(const static_queue_t squeue) {
+unsigned int static_queue_length(const static_queue_t squeue) {
     _queue_t *queue = squeue;
 
     if (queue->front == queue->rear)
@@ -65,7 +65,7 @@ static_queue_element_t static_queue_front(const static_queue_t squeue) {
 	return *(queue->front);
 }
 
-int8_t static_queue_enqueue(static_queue_t squeue, static_queue_element_t elem) {
+int static_queue_enqueue(static_queue_t squeue, static_queue_element_t elem) {
     _queue_t *queue = squeue;
 
     *queue->rear = elem;
