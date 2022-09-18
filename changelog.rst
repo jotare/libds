@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+0.9.0
+-----
+- Add linked list set implementation
+
 0.8.0
 -----
 - Implement `length` and `is_empty` on bit vector sets

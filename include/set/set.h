@@ -10,7 +10,7 @@
 
 typedef void *set_t;
 typedef int set_element_t;
-typedef enum { DEFAULT_SET, BIT_VECTOR_SET } set_type_t;
+typedef enum { DEFAULT_SET, BIT_VECTOR_SET, LINKED_LIST_SET } set_type_t;
 
 /**
  * Initialize an empty set with a universe consisting of 0..n-1 integer elements.
@@ -47,5 +47,7 @@ int8_t set_difference(const set_t a, const set_t b, set_t *c);
  * anymore.
  */
 void set_destroy(set_t *set);
+
+void set_print(const set_t set);
 
 #endif /* SET_H */

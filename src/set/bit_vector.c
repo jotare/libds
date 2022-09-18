@@ -137,3 +137,15 @@ void bit_vector_destroy(bit_vector_t *bv) {
     free(_bv);
     *bv = NULL;
 }
+
+void bit_vector_print(const bit_vector_t bv) {
+    _bit_vector_t *_bv = bv;
+
+    printf("Bit vector { ");
+    for (int i = 0; i < _bv->universe; i++) {
+        if (bit_vector_member(bv, i)) {
+            printf("%d ", i);
+        }
+    }
+    printf("}\n");
+}

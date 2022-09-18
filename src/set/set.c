@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "set/bit_vector.h"
+#include "set/linked_list_set.h"
 #include "set/set.h"
 
 typedef struct {
@@ -21,6 +22,7 @@ typedef struct {
     int8_t(*intersection)(const set_t a, const set_t b, set_t *c);
     int8_t(*difference)(const set_t a, const set_t b, set_t *c);
     void(*destroy)(set_t *set);
+    void(*print)(const set_t set);
 } iset_t;
 
 static const iset_t bit_vector = {
@@ -34,12 +36,38 @@ static const iset_t bit_vector = {
     bit_vector_union,
     bit_vector_intersection,
     bit_vector_difference,
-    bit_vector_destroy
+    bit_vector_destroy,
+    bit_vector_print
 };
+
+static int8_t _linked_list_set_init(linked_list_set_t *lls, int fake_n) {
+    return linked_list_set_init(lls);
+}
+
+static const iset_t linked_list_set = {
+    _linked_list_set_init,
+    linked_list_set_length,
+    linked_list_set_is_empty,
+    linked_list_set_member,
+    linked_list_set_insert,
+    linked_list_set_delete,
+    linked_list_set_clear,
+    linked_list_set_union,
+    linked_list_set_intersection,
+    linked_list_set_difference,
+    linked_list_set_destroy,
+    linked_list_set_print,
+};
+
 
 static const iset_t *interface(set_type_t type) {
     switch (type) {
     case BIT_VECTOR_SET:
+        return &bit_vector;
+
+    case LINKED_LIST_SET:
+        return &linked_list_set;
+
     case DEFAULT_SET:
     default:
         return &bit_vector;
@@ -128,4 +156,8 @@ int8_t set_intersection(const set_t a, const set_t b, set_t *c) {
 
 int8_t set_difference(const set_t a, const set_t b, set_t *c) {
     call_set_interface_function3(difference, a, b, c);
+}
+
+void set_print(const set_t set) {
+    call_set_interface_function(print, set);
 }

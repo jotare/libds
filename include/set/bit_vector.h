@@ -44,5 +44,6 @@ int8_t bit_vector_difference(const bit_vector_t a, const bit_vector_t b, bit_vec
  */
 void bit_vector_destroy(bit_vector_t *bv);
 
+void bit_vector_print(const bit_vector_t bv);
 
 #endif /* BIT_VECTOR_H */
