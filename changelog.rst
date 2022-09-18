@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+0.9.1
+-----
+- Fix linked list set destroy
+
 0.9.0
 -----
 - Add linked list set implementation

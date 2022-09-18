@@ -1,6 +1,6 @@
-#include <bits/stdint-uintn.h>
 #include <inttypes.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 #include "set/linked_list_set.h"
@@ -168,11 +168,9 @@ int8_t linked_list_set_union(const linked_list_set_t lls_a, const linked_list_se
 
     _linked_list_set_t *a = lls_a;
     _linked_list_set_t *b = lls_b;
-    _linked_list_set_t *c = *lls_c;
 
     node_t *a_ptr = a->first;
     node_t *b_ptr = b->first;
-    node_t *c_ptr = c->first;
 
     while (a_ptr != NULL && b_ptr != NULL) {
         linked_list_set_element_t e;
@@ -212,11 +210,9 @@ int8_t linked_list_set_intersection(const linked_list_set_t lls_a, const linked_
 
     _linked_list_set_t *a = lls_a;
     _linked_list_set_t *b = lls_b;
-    _linked_list_set_t *c = *lls_c;
 
     node_t *a_ptr = a->first;
     node_t *b_ptr = b->first;
-    node_t *c_ptr = c->first;
 
     while (a_ptr != NULL && b_ptr != NULL) {
         linked_list_set_element_t e;
@@ -242,11 +238,9 @@ int8_t linked_list_set_difference(const linked_list_set_t lls_a, const linked_li
 
     _linked_list_set_t *a = lls_a;
     _linked_list_set_t *b = lls_b;
-    _linked_list_set_t *c = *lls_c;
 
     node_t *a_ptr = a->first;
     node_t *b_ptr = b->first;
-    node_t *c_ptr = c->first;
 
     while (a_ptr != NULL && b_ptr != NULL) {
         linked_list_set_element_t e;
@@ -279,7 +273,7 @@ int8_t linked_list_set_difference(const linked_list_set_t lls_a, const linked_li
 void linked_list_set_destroy(linked_list_set_t *lls) {
     _linked_list_set_t *set = *lls;
 
-    linked_list_clear(lls);
+    linked_list_set_clear(*lls);
     free(set);
     *lls = NULL;
 }
