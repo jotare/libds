@@ -46,3 +46,9 @@ To run all tests execute:
 make run-tests
 ```
 it will build all necessary targets and run the tests.
+
+## Formatting
+
+GNU indent is used to format code. The Makefile has a `format` target
+to format all code (headers, sources and tests). Please, use `make
+format` before any contribution to the code.
