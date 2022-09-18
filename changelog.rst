@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+0.11.0
+------
+- Add indent as formatter and set a make target to format code
+
 0.10.0
 ------
 - Change uint8_t and int8_t types to standard int types

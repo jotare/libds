@@ -40,6 +40,11 @@ tests: test/test_libds
 test/test_libds: test/test_libds.o $(test_objects) $(source_objects)
 
 
+# formatting
+format:
+	indent -bad -bap -sc -br -ce -brs -psl -blf -nut -i4 $(headers) $(sources) $(tests)
+
+
 # cleaning
 .PHONY: clean veryclean
 clean:

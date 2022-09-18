@@ -19,10 +19,12 @@ typedef struct {
 } _linked_list_set_t;
 
 
-int linked_list_set_init(linked_list_set_t *lls) {
+int
+linked_list_set_init (linked_list_set_t * lls)
+{
     _linked_list_set_t *set;
 
-    set = malloc(sizeof(_linked_list_set_t));
+    set = malloc (sizeof (_linked_list_set_t));
     if (set == NULL)
         return -1;
 
@@ -33,18 +35,24 @@ int linked_list_set_init(linked_list_set_t *lls) {
     return 0;
 }
 
-unsigned int linked_list_set_length(const linked_list_set_t lls) {
+unsigned int
+linked_list_set_length (const linked_list_set_t lls)
+{
     _linked_list_set_t *set = lls;
 
     return set->n;
 }
 
-bool linked_list_set_is_empty(const linked_list_set_t lls) {
-    return linked_list_set_length(lls) == 0;
+bool
+linked_list_set_is_empty (const linked_list_set_t lls)
+{
+    return linked_list_set_length (lls) == 0;
 }
 
 /** Find element `e` into a sorted linked list set */
-bool linked_list_set_member(linked_list_set_t lls, linked_list_set_element_t e) {
+bool
+linked_list_set_member (linked_list_set_t lls, linked_list_set_element_t e)
+{
     _linked_list_set_t *set = lls;
     node_t *ptr = set->first;
 
@@ -57,12 +65,15 @@ bool linked_list_set_member(linked_list_set_t lls, linked_list_set_element_t e) 
 }
 
 /** Insert `e` into a sorted linked list set */
-int linked_list_set_insert(linked_list_set_t lls, linked_list_set_element_t e) {
+int
+linked_list_set_insert (linked_list_set_t lls, linked_list_set_element_t e)
+{
     _linked_list_set_t *set = lls;
     node_t *node = set->first;
 
     if (node == NULL) {         /* add first element into the set  */
-        node_t *first_node = malloc(sizeof(node_t));
+        node_t *first_node = malloc (sizeof (node_t));
+
         if (first_node == NULL)
             return -1;
 
@@ -81,11 +92,12 @@ int linked_list_set_insert(linked_list_set_t lls, linked_list_set_element_t e) {
         }
 
         if (node == NULL || node->elem > e) {
-            node_t *new_node = malloc(sizeof(node_t));
+            node_t *new_node = malloc (sizeof (node_t));
+
             if (new_node == NULL)
                 return -1;
 
-            if (node_before == NULL) { // add at the beginning
+            if (node_before == NULL) {  // add at the beginning
                 new_node->next = node;
                 set->first = new_node;
             } else {            // add at the middle or end
@@ -104,7 +116,9 @@ int linked_list_set_insert(linked_list_set_t lls, linked_list_set_element_t e) {
 /** Find element `e` into a sorted linked list set and delete it. As
     the set is sorted, if an element greater than e is found, we can
     return safely */
-int linked_list_set_delete(linked_list_set_t lls, linked_list_set_element_t e) {
+int
+linked_list_set_delete (linked_list_set_t lls, linked_list_set_element_t e)
+{
 
     _linked_list_set_t *set = lls;
     node_t *node = set->first;
@@ -128,11 +142,11 @@ int linked_list_set_delete(linked_list_set_t lls, linked_list_set_element_t e) {
 
     if (node->elem == e && node_before == NULL) {
         set->first = node->next;
-        free(node);
+        free (node);
         set->n--;
     } else if (node->elem == e) {
         node_before->next = node->next;
-        free(node);
+        free (node);
         set->n--;
     }
 
@@ -143,7 +157,9 @@ int linked_list_set_delete(linked_list_set_t lls, linked_list_set_element_t e) {
     return 0;
 }
 
-void linked_list_set_clear(linked_list_set_t lls) {
+void
+linked_list_set_clear (linked_list_set_t lls)
+{
     _linked_list_set_t *set = lls;
 
     if (set->first == NULL)
@@ -153,18 +169,22 @@ void linked_list_set_clear(linked_list_set_t lls) {
     node_t *next = node->next;
 
     while (next != NULL) {
-        free(node);
+        free (node);
         node = next;
         next = next->next;
     }
 
-    free(node);
+    free (node);
     set->first = NULL;
     set->n = 0;
 }
 
-int linked_list_set_union(const linked_list_set_t lls_a, const linked_list_set_t lls_b, linked_list_set_t *lls_c) {
-    linked_list_set_clear(*lls_c);
+int
+linked_list_set_union (const linked_list_set_t lls_a,
+                       const linked_list_set_t lls_b,
+                       linked_list_set_t * lls_c)
+{
+    linked_list_set_clear (*lls_c);
 
     _linked_list_set_t *a = lls_a;
     _linked_list_set_t *b = lls_b;
@@ -187,17 +207,17 @@ int linked_list_set_union(const linked_list_set_t lls_a, const linked_list_set_t
             b_ptr = b_ptr->next;
         }
 
-        linked_list_set_insert(*lls_c, e);
+        linked_list_set_insert (*lls_c, e);
     }
 
     if (a_ptr != NULL && b_ptr == NULL) {
         while (a_ptr != NULL) {
-            linked_list_set_insert(*lls_c, a_ptr->elem);
+            linked_list_set_insert (*lls_c, a_ptr->elem);
             a_ptr = a_ptr->next;
         }
     } else if (a_ptr == NULL && b_ptr != NULL) {
         while (b_ptr != NULL) {
-            linked_list_set_insert(*lls_c, b_ptr->elem);
+            linked_list_set_insert (*lls_c, b_ptr->elem);
             b_ptr = b_ptr->next;
         }
     }
@@ -205,8 +225,12 @@ int linked_list_set_union(const linked_list_set_t lls_a, const linked_list_set_t
     return 0;
 }
 
-int linked_list_set_intersection(const linked_list_set_t lls_a, const linked_list_set_t lls_b, linked_list_set_t *lls_c) {
-    linked_list_set_clear(*lls_c);
+int
+linked_list_set_intersection (const linked_list_set_t lls_a,
+                              const linked_list_set_t lls_b,
+                              linked_list_set_t * lls_c)
+{
+    linked_list_set_clear (*lls_c);
 
     _linked_list_set_t *a = lls_a;
     _linked_list_set_t *b = lls_b;
@@ -221,7 +245,7 @@ int linked_list_set_intersection(const linked_list_set_t lls_a, const linked_lis
             e = a_ptr->elem;
             a_ptr = a_ptr->next;
             b_ptr = b_ptr->next;
-            linked_list_set_insert(*lls_c, e);
+            linked_list_set_insert (*lls_c, e);
         } else if (a_ptr->elem < b_ptr->elem) {
             a_ptr = a_ptr->next;
         } else {
@@ -233,8 +257,12 @@ int linked_list_set_intersection(const linked_list_set_t lls_a, const linked_lis
     return 0;
 }
 
-int linked_list_set_difference(const linked_list_set_t lls_a, const linked_list_set_t lls_b, linked_list_set_t *lls_c) {
-    linked_list_set_clear(*lls_c);
+int
+linked_list_set_difference (const linked_list_set_t lls_a,
+                            const linked_list_set_t lls_b,
+                            linked_list_set_t * lls_c)
+{
+    linked_list_set_clear (*lls_c);
 
     _linked_list_set_t *a = lls_a;
     _linked_list_set_t *b = lls_b;
@@ -252,7 +280,7 @@ int linked_list_set_difference(const linked_list_set_t lls_a, const linked_list_
         } else if (a_ptr->elem < b_ptr->elem) {
             e = a_ptr->elem;
             a_ptr = a_ptr->next;
-            linked_list_set_insert(*lls_c, e);
+            linked_list_set_insert (*lls_c, e);
         } else {
             e = b_ptr->elem;
             b_ptr = b_ptr->next;
@@ -262,7 +290,7 @@ int linked_list_set_difference(const linked_list_set_t lls_a, const linked_list_
 
     if (a_ptr == NULL && b_ptr != NULL) {
         while (a_ptr != NULL) {
-            linked_list_set_insert(*lls_c, a_ptr->elem);
+            linked_list_set_insert (*lls_c, a_ptr->elem);
             a_ptr = a_ptr->next;
         }
     }
@@ -270,22 +298,26 @@ int linked_list_set_difference(const linked_list_set_t lls_a, const linked_list_
     return 0;
 }
 
-void linked_list_set_destroy(linked_list_set_t *lls) {
+void
+linked_list_set_destroy (linked_list_set_t * lls)
+{
     _linked_list_set_t *set = *lls;
 
-    linked_list_set_clear(*lls);
-    free(set);
+    linked_list_set_clear (*lls);
+    free (set);
     *lls = NULL;
 }
 
-void linked_list_set_print(const linked_list_set_t llset) {
+void
+linked_list_set_print (const linked_list_set_t llset)
+{
     _linked_list_set_t *set = llset;
     node_t *node = set->first;
 
-    printf("Linked List Set { ");
+    printf ("Linked List Set { ");
     while (node != NULL) {
-        printf("%d ", node->elem);
+        printf ("%d ", node->elem);
         node = node->next;
     }
-    printf("}\n");
+    printf ("}\n");
 }

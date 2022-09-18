@@ -13,12 +13,14 @@ typedef struct {
 } _stack_t;
 
 
-int dynamic_stack_init(dynamic_stack_t *dstack) {
+int
+dynamic_stack_init (dynamic_stack_t * dstack)
+{
     _stack_t *stack;
 
-    stack = malloc(sizeof(_stack_t));
+    stack = malloc (sizeof (_stack_t));
     if (stack == NULL)
-	return -1;
+        return -1;
 
     stack->n = 0;
     *dstack = stack;
@@ -26,33 +28,46 @@ int dynamic_stack_init(dynamic_stack_t *dstack) {
     return 0;
 }
 
-unsigned int dynamic_stack_length(const dynamic_stack_t dstack) {
+unsigned int
+dynamic_stack_length (const dynamic_stack_t dstack)
+{
     _stack_t *stack = dstack;
+
     return stack->n;
 }
 
-bool dynamic_stack_is_empty(const dynamic_stack_t dstack) {
+bool
+dynamic_stack_is_empty (const dynamic_stack_t dstack)
+{
     _stack_t *stack = dstack;
+
     return stack->n == 0;
 }
 
-bool dynamic_stack_is_full(const dynamic_stack_t dstack) {
+bool
+dynamic_stack_is_full (const dynamic_stack_t dstack)
+{
     return false;
 }
 
-dynamic_stack_element_t dynamic_stack_top(const dynamic_stack_t dstack) {
+dynamic_stack_element_t
+dynamic_stack_top (const dynamic_stack_t dstack)
+{
     _stack_t *stack = dstack;
+
     return stack->top->elem;
 }
 
-int dynamic_stack_push(dynamic_stack_t dstack, dynamic_stack_element_t elem) {
+int
+dynamic_stack_push (dynamic_stack_t dstack, dynamic_stack_element_t elem)
+{
     _stack_t *stack = dstack;
     node_t *node;
 
-    node = malloc(sizeof(node_t));
+    node = malloc (sizeof (node_t));
     if (node == NULL)
-	return -1;
- 
+        return -1;
+
     node->elem = elem;
     node->prev = stack->top;
     stack->top = node;
@@ -61,7 +76,9 @@ int dynamic_stack_push(dynamic_stack_t dstack, dynamic_stack_element_t elem) {
     return 0;
 }
 
-dynamic_stack_element_t dynamic_stack_pop(dynamic_stack_t dstack) {
+dynamic_stack_element_t
+dynamic_stack_pop (dynamic_stack_t dstack)
+{
     _stack_t *stack = dstack;
     node_t *node;
     dynamic_stack_element_t elem;
@@ -74,14 +91,19 @@ dynamic_stack_element_t dynamic_stack_pop(dynamic_stack_t dstack) {
     return elem;
 }
 
-void dynamic_stack_clear(dynamic_stack_t dstack) {
-    while (!dynamic_stack_is_empty(dstack))
-	dynamic_stack_pop(dstack);
+void
+dynamic_stack_clear (dynamic_stack_t dstack)
+{
+    while (!dynamic_stack_is_empty (dstack))
+        dynamic_stack_pop (dstack);
 }
 
-void dynamic_stack_destroy(dynamic_stack_t *dstack) {
+void
+dynamic_stack_destroy (dynamic_stack_t * dstack)
+{
     _stack_t *stack = *dstack;
-    dynamic_stack_clear(stack);
-    free(stack);
+
+    dynamic_stack_clear (stack);
+    free (stack);
     *dstack = NULL;
 }
