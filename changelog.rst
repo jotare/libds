@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+0.12.0
+------
+- Add map interface
+
 0.11.0
 ------
 - Add indent as formatter and set a make target to format code

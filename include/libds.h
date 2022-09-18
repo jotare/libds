@@ -14,3 +14,5 @@
 #include "set/set.h"
 #include "set/bit_vector.h"
 #include "set/linked_list_set.h"
+
+#include "map/map.h"
