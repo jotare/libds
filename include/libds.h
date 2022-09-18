@@ -11,4 +11,6 @@
 #include "queue/static_queue.h"
 #include "queue/dynamic_queue.h"
 
+#include "set/set.h"
 #include "set/bit_vector.h"
+#include "set/linked_list_set.h"
