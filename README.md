@@ -34,6 +34,7 @@ directory.
   - dynamic queue
 - set
   - bit vector
+  - linked list set
 
 ## Testing with CUnit
 
