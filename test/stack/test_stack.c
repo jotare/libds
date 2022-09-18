@@ -14,10 +14,10 @@ static void test_stack_init_destroy(stack_type_t type) {
     stack_t stack = NULL;
 
     stack_init(&stack, 10, type);
-    CU_ASSERT_NOT_EQUAL(stack, NULL);
+    CU_ASSERT_PTR_NOT_NULL(stack);
 
     stack_destroy(&stack);
-    CU_ASSERT_EQUAL(stack, NULL);
+    CU_ASSERT_PTR_NULL(stack);
 }
 
 static void test_static_stack_init_destroy(void) {

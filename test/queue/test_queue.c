@@ -11,10 +11,10 @@ int cleanup_queue_suite(void) { return 0; }
 static void test_queue_init_destroy(queue_type_t type) {
     queue_t queue = NULL;
     queue_init(&queue, 10, type);
-    CU_ASSERT_NOT_EQUAL(queue, NULL);
+    CU_ASSERT_PTR_NOT_NULL(queue);
 
     queue_destroy(&queue);
-    CU_ASSERT_EQUAL(queue, NULL);
+    CU_ASSERT_PTR_NULL(queue);
 }
 
 static void test_static_queue_init_destroy(void) {

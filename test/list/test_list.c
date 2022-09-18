@@ -16,10 +16,10 @@ int cleanup_list_suite(void) { return 0; }
 static void test_list_init_destroy(list_type_t type) {
     list_t list = NULL;
     list_init(&list, 10, type);
-    CU_ASSERT_NOT_EQUAL(list, NULL);
+    CU_ASSERT_PTR_NOT_NULL(list);
 
     list_destroy(&list);
-    CU_ASSERT_EQUAL(list, NULL);
+    CU_ASSERT_PTR_NULL(list);
 }
 
 static void test_array_list_init_destroy(void) {

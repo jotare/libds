@@ -14,10 +14,10 @@ int cleanup_set_suite(void) { return 0; }
 static void test_set_init_destroy(set_type_t type) {
     set_t set = NULL;
     set_init(&set, 10, type);
-    CU_ASSERT_NOT_EQUAL(set, NULL);
+    CU_ASSERT_PTR_NOT_NULL(set);
 
     set_destroy(&set);
-    CU_ASSERT_EQUAL(set, NULL);
+    CU_ASSERT_PTR_NULL(set);
 }
 
 static void test_bit_vector_set_init_destroy(void) {
