@@ -14,17 +14,17 @@ typedef struct {
 } _queue_t;
 
 int
-static_queue_init (static_queue_t * squeue, unsigned int n)
+static_queue_init(static_queue_t * squeue, unsigned int n)
 {
     _queue_t *queue;
 
-    queue = malloc (sizeof (_queue_t));
+    queue = malloc(sizeof(_queue_t));
     if (queue == NULL)
         return -1;
 
-    queue->queue = calloc (n + 1, sizeof (static_queue_element_t));
+    queue->queue = calloc(n + 1, sizeof(static_queue_element_t));
     if (queue->queue == NULL) {
-        free (queue);
+        free(queue);
         return -1;
     }
 
@@ -37,7 +37,7 @@ static_queue_init (static_queue_t * squeue, unsigned int n)
 }
 
 unsigned int
-static_queue_length (const static_queue_t squeue)
+static_queue_length(const static_queue_t squeue)
 {
     _queue_t *queue = squeue;
 
@@ -50,7 +50,7 @@ static_queue_length (const static_queue_t squeue)
 }
 
 bool
-static_queue_is_empty (const static_queue_t squeue)
+static_queue_is_empty(const static_queue_t squeue)
 {
     _queue_t *queue = squeue;
 
@@ -58,7 +58,7 @@ static_queue_is_empty (const static_queue_t squeue)
 }
 
 bool
-static_queue_is_full (const static_queue_t squeue)
+static_queue_is_full(const static_queue_t squeue)
 {
     _queue_t *queue = squeue;
 
@@ -67,7 +67,7 @@ static_queue_is_full (const static_queue_t squeue)
 }
 
 static_queue_element_t
-static_queue_front (const static_queue_t squeue)
+static_queue_front(const static_queue_t squeue)
 {
     _queue_t *queue = squeue;
 
@@ -78,7 +78,7 @@ static_queue_front (const static_queue_t squeue)
 }
 
 int
-static_queue_enqueue (static_queue_t squeue, static_queue_element_t elem)
+static_queue_enqueue(static_queue_t squeue, static_queue_element_t elem)
 {
     _queue_t *queue = squeue;
 
@@ -93,7 +93,7 @@ static_queue_enqueue (static_queue_t squeue, static_queue_element_t elem)
 }
 
 static_queue_element_t
-static_queue_dequeue (static_queue_t squeue)
+static_queue_dequeue(static_queue_t squeue)
 {
     _queue_t *queue = squeue;
     static_queue_element_t elem;
@@ -109,18 +109,18 @@ static_queue_dequeue (static_queue_t squeue)
 }
 
 void
-static_queue_clear (static_queue_t squeue)
+static_queue_clear(static_queue_t squeue)
 {
-    while (!static_queue_is_empty (squeue))
-        static_queue_dequeue (squeue);
+    while (!static_queue_is_empty(squeue))
+        static_queue_dequeue(squeue);
 }
 
 void
-static_queue_destroy (static_queue_t * squeue)
+static_queue_destroy(static_queue_t * squeue)
 {
     _queue_t *queue = *squeue;
 
-    free (queue->queue);
-    free (queue);
+    free(queue->queue);
+    free(queue);
     *squeue = NULL;
 }

@@ -13,11 +13,11 @@ typedef struct {
 } _queue_t;
 
 int
-dynamic_queue_init (dynamic_queue_t * squeue)
+dynamic_queue_init(dynamic_queue_t * squeue)
 {
     _queue_t *queue;
 
-    queue = malloc (sizeof (_queue_t));
+    queue = malloc(sizeof(_queue_t));
     if (queue == NULL)
         return -1;
 
@@ -30,7 +30,7 @@ dynamic_queue_init (dynamic_queue_t * squeue)
 }
 
 unsigned int
-dynamic_queue_length (const dynamic_queue_t squeue)
+dynamic_queue_length(const dynamic_queue_t squeue)
 {
     _queue_t *queue = squeue;
 
@@ -38,7 +38,7 @@ dynamic_queue_length (const dynamic_queue_t squeue)
 }
 
 bool
-dynamic_queue_is_empty (const dynamic_queue_t squeue)
+dynamic_queue_is_empty(const dynamic_queue_t squeue)
 {
     _queue_t *queue = squeue;
 
@@ -46,13 +46,13 @@ dynamic_queue_is_empty (const dynamic_queue_t squeue)
 }
 
 bool
-dynamic_queue_is_full (const dynamic_queue_t squeue)
+dynamic_queue_is_full(const dynamic_queue_t squeue)
 {
     return false;
 }
 
 dynamic_queue_element_t
-dynamic_queue_front (const dynamic_queue_t squeue)
+dynamic_queue_front(const dynamic_queue_t squeue)
 {
     _queue_t *queue = squeue;
 
@@ -60,12 +60,12 @@ dynamic_queue_front (const dynamic_queue_t squeue)
 }
 
 int
-dynamic_queue_enqueue (dynamic_queue_t squeue, dynamic_queue_element_t elem)
+dynamic_queue_enqueue(dynamic_queue_t squeue, dynamic_queue_element_t elem)
 {
     _queue_t *queue = squeue;
     node_t *node;
 
-    node = malloc (sizeof (node_t));
+    node = malloc(sizeof(node_t));
     if (node == NULL)
         return -1;
 
@@ -84,7 +84,7 @@ dynamic_queue_enqueue (dynamic_queue_t squeue, dynamic_queue_element_t elem)
 }
 
 dynamic_queue_element_t
-dynamic_queue_dequeue (dynamic_queue_t squeue)
+dynamic_queue_dequeue(dynamic_queue_t squeue)
 {
     _queue_t *queue = squeue;
     dynamic_queue_element_t elem;
@@ -92,7 +92,7 @@ dynamic_queue_dequeue (dynamic_queue_t squeue)
     elem = queue->front->elem;
 
     if (queue->n == 1) {
-        free (queue->front);
+        free(queue->front);
         queue->front = NULL;
         queue->rear = NULL;
     } else {
@@ -106,18 +106,18 @@ dynamic_queue_dequeue (dynamic_queue_t squeue)
 }
 
 void
-dynamic_queue_clear (dynamic_queue_t squeue)
+dynamic_queue_clear(dynamic_queue_t squeue)
 {
-    while (!dynamic_queue_is_empty (squeue))
-        dynamic_queue_dequeue (squeue);
+    while (!dynamic_queue_is_empty(squeue))
+        dynamic_queue_dequeue(squeue);
 }
 
 void
-dynamic_queue_destroy (dynamic_queue_t * squeue)
+dynamic_queue_destroy(dynamic_queue_t * squeue)
 {
     _queue_t *queue = *squeue;
 
-    dynamic_queue_clear (*squeue);
-    free (queue);
+    dynamic_queue_clear(*squeue);
+    free(queue);
     *squeue = NULL;
 }

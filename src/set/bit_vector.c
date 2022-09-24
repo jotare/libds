@@ -16,19 +16,19 @@ typedef struct {
 } _bit_vector_t;
 
 int
-bit_vector_init (bit_vector_t * bv, int n)
+bit_vector_init(bit_vector_t * bv, int n)
 {
     _bit_vector_t *_bv;
 
-    _bv = malloc (sizeof (_bit_vector_t));
+    _bv = malloc(sizeof(_bit_vector_t));
     if (_bv == NULL)
         return -1;
 
     int cuts = (n % 64 == 0) ? n / 64 : n / 64 + 1;
 
-    _bv->bv = calloc (cuts, sizeof (uint64_t));
+    _bv->bv = calloc(cuts, sizeof(uint64_t));
     if (_bv->bv == NULL) {
-        free (_bv);
+        free(_bv);
         return -1;
     }
     for (int i = 0; i < cuts; i++)
@@ -41,7 +41,7 @@ bit_vector_init (bit_vector_t * bv, int n)
 }
 
 unsigned int
-bit_vector_length (const bit_vector_t bv)
+bit_vector_length(const bit_vector_t bv)
 {
     _bit_vector_t *_bv = bv;
     unsigned int length = 0;
@@ -57,7 +57,7 @@ bit_vector_length (const bit_vector_t bv)
 }
 
 bool
-bit_vector_is_empty (const bit_vector_t bv)
+bit_vector_is_empty(const bit_vector_t bv)
 {
     _bit_vector_t *_bv = bv;
 
@@ -73,7 +73,7 @@ bit_vector_is_empty (const bit_vector_t bv)
 }
 
 bool
-bit_vector_member (bit_vector_t bv, bit_vector_element_t e)
+bit_vector_member(bit_vector_t bv, bit_vector_element_t e)
 {
     _bit_vector_t *_bv = bv;
 
@@ -87,7 +87,7 @@ bit_vector_member (bit_vector_t bv, bit_vector_element_t e)
 }
 
 int
-bit_vector_insert (bit_vector_t bv, bit_vector_element_t e)
+bit_vector_insert(bit_vector_t bv, bit_vector_element_t e)
 {
     _bit_vector_t *_bv = bv;
 
@@ -102,7 +102,7 @@ bit_vector_insert (bit_vector_t bv, bit_vector_element_t e)
 }
 
 int
-bit_vector_delete (bit_vector_t bv, bit_vector_element_t e)
+bit_vector_delete(bit_vector_t bv, bit_vector_element_t e)
 {
     _bit_vector_t *_bv = bv;
 
@@ -117,7 +117,7 @@ bit_vector_delete (bit_vector_t bv, bit_vector_element_t e)
 }
 
 void
-bit_vector_clear (bit_vector_t bv)
+bit_vector_clear(bit_vector_t bv)
 {
     _bit_vector_t *_bv = bv;
 
@@ -129,12 +129,11 @@ bit_vector_clear (bit_vector_t bv)
 #define min(a, b, c) min2(min2(a, b), c)
 
 int
-bit_vector_union (const bit_vector_t a, const bit_vector_t b,
-                  bit_vector_t * c)
+bit_vector_union(const bit_vector_t a, const bit_vector_t b, bit_vector_t * c)
 {
-    bit_vector_clear (*c);
+    bit_vector_clear(*c);
     _bit_vector_t *_a = a, *_b = b, *_c = *c;
-    int N = min (_a->cuts, _b->cuts, _c->cuts);
+    int N = min(_a->cuts, _b->cuts, _c->cuts);
 
     for (int i = 0; i < N; i++)
         _c->bv[i] = _a->bv[i] | _b->bv[i];
@@ -142,12 +141,12 @@ bit_vector_union (const bit_vector_t a, const bit_vector_t b,
 }
 
 int
-bit_vector_intersection (const bit_vector_t a, const bit_vector_t b,
-                         bit_vector_t * c)
+bit_vector_intersection(const bit_vector_t a, const bit_vector_t b,
+                        bit_vector_t * c)
 {
-    bit_vector_clear (*c);
+    bit_vector_clear(*c);
     _bit_vector_t *_a = a, *_b = b, *_c = *c;
-    int N = min (_a->cuts, _b->cuts, _c->cuts);
+    int N = min(_a->cuts, _b->cuts, _c->cuts);
 
     for (int i = 0; i < N; i++)
         _c->bv[i] = _a->bv[i] & _b->bv[i];
@@ -155,12 +154,12 @@ bit_vector_intersection (const bit_vector_t a, const bit_vector_t b,
 }
 
 int
-bit_vector_difference (const bit_vector_t a, const bit_vector_t b,
-                       bit_vector_t * c)
+bit_vector_difference(const bit_vector_t a, const bit_vector_t b,
+                      bit_vector_t * c)
 {
-    bit_vector_clear (*c);
+    bit_vector_clear(*c);
     _bit_vector_t *_a = a, *_b = b, *_c = *c;
-    int N = min (_a->cuts, _b->cuts, _c->cuts);
+    int N = min(_a->cuts, _b->cuts, _c->cuts);
 
     for (int i = 0; i < N; i++)
         _c->bv[i] = _a->bv[i] & ~_b->bv[i];
@@ -168,25 +167,25 @@ bit_vector_difference (const bit_vector_t a, const bit_vector_t b,
 }
 
 void
-bit_vector_destroy (bit_vector_t * bv)
+bit_vector_destroy(bit_vector_t * bv)
 {
     _bit_vector_t *_bv = *bv;
 
-    free (_bv->bv);
-    free (_bv);
+    free(_bv->bv);
+    free(_bv);
     *bv = NULL;
 }
 
 void
-bit_vector_print (const bit_vector_t bv)
+bit_vector_print(const bit_vector_t bv)
 {
     _bit_vector_t *_bv = bv;
 
-    printf ("Bit vector { ");
+    printf("Bit vector { ");
     for (int i = 0; i < _bv->universe; i++) {
-        if (bit_vector_member (bv, i)) {
-            printf ("%d ", i);
+        if (bit_vector_member(bv, i)) {
+            printf("%d ", i);
         }
     }
-    printf ("}\n");
+    printf("}\n");
 }

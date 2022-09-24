@@ -10,15 +10,15 @@ typedef struct {
 } queue_header_t;
 
 typedef struct {
-    int (*init) (queue_t * queue, unsigned int n);
-    unsigned int (*length) (queue_t queue);
-    bool (*is_empty) (queue_t queue);
-    bool (*is_full) (queue_t queue);
-      queue_element_t (*front) (queue_t queue);
-    int (*enqueue) (queue_t queue, queue_element_t elem);
-      queue_element_t (*dequeue) (queue_t queue);
-    void (*clear) (queue_t queue);
-    void (*destroy) (queue_t * queue);
+    int (*init)(queue_t * queue, unsigned int n);
+    unsigned int (*length)(queue_t queue);
+    bool (*is_empty)(queue_t queue);
+    bool (*is_full)(queue_t queue);
+      queue_element_t(*front) (queue_t queue);
+    int (*enqueue)(queue_t queue, queue_element_t elem);
+      queue_element_t(*dequeue) (queue_t queue);
+    void (*clear)(queue_t queue);
+    void (*destroy)(queue_t * queue);
 } iqueue_t;
 
 static const iqueue_t static_queue = {
@@ -34,9 +34,9 @@ static const iqueue_t static_queue = {
 };
 
 int
-_dynamic_queue_init (dynamic_queue_t * dqueue, unsigned int fake_n)
+_dynamic_queue_init(dynamic_queue_t * dqueue, unsigned int fake_n)
 {
-    return dynamic_queue_init (dqueue);
+    return dynamic_queue_init(dqueue);
 }
 
 static const iqueue_t dynamic_queue = {
@@ -53,7 +53,7 @@ static const iqueue_t dynamic_queue = {
 
 
 static const iqueue_t *
-interface (queue_type_t type)
+interface(queue_type_t type)
 {
     switch (type) {
     case STATIC_QUEUE:
@@ -66,17 +66,17 @@ interface (queue_type_t type)
 }
 
 int
-queue_init (queue_t * queue, unsigned int n, queue_type_t type)
+queue_init(queue_t * queue, unsigned int n, queue_type_t type)
 {
     queue_header_t *header;
-    const iqueue_t *ds = interface (type);
+    const iqueue_t *ds = interface(type);
 
-    header = malloc (sizeof (queue_header_t));
+    header = malloc(sizeof(queue_header_t));
     if (header == NULL)
         return -1;
 
     header->type = type;
-    int status = ds->init (&(header->queue), n);
+    int status = ds->init(&(header->queue), n);
 
     if (status < 0)
         *queue = NULL;
@@ -87,16 +87,16 @@ queue_init (queue_t * queue, unsigned int n, queue_type_t type)
 }
 
 void
-queue_destroy (queue_t * queue)
+queue_destroy(queue_t * queue)
 {
     queue_header_t *header;
     const iqueue_t *ds;
 
     header = *queue;
-    ds = interface (header->type);
+    ds = interface(header->type);
 
-    ds->destroy (&(header->queue));
-    free (header);
+    ds->destroy(&(header->queue));
+    free(header);
     *queue = NULL;
 }
 
@@ -109,43 +109,43 @@ queue_destroy (queue_t * queue)
 
 
 unsigned int
-queue_length (queue_t queue)
+queue_length(queue_t queue)
 {
-    call_queue_interface_function (length, queue);
+    call_queue_interface_function(length, queue);
 }
 
 bool
-queue_is_empty (queue_t queue)
+queue_is_empty(queue_t queue)
 {
-    call_queue_interface_function (is_empty, queue);
+    call_queue_interface_function(is_empty, queue);
 }
 
 bool
-queue_is_full (queue_t queue)
+queue_is_full(queue_t queue)
 {
-    call_queue_interface_function (is_full, queue);
+    call_queue_interface_function(is_full, queue);
 }
 
 queue_element_t
-queue_front (queue_t queue)
+queue_front(queue_t queue)
 {
-    call_queue_interface_function (front, queue);
+    call_queue_interface_function(front, queue);
 }
 
 int
-queue_enqueue (queue_t queue, queue_element_t elem)
+queue_enqueue(queue_t queue, queue_element_t elem)
 {
-    call_queue_interface_function (enqueue, queue, elem);
+    call_queue_interface_function(enqueue, queue, elem);
 }
 
 queue_element_t
-queue_dequeue (queue_t queue)
+queue_dequeue(queue_t queue)
 {
-    call_queue_interface_function (dequeue, queue);
+    call_queue_interface_function(dequeue, queue);
 }
 
 void
-queue_clear (queue_t queue)
+queue_clear(queue_t queue)
 {
-    call_queue_interface_function (clear, queue);
+    call_queue_interface_function(clear, queue);
 }

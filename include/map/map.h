@@ -16,35 +16,35 @@ typedef enum { DEFAULT_MAP } map_type_t;
 /**
  * Initialize and empty map
  */
-int map_init (map_t * map, map_type_t type);
+int map_init(map_t * map, map_type_t type);
 
 /**
  * Set or overwrite `key` with `value` on the `map`
  */
-int map_set (map_t map, map_key_t key, map_value_t value);
+int map_set(map_t map, map_key_t key, map_value_t value);
 
 /**
  * Get an element from the map. Return 0 and set value if the map
  * contains key
  */
-int map_get (const map_t map, map_key_t key, map_value_t * value);
+int map_get(const map_t map, map_key_t key, map_value_t * value);
 
 /**
  * @return **true** if map has `key`.
  */
-bool map_contains (const map_t map, map_key_t key);
+bool map_contains(const map_t map, map_key_t key);
 
 /**
  * Delete a key from the map
  */
-int map_delete (map_t map, map_key_t key);
+int map_delete(map_t map, map_key_t key);
 
 /**
  * Destrpy the `map`. It must be called then the map won't be used
  * anymore.
  */
-void map_destroy (map_t * map);
+void map_destroy(map_t * map);
 
-void map_print (const map_t map);
+void map_print(const map_t map);
 
 #endif /* MAP_H */
