@@ -24,7 +24,7 @@ typedef struct {
       list_element_t(*remove) (list_t list, unsigned int n);
     void (*clear)(list_t list);
     int (*locate)(const list_t list, list_element_t elem,
-                  int (*cmp)(list_element_t a, list_element_t b));
+                  int(*cmp)(list_element_t a, list_element_t b));
     void (*destroy)(list_t * list);
 } ilist_t;
 

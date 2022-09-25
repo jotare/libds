@@ -9,9 +9,11 @@ typedef int open_hash_table_value_t;
 
 /**
  * Initialize and empty open_hash_table. Set `size` to the approximate number
- * of elements the hash table will contain to achieve O(1) operations.
+ * of elements the hash table will contain to achieve O(1) operations. This
+ * hash table can grow and shrink dynamically.
  */
-int open_hash_table_init(open_hash_table_t * open_hash_table, unsigned int size);
+int open_hash_table_init(open_hash_table_t * open_hash_table,
+                         unsigned int size);
 
 /**
  * Set or overwrite `key` with `value` on the `open_hash_table`
