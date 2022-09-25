@@ -14,9 +14,9 @@ typedef int map_value_t;
 typedef enum { DEFAULT_MAP, OPEN_HASH_TABLE_MAP } map_type_t;
 
 /**
- * Initialize and empty map
+ * Initialize and empty map. Size meaning is implementation dependent.
  */
-int map_init(map_t * map, map_type_t type);
+int map_init(map_t * map, unsigned int size, map_type_t type);
 
 /**
  * Set or overwrite `key` with `value` on the `map`

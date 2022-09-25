@@ -2,8 +2,6 @@
 
 #include "map/open_hash_table.h"
 
-#define BUCKET_TABLE_SIZE 64
-
 /**
  * Private open hash table definition
  */
@@ -14,13 +12,16 @@ typedef struct cell_t {
     struct cell_t *next;
 } cell_t;
 
-typedef cell_t *bucket_table_header_t[BUCKET_TABLE_SIZE];
+typedef struct {
+    unsigned int size;
+    cell_t **bucket_table;
+} bucket_table_header_t;
 
 /** Perform the hash(key) operation */
 static unsigned int
-hash(open_hash_table_key_t key)
+hash(open_hash_table_key_t key, unsigned int bucket_table_size)
 {
-    return key % BUCKET_TABLE_SIZE;
+    return key % bucket_table_size;
 }
 
 static bool
@@ -40,7 +41,7 @@ copy_value(open_hash_table_value_t *value) {
 
 
 int
-open_hash_table_init(open_hash_table_t * open_hash_table)
+open_hash_table_init(open_hash_table_t * open_hash_table, unsigned int size)
 {
     bucket_table_header_t *hash_table;
 
@@ -48,8 +49,17 @@ open_hash_table_init(open_hash_table_t * open_hash_table)
     if (hash_table == NULL)
         return -1;
 
-    for (int i = 0; i < BUCKET_TABLE_SIZE; i++) {
-        *hash_table[i] = NULL;
+    cell_t **bucket_table = malloc(sizeof(cell_t *) * size);
+    if (bucket_table == NULL) {
+        free(hash_table);
+        return -1;
+    }
+
+    hash_table->bucket_table = bucket_table;
+    hash_table->size = size;
+
+    for (int i = 0; i < size; i++) {
+        hash_table->bucket_table[i] = NULL;
     }
 
     *open_hash_table = hash_table;
@@ -62,8 +72,8 @@ open_hash_table_set(open_hash_table_t open_hash_table,
                     open_hash_table_key_t key, open_hash_table_value_t value)
 {
     bucket_table_header_t *hash_table = open_hash_table;
-    unsigned int bucket = hash(key);
-    cell_t *cell = *hash_table[bucket];
+    unsigned int bucket = hash(key, hash_table->size);
+    cell_t *cell = hash_table->bucket_table[bucket];
 
     cell_t *element = malloc(sizeof(cell_t));
 
@@ -71,7 +81,7 @@ open_hash_table_set(open_hash_table_t open_hash_table,
         return -1;
 
     if (cell == NULL) {
-        *hash_table[bucket] = element;
+        hash_table->bucket_table[bucket] = element;
     } else {
 
         cell_t *cell_before = NULL;
@@ -103,8 +113,8 @@ open_hash_table_get(const open_hash_table_t open_hash_table,
                     open_hash_table_value_t * value)
 {
     bucket_table_header_t *hash_table = open_hash_table;
-    unsigned int bucket = hash(key);
-    cell_t *cell = *hash_table[bucket];
+    unsigned int bucket = hash(key, hash_table->size);
+    cell_t *cell = hash_table->bucket_table[bucket];
 
     if (cell == NULL)           /* empty bucket */
         return -1;
@@ -124,8 +134,8 @@ open_hash_table_contains(const open_hash_table_t
                          open_hash_table, open_hash_table_key_t key)
 {
     bucket_table_header_t *hash_table = open_hash_table;
-    unsigned int bucket = hash(key);
-    cell_t *cell = *hash_table[bucket];
+    unsigned int bucket = hash(key, hash_table->size);
+    cell_t *cell = hash_table->bucket_table[bucket];
 
     if (cell == NULL)           /* empty bucket */
         return false;
@@ -145,8 +155,8 @@ open_hash_table_delete(open_hash_table_t open_hash_table,
                        open_hash_table_key_t key)
 {
     bucket_table_header_t *hash_table = open_hash_table;
-    unsigned int bucket = hash(key);
-    cell_t *cell = *hash_table[bucket];
+    unsigned int bucket = hash(key, hash_table->size);
+    cell_t *cell = hash_table->bucket_table[bucket];
 
     if (cell == NULL)           /* empty bucket */
         return 0;
@@ -157,7 +167,7 @@ open_hash_table_delete(open_hash_table_t open_hash_table,
         /* delete cell */
         if (same_key(cell->key, key)) {
             if (cell_before == NULL) {
-                *hash_table[bucket] = cell->next;
+                hash_table->bucket_table[bucket] = cell->next;
             } else {
                 cell_before->next = cell->next;
             }
@@ -177,9 +187,9 @@ open_hash_table_destroy(open_hash_table_t * open_hash_table)
 {
     bucket_table_header_t *hash_table = *open_hash_table;
 
-    for (int i = 0; i < BUCKET_TABLE_SIZE; i++) {
-        if (hash_table[i] != NULL) {
-            cell_t *cell = *hash_table[i];
+    for (int i = 0; i < hash_table->size; i++) {
+        if (hash_table->bucket_table[i] != NULL) {
+            cell_t *cell = hash_table->bucket_table[i];
 
             while (cell != NULL) {
                 cell_t *next_cell = cell->next;
@@ -188,7 +198,7 @@ open_hash_table_destroy(open_hash_table_t * open_hash_table)
                 cell = next_cell;
             }
 
-            *hash_table[i] = NULL;
+            hash_table->bucket_table[i] = NULL;
         }
     }
 }

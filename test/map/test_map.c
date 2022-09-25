@@ -22,7 +22,7 @@ test_map_init_destroy(map_type_t type)
 {
     map_t map = NULL;
 
-    map_init(&map, type);
+    map_init(&map, 10, type);
     CU_ASSERT_PTR_NOT_NULL(map);
 
     map_destroy(&map);
@@ -43,7 +43,7 @@ test_map_set_get_contains_delete(map_type_t type)
     map_value_t v0 = 12, v1 = 63, v2 = 5, v3 = 104;
     map_value_t value;
 
-    map_init(&map, type);
+    map_init(&map, 2, type);
 
     /* Set a key-value pair and check it */
 

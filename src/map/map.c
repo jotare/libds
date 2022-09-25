@@ -9,7 +9,7 @@ typedef struct {
 } map_header_t;
 
 typedef struct {
-    int (*init)(map_t * map);
+    int (*init)(map_t * map, unsigned int size);
     int (*set)(map_t map, map_key_t key, map_value_t value);
     int (*get)(const map_t map, map_key_t key, map_value_t * value);
     bool (*contains)(const map_t map, map_key_t key);
@@ -37,7 +37,7 @@ interface(map_type_t type)
 }
 
 int
-map_init(map_t * map, map_type_t type)
+map_init(map_t * map, unsigned int size, map_type_t type)
 {
     map_header_t *header;
     const imap_t *ds = interface(type);
@@ -46,7 +46,7 @@ map_init(map_t * map, map_type_t type)
     if (header == NULL)
         return -1;
     header->type = type;
-    int status = ds->init(&(header->map));
+    int status = ds->init(&(header->map), size);
 
     if (status < 0)
         *map = NULL;
