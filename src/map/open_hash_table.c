@@ -23,6 +23,10 @@ hash(open_hash_table_key_t key)
     return key % BUCKET_TABLE_SIZE;
 }
 
+static bool
+same_key(open_hash_table_key_t a, open_hash_table_key_t b) {
+    return a == b;
+}
 
 int
 open_hash_table_init(open_hash_table_t * open_hash_table)
@@ -63,7 +67,7 @@ open_hash_table_set(open_hash_table_t open_hash_table,
 
         while (cell != NULL) {
             /* overwrite value and return */
-            if (cell->key == key) {
+            if (same_key(cell->key, key)) {
                 cell->value = value;
                 return 0;
             }
@@ -95,7 +99,7 @@ open_hash_table_get(const open_hash_table_t open_hash_table,
         return -1;
 
     while (cell != NULL) {
-        if (cell->key == key) {
+        if (same_key(cell->key, key)) {
             *value = cell->value;
             return 0;
         }
@@ -116,7 +120,7 @@ open_hash_table_contains(const open_hash_table_t
         return false;
 
     while (cell != NULL) {
-        if (cell->key == key) {
+        if (same_key(cell->key, key)) {
             return true;
         }
         cell = cell->next;
@@ -140,7 +144,7 @@ open_hash_table_delete(open_hash_table_t open_hash_table,
 
     while (cell != NULL) {
         /* delete cell */
-        if (cell->key == key) {
+        if (same_key(cell->key, key)) {
             if (cell_before == NULL) {
                 *hash_table[bucket] = cell->next;
             } else {
