@@ -1,5 +1,6 @@
 #include <stdlib.h>
 
+#include "map/open_hash_table.h"
 #include "map/map.h"
 
 typedef struct {
@@ -14,8 +15,16 @@ typedef struct {
     bool (*contains)(const map_t map, map_key_t key);
     int (*delete)(map_t map, map_key_t key);
     void (*destroy)(map_t * map);
-    void (*print)(const map_t map);
 } imap_t;
+
+static const imap_t open_hash_table = {
+    open_hash_table_init,
+    open_hash_table_set,
+    open_hash_table_get,
+    open_hash_table_contains,
+    open_hash_table_delete,
+    open_hash_table_destroy,
+};
 
 static const imap_t *
 interface(map_type_t type)
@@ -23,7 +32,7 @@ interface(map_type_t type)
     switch (type) {
     case DEFAULT_MAP:
     default:
-        return NULL;
+        return &open_hash_table;
     }
 }
 
@@ -36,7 +45,6 @@ map_init(map_t * map, map_type_t type)
     header = malloc(sizeof(map_header_t));
     if (header == NULL)
         return -1;
-
     header->type = type;
     int status = ds->init(&(header->map));
 
@@ -44,7 +52,6 @@ map_init(map_t * map, map_type_t type)
         *map = NULL;
     else
         *map = header;
-
     return status;
 }
 
@@ -91,10 +98,4 @@ int
 map_delete(map_t map, map_key_t key)
 {
     call_map_interface_function(delete, map, key);
-}
-
-void
-map_print(const map_t map)
-{
-    call_map_interface_function(print, map);
 }

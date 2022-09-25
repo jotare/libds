@@ -35,6 +35,8 @@ directory.
 - set
   - bit vector
   - linked list set
+- map
+  - open hash table
 
 ## Testing with CUnit
 

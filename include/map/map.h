@@ -11,7 +11,7 @@ typedef void *map_t;
 typedef char map_key_t;
 typedef int map_value_t;
 
-typedef enum { DEFAULT_MAP } map_type_t;
+typedef enum { DEFAULT_MAP, OPEN_HASH_TABLE_MAP } map_type_t;
 
 /**
  * Initialize and empty map
@@ -44,7 +44,5 @@ int map_delete(map_t map, map_key_t key);
  * anymore.
  */
 void map_destroy(map_t * map);
-
-void map_print(const map_t map);
 
 #endif /* MAP_H */

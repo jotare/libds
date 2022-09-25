@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+0.13.0
+------
+- Add map implementation: open hash table
+
 0.12.0
 ------
 - Add map interface

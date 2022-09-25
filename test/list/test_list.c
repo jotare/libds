@@ -162,7 +162,7 @@ test_list_append_prepend(list_type_t type)
     CU_ASSERT_EQUAL(list_get(list, 0), a);
     list_append(list, b);
     CU_ASSERT_EQUAL(list_get(list, 1), b);
-    printf("PREPREND: %d\n", list_prepend(list, c));
+    list_prepend(list, c);
     CU_ASSERT_EQUAL(list_get(list, 0), c);
 
     list_destroy(&list);

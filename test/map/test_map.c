@@ -30,7 +30,13 @@ test_map_init_destroy(map_type_t type)
 }
 
 static void
-test_map_set_get_contains(map_type_t type)
+test_open_hash_table_init_destroy(void)
+{
+    test_map_init_destroy(OPEN_HASH_TABLE_MAP);
+}
+
+static void
+test_map_set_get_contains_delete(map_type_t type)
 {
     map_t map = NULL;
     map_key_t k0 = 'A', k1 = 'F', k2 = 'Z';
@@ -82,7 +88,17 @@ test_map_set_get_contains(map_type_t type)
     map_destroy(&map);
 }
 
+static void
+test_open_hash_table_set_get_contains_delete(void)
+{
+    test_map_set_get_contains_delete(OPEN_HASH_TABLE_MAP);
+}
+
+
 static CU_TestInfo map_tests[] = {
+    {"open hash table: init, destroy", test_open_hash_table_init_destroy},
+    {"open hash table: set, get, contains, delete",
+     test_open_hash_table_set_get_contains_delete},
 
     CU_TEST_INFO_NULL
 };
@@ -92,6 +108,3 @@ get_map_tests(void)
 {
     return map_tests;
 }
-
-/* 
- */
