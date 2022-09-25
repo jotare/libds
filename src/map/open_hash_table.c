@@ -28,6 +28,17 @@ same_key(open_hash_table_key_t a, open_hash_table_key_t b) {
     return a == b;
 }
 
+static open_hash_table_key_t
+copy_key(open_hash_table_key_t *key) {
+    return *key;
+}
+
+static open_hash_table_value_t
+copy_value(open_hash_table_value_t *value) {
+    return *value;
+}
+
+
 int
 open_hash_table_init(open_hash_table_t * open_hash_table)
 {
@@ -68,7 +79,7 @@ open_hash_table_set(open_hash_table_t open_hash_table,
         while (cell != NULL) {
             /* overwrite value and return */
             if (same_key(cell->key, key)) {
-                cell->value = value;
+                cell->value = copy_value(&value);
                 return 0;
             }
 
@@ -80,8 +91,8 @@ open_hash_table_set(open_hash_table_t open_hash_table,
     }
 
     element->next = NULL;
-    element->key = key;
-    element->value = value;
+    element->key = copy_key(&key);
+    element->value = copy_value(&value);
 
     return 0;
 }
@@ -100,7 +111,7 @@ open_hash_table_get(const open_hash_table_t open_hash_table,
 
     while (cell != NULL) {
         if (same_key(cell->key, key)) {
-            *value = cell->value;
+            *value = copy_value(&cell->value);
             return 0;
         }
     }
