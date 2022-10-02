@@ -26,6 +26,24 @@ hash(closed_hash_table_key_t key, unsigned int bucket_table_size)
     return key % bucket_table_size;
 }
 
+static bool
+same_key(closed_hash_table_key_t a, closed_hash_table_key_t b)
+{
+    return a == b;
+}
+
+static closed_hash_table_key_t
+copy_key(closed_hash_table_key_t * key)
+{
+    return *key;
+}
+
+static closed_hash_table_value_t
+copy_value(closed_hash_table_value_t * value)
+{
+    return *value;
+}
+
 static unsigned int
 locate_key_or_empty(bucket_table_header_t * hash_table,
                     closed_hash_table_key_t key)
@@ -36,7 +54,7 @@ locate_key_or_empty(bucket_table_header_t * hash_table,
 
     while ((count < hash_table->size)
            && !(hash_table->bucket_table[idx].state == FILLED
-                && hash_table->bucket_table[idx].key == key)
+                && same_key(hash_table->bucket_table[idx].key, key))
            && (hash_table->bucket_table[idx].state != EMPTY)
         ) {
         count++;
@@ -56,7 +74,7 @@ locate_key_or_empty_or_deleted(bucket_table_header_t * hash_table,
 
     while ((count < hash_table->size)
            && !(hash_table->bucket_table[idx].state == FILLED
-                && hash_table->bucket_table[idx].key == key)
+                && same_key(hash_table->bucket_table[idx].key, key))
            && (hash_table->bucket_table[idx].state != EMPTY)
            && (hash_table->bucket_table[idx].state != DELETED)
         ) {
@@ -103,9 +121,9 @@ closed_hash_table_set(closed_hash_table_t closed_hash_table,
     bucket_table_header_t *hash_table = closed_hash_table;
     unsigned int idx = locate_key_or_empty(hash_table, key);
 
-    if (hash_table->bucket_table[idx].key == key) {
+    if (same_key(hash_table->bucket_table[idx].key, key)) {
         /* found, overwrite value */
-        hash_table->bucket_table[idx].value = value;
+        hash_table->bucket_table[idx].value = copy_value(&value);
         return 0;
     }
 
@@ -114,8 +132,8 @@ closed_hash_table_set(closed_hash_table_t closed_hash_table,
 
     if (hash_table->bucket_table[idx].state == EMPTY
         || hash_table->bucket_table[idx].state == DELETED) {
-        hash_table->bucket_table[idx].key = key;
-        hash_table->bucket_table[idx].value = value;
+        hash_table->bucket_table[idx].key = copy_key(&key);
+        hash_table->bucket_table[idx].value = copy_value(&value);
         hash_table->bucket_table[idx].state = FILLED;
         return 0;
     }
@@ -132,8 +150,8 @@ closed_hash_table_get(const closed_hash_table_t closed_hash_table,
     bucket_table_header_t *hash_table = closed_hash_table;
     unsigned int idx = locate_key_or_empty(hash_table, key);
 
-    if (hash_table->bucket_table[idx].key == key) {
-        *value = hash_table->bucket_table[idx].value;
+    if (same_key(hash_table->bucket_table[idx].key, key)) {
+        *value = copy_value(&(hash_table->bucket_table[idx].value));
         return 0;
     }
 
@@ -147,7 +165,7 @@ closed_hash_table_contains(const closed_hash_table_t
     bucket_table_header_t *hash_table = closed_hash_table;
     unsigned int idx = locate_key_or_empty(hash_table, key);
 
-    return hash_table->bucket_table[idx].key == key;
+    return same_key(hash_table->bucket_table[idx].key, key);
 }
 
 int
@@ -157,7 +175,7 @@ closed_hash_table_delete(closed_hash_table_t closed_hash_table,
     bucket_table_header_t *hash_table = closed_hash_table;
     unsigned int idx = locate_key_or_empty(hash_table, key);
 
-    if (hash_table->bucket_table[idx].key == key) {
+    if (same_key(hash_table->bucket_table[idx].key, key)) {
         hash_table->bucket_table[idx].state = DELETED;
     }
 
