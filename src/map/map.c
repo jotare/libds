@@ -1,6 +1,7 @@
 #include <stdlib.h>
 
 #include "map/open_hash_table.h"
+#include "map/closed_hash_table.h"
 #include "map/map.h"
 
 typedef struct {
@@ -26,10 +27,23 @@ static const imap_t open_hash_table = {
     open_hash_table_destroy,
 };
 
+static const imap_t closed_hash_table = {
+    closed_hash_table_init,
+    closed_hash_table_set,
+    closed_hash_table_get,
+    closed_hash_table_contains,
+    closed_hash_table_delete,
+    closed_hash_table_destroy,
+};
+
 static const imap_t *
 interface(map_type_t type)
 {
     switch (type) {
+    case OPEN_HASH_TABLE_MAP:
+        return &open_hash_table;
+    case CLOSED_HASH_TABLE_MAP:
+        return &closed_hash_table;
     case DEFAULT_MAP:
     default:
         return &open_hash_table;

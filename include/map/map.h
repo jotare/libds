@@ -11,7 +11,11 @@ typedef void *map_t;
 typedef char map_key_t;
 typedef int map_value_t;
 
-typedef enum { DEFAULT_MAP, OPEN_HASH_TABLE_MAP } map_type_t;
+typedef enum {
+    DEFAULT_MAP,
+    OPEN_HASH_TABLE_MAP,
+    CLOSED_HASH_TABLE_MAP
+} map_type_t;
 
 /**
  * Initialize and empty map. Size meaning is implementation dependent.

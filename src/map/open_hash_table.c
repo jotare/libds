@@ -25,17 +25,20 @@ hash(open_hash_table_key_t key, unsigned int bucket_table_size)
 }
 
 static bool
-same_key(open_hash_table_key_t a, open_hash_table_key_t b) {
+same_key(open_hash_table_key_t a, open_hash_table_key_t b)
+{
     return a == b;
 }
 
 static open_hash_table_key_t
-copy_key(open_hash_table_key_t *key) {
+copy_key(open_hash_table_key_t * key)
+{
     return *key;
 }
 
 static open_hash_table_value_t
-copy_value(open_hash_table_value_t *value) {
+copy_value(open_hash_table_value_t * value)
+{
     return *value;
 }
 
@@ -44,12 +47,13 @@ int
 open_hash_table_init(open_hash_table_t * open_hash_table, unsigned int size)
 {
     bucket_table_header_t *hash_table;
+    cell_t **bucket_table;
 
     hash_table = malloc(sizeof(bucket_table_header_t));
     if (hash_table == NULL)
         return -1;
 
-    cell_t **bucket_table = malloc(sizeof(cell_t *) * size);
+    bucket_table = malloc(sizeof(cell_t *) * size);
     if (bucket_table == NULL) {
         free(hash_table);
         return -1;
@@ -201,4 +205,6 @@ open_hash_table_destroy(open_hash_table_t * open_hash_table)
             hash_table->bucket_table[i] = NULL;
         }
     }
+
+    free(hash_table);
 }

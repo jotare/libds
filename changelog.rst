@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+0.15.0
+------
+- Add map implementation: closed hash table
+
 0.14.0
 ------
 - Dynamically sized open hash table

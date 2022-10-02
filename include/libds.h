@@ -17,3 +17,4 @@
 
 #include "map/map.h"
 #include "map/open_hash_table.h"
+#include "map/closed_hash_table.h"
