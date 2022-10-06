@@ -37,6 +37,9 @@ directory.
   - linked list set
 - map
   - open hash table
+  - closed hash table
+- priority queue
+  - heap
 
 ## Testing with CUnit
 
