@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+0.16.0
+------
+- Add priority queue interface and implementation using a heap
+
 0.15.0
 ------
 - Add map implementation: closed hash table

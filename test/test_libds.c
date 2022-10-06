@@ -19,7 +19,8 @@ int main(void) {
         *stack_tests = get_stack_tests(),
         *queue_tests = get_queue_tests(),
         *set_tests = get_set_tests(),
-        *map_tests = get_map_tests();
+        *map_tests = get_map_tests(),
+        *priority_queue_tests = get_priority_queue_tests();
 
     CU_SuiteInfo suites[] = {
         {"list", init_list_suite, cleanup_list_suite, NULL, NULL, list_tests},
@@ -27,6 +28,7 @@ int main(void) {
         {"queue", init_queue_suite, cleanup_queue_suite, NULL, NULL, queue_tests},
         {"set", init_set_suite, cleanup_set_suite, NULL, NULL, set_tests},
         {"map", init_map_suite, cleanup_map_suite, NULL, NULL, map_tests},
+        {"priority_queue", init_priority_queue_suite, cleanup_priority_queue_suite, NULL, NULL, priority_queue_tests},
         CU_SUITE_INFO_NULL
     };
 
