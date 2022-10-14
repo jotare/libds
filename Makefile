@@ -55,7 +55,6 @@ veryclean: clean
 	$(RM) $(source_objects) $(test_objects) $(test_targets) test/test_libds.o test/test_libds libds.a
 
 
-
 # header dependencies
 depend:  $(sources)
 	@echo "Building and including dependencies..."
@@ -74,6 +73,10 @@ ifeq "$(excluded_goals)" ""
 endif
 
 
+# source dependencies
+
+directed_graph_adj_list.o: adj_list.o
+undirected_graph_adj_list.o: adj_list.o
 
 # debug info
 .PHONY: debug

@@ -40,6 +40,13 @@ directory.
   - closed hash table
 - priority queue
   - heap
+- graph
+  - directed graph
+    - adjacency matrix
+    - adjacency lists
+  - undirected graphs
+    - adjacency matrix
+    - adjacency lists
 
 ## Testing with CUnit
 

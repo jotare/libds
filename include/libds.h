@@ -18,3 +18,9 @@
 #include "map/map.h"
 #include "map/open_hash_table.h"
 #include "map/closed_hash_table.h"
+
+#include "graph/graph.h"
+#include "graph/directed_graph_adj_list.h"
+#include "graph/directed_graph_adj_matrix.h"
+#include "graph/undirected_graph_adj_list.h"
+#include "graph/undirected_graph_adj_matrix.h"

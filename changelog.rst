@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+0.17.0
+------
+- Add directed and undirected graph implementations using adjacency
+  lists and adjacency matrix
+
 0.16.0
 ------
 - Add priority queue interface and implementation using a heap
