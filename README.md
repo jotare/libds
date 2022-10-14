@@ -22,31 +22,32 @@ directory.
 ## Implemented data structures
 
 *libds* implements de following data structures:
-- list
-  - array list
-  - linked list
-  - doubly liked list
-- stack
-  - static (array) stack
-  - dynamic stack
-- queue
-  - static (array) queue
-  - dynamic queue
-- set
-  - bit vector
-  - linked list set
-- map
-  - open hash table
-  - closed hash table
-- priority queue
-  - heap
-- graph
-  - directed graph
-    - adjacency matrix
-    - adjacency lists
-  - undirected graphs
-    - adjacency matrix
-    - adjacency lists
+
+- List
+  - Array list
+  - Linked list
+  - Doubly liked list
+- Stack
+  - Static (array) stack
+  - Dynamic stack
+- Queue
+  - Static (array) queue
+  - Dynamic queue
+- Set
+  - Bit vector
+  - Linked list set
+- Map
+  - Open hash table
+  - Closed hash table
+- Priority queue
+  - Heap
+- Graph
+  - Directed graph
+    - Adjacency matrix
+    - Adjacency lists
+  - Undirected graphs
+    - Adjacency matrix
+    - Adjacency lists
 
 ## Testing with CUnit
 
