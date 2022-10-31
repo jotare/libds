@@ -12,17 +12,31 @@ directed_graph_adj_list_init(directed_graph_adj_list_t * graph, int size)
 }
 
 int
-directed_graph_adj_list_edge_add(directed_graph_adj_list_t
-                                 graph, vertex_t tail, vertex_t head)
+directed_graph_adj_list_edge_add(directed_graph_adj_list_t graph, edge_t edge,
+                                 label_t label)
 {
-    return adj_list_edge_add(graph, tail, head);
+    return adj_list_edge_add(graph, edge, label);
+}
+
+label_t
+directed_graph_adj_list_edge_remove(directed_graph_adj_list_t graph,
+                                    edge_t edge)
+{
+    return adj_list_edge_remove(graph, edge);
+}
+
+label_t
+directed_graph_adj_list_edge_label(directed_graph_adj_list_t graph,
+                                   edge_t edge)
+{
+    return adj_list_edge_label(graph, edge);
 }
 
 int
-directed_graph_adj_list_edge_remove(directed_graph_adj_list_t
-                                    graph, vertex_t tail, vertex_t head)
+directed_graph_adj_list_edge_set_label(directed_graph_adj_list_t graph,
+                                       edge_t edge, label_t label)
 {
-    return adj_list_edge_remove(graph, tail, head);
+    return adj_list_edge_set_label(graph, edge, label);
 }
 
 bool

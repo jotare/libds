@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+0.19.0
+------
+- Refactor graph API
+- Graph module now represents labeled graphs
+
 0.18.0
 ------
 - Rename graph parameter on graph functions

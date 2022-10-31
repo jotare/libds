@@ -13,28 +13,38 @@ undirected_graph_adj_matrix_init(undirected_graph_adj_matrix_t *
 }
 
 int
-undirected_graph_adj_matrix_edge_add(undirected_graph_adj_matrix_t
-                                     graph, vertex_t a, vertex_t b)
+undirected_graph_adj_matrix_edge_add(undirected_graph_adj_matrix_t graph,
+                                     edge_t edge, label_t label)
 {
     int status;
 
-    status = adj_matrix_edge_add(graph, a, b);
+    status = adj_matrix_edge_add(graph, (edge_t) {edge.from, edge.to}, label);
     if (status != 0)
         return status;
-    return adj_matrix_edge_add(graph, b, a);
+    return adj_matrix_edge_add(graph, (edge_t) {edge.to, edge.from}, label);
+}
+
+label_t
+undirected_graph_adj_matrix_edge_remove(undirected_graph_adj_matrix_t graph,
+                                        edge_t edge)
+{
+    adj_matrix_edge_remove(graph, (edge_t) {edge.from, edge.to});
+    return adj_matrix_edge_remove(graph, (edge_t) {edge.to, edge.from});
+
+}
+
+label_t
+undirected_graph_adj_matrix_edge_label(undirected_graph_adj_matrix_t graph,
+                                       edge_t edge)
+{
+    return adj_matrix_edge_label(graph, edge);
 }
 
 int
-undirected_graph_adj_matrix_edge_remove(undirected_graph_adj_matrix_t
-                                        graph, vertex_t a, vertex_t b)
+undirected_graph_adj_matrix_edge_set_label(undirected_graph_adj_matrix_t
+                                           graph, edge_t edge, label_t label)
 {
-    int status;
-
-    status = adj_matrix_edge_remove(graph, a, b);
-    if (status != 0)
-        return status;
-    return adj_matrix_edge_remove(graph, b, a);
-
+    return adj_matrix_edge_set_label(graph, edge, label);
 }
 
 bool

@@ -41,7 +41,7 @@ directory.
   - Closed hash table
 - Priority queue
   - Heap
-- Graph
+- Graph (labeled)
   - Directed graph
     - Adjacency matrix
     - Adjacency lists

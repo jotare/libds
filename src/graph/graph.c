@@ -14,11 +14,16 @@ typedef struct {
 
 typedef struct {
     int (*init)(graph_t * graph, int size);
-    int (*edge_add)(graph_t graph, vertex_t tail, vertex_t head);
-    int (*edge_remove)(graph_t graph, vertex_t tail, vertex_t head);
+
+    int (*edge_add)(graph_t graph, edge_t edge, label_t label);
+    label_t (*edge_remove)(graph_t graph, edge_t edge);
+    label_t (*edge_label)(graph_t graph, edge_t edge);
+    int (*edge_set_label)(graph_t graph, edge_t edge, label_t label);
+
     bool (*adjancent_vertices)(graph_t graph, vertex_t tail, vertex_t head);
     int (*neighbors_count)(graph_t graph, vertex_t vertex);
     int (*neighbors)(graph_t graph, vertex_t vertex, vertex_t ** neighbors);
+
     void (*destroy)(graph_t * graph);
 } igraph_t;
 
@@ -26,6 +31,8 @@ static const igraph_t directed_graph_adj_list = {
     directed_graph_adj_list_init,
     directed_graph_adj_list_edge_add,
     directed_graph_adj_list_edge_remove,
+    directed_graph_adj_list_edge_label,
+    directed_graph_adj_list_edge_set_label,
     directed_graph_adj_list_adjancent_vertices,
     directed_graph_adj_list_neighbors_count,
     directed_graph_adj_list_neighbors,
@@ -36,6 +43,8 @@ static const igraph_t directed_graph_adj_matrix = {
     directed_graph_adj_matrix_init,
     directed_graph_adj_matrix_edge_add,
     directed_graph_adj_matrix_edge_remove,
+    directed_graph_adj_matrix_edge_label,
+    directed_graph_adj_matrix_edge_set_label,
     directed_graph_adj_matrix_adjancent_vertices,
     directed_graph_adj_matrix_neighbors_count,
     directed_graph_adj_matrix_neighbors,
@@ -46,6 +55,8 @@ static const igraph_t undirected_graph_adj_list = {
     undirected_graph_adj_list_init,
     undirected_graph_adj_list_edge_add,
     undirected_graph_adj_list_edge_remove,
+    undirected_graph_adj_list_edge_label,
+    undirected_graph_adj_list_edge_set_label,
     undirected_graph_adj_list_adjancent_vertices,
     undirected_graph_adj_list_neighbors_count,
     undirected_graph_adj_list_neighbors,
@@ -56,6 +67,8 @@ static const igraph_t undirected_graph_adj_matrix = {
     undirected_graph_adj_matrix_init,
     undirected_graph_adj_matrix_edge_add,
     undirected_graph_adj_matrix_edge_remove,
+    undirected_graph_adj_matrix_edge_label,
+    undirected_graph_adj_matrix_edge_set_label,
     undirected_graph_adj_matrix_adjancent_vertices,
     undirected_graph_adj_matrix_neighbors_count,
     undirected_graph_adj_matrix_neighbors,
@@ -128,15 +141,27 @@ graph_destroy(graph_t * graph)
     })
 
 int
-graph_edge_add(graph_t graph, vertex_t tail, vertex_t head)
+graph_edge_add(graph_t graph, edge_t edge, label_t label)
 {
-    call_graph_interface_function(edge_add, graph, tail, head);
+    call_graph_interface_function(edge_add, graph, edge, label);
+}
+
+label_t
+graph_edge_remove(graph_t graph, edge_t edge)
+{
+    call_graph_interface_function(edge_remove, graph, edge);
+}
+
+label_t
+graph_edge_label(graph_t graph, edge_t edge)
+{
+    call_graph_interface_function(edge_label, graph, edge);
 }
 
 int
-graph_edge_remove(graph_t graph, vertex_t tail, vertex_t head)
+graph_edge_set_label(graph_t graph, edge_t edge, label_t label)
 {
-    call_graph_interface_function(edge_remove, graph, tail, head);
+    call_graph_interface_function(edge_set_label, graph, edge, label);
 }
 
 bool

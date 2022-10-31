@@ -5,6 +5,7 @@
 
 typedef struct node_t {
     vertex_t vertex;
+    label_t label;
     struct node_t *next;
 } node_t;
 
@@ -40,7 +41,7 @@ adj_list_init(adj_list_t * al, int size)
 
 
 int
-adj_list_edge_add(adj_list_t al, vertex_t from, vertex_t to)
+adj_list_edge_add(adj_list_t al, edge_t edge, label_t label)
 {
     _adj_list_t *adj_list = al;
 
@@ -48,43 +49,82 @@ adj_list_edge_add(adj_list_t al, vertex_t from, vertex_t to)
 
     if (new == NULL)
         return -1;
-    new->vertex = to;
+    new->vertex = edge.to;
+    new->label = NULL;
 
-    if (adj_list->edges[from] == NULL)
+    if (adj_list->edges[edge.from] == NULL)
         new->next = NULL;
     else
-        new->next = adj_list->edges[from];
+        new->next = adj_list->edges[edge.from];
 
     /* insert it in the front of the linked list of edges */
-    adj_list->edges[from] = new;
+    adj_list->edges[edge.from] = new;
 
     return 0;
 }
 
-int
-adj_list_edge_remove(adj_list_t al, vertex_t from, vertex_t to)
+label_t
+adj_list_edge_remove(adj_list_t al, edge_t edge)
 {
     _adj_list_t *adj_list = al;
 
     node_t *previous = NULL;
-    node_t *ptr = adj_list->edges[from];
+    node_t *ptr = adj_list->edges[edge.from];
 
     while (ptr != NULL) {
-        if (ptr->vertex == to) {
+        if (ptr->vertex == edge.to) {
+            label_t label = ptr->label;
+
             if (previous == NULL) {
-                adj_list->edges[from] = ptr->next;
+                adj_list->edges[edge.from] = ptr->next;
             } else {
                 previous->next = ptr->next;
             }
+
             free(ptr);
-            return 0;
+            return label;
         }
 
         previous = ptr;
         ptr = ptr->next;
     }
 
-    return 0;
+    return NULL;
+}
+
+label_t
+adj_list_edge_label(adj_list_t al, edge_t edge)
+{
+    _adj_list_t *adj_list = al;
+
+    node_t *ptr = adj_list->edges[edge.from];
+
+    while (ptr != NULL) {
+        if (ptr->vertex == edge.to) {
+            return ptr->label;
+        }
+        ptr = ptr->next;
+    }
+
+    return NULL;
+}
+
+int
+adj_list_edge_set_label(adj_list_t al, edge_t edge, label_t label)
+{
+    _adj_list_t *adj_list = al;
+
+    node_t *ptr = adj_list->edges[edge.from];
+
+    while (ptr != NULL) {
+        if (ptr->vertex == edge.to) {
+            ptr->label = label;
+            return 0;
+        }
+        ptr = ptr->next;
+    }
+
+    return -1;
 }
 
 bool

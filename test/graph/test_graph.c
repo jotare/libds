@@ -84,11 +84,11 @@ test_directed_graph(graph_type_t type)
      * - From 2 to: 1
      * - From 3 to: 2
      */
-    graph_edge_add(graph, 0, 1);
-    graph_edge_add(graph, 0, 2);
-    graph_edge_add(graph, 1, 3);
-    graph_edge_add(graph, 2, 1);
-    graph_edge_add(graph, 3, 2);
+    graph_edge_add(graph, (edge_t) {0, 1}, NULL);
+    graph_edge_add(graph, (edge_t) {0, 2}, NULL);
+    graph_edge_add(graph, (edge_t) {1, 3}, NULL);
+    graph_edge_add(graph, (edge_t) {2, 1}, NULL);
+    graph_edge_add(graph, (edge_t) {3, 2}, NULL);
 
     CU_ASSERT_EQUAL(graph_neighbors_count(graph, 0), 2);
     CU_ASSERT_EQUAL(graph_neighbors_count(graph, 1), 1);
@@ -127,8 +127,8 @@ test_directed_graph(graph_type_t type)
      * - From 2 to: -
      * - From 3 to: 2
      */
-    graph_edge_remove(graph, 0, 1);
-    graph_edge_remove(graph, 2, 1);
+    graph_edge_remove(graph, (edge_t) {0, 1});
+    graph_edge_remove(graph, (edge_t) {2, 1});
 
     CU_ASSERT_EQUAL(graph_neighbors_count(graph, 0), 1);
     CU_ASSERT_EQUAL(graph_neighbors_count(graph, 1), 1);
@@ -188,11 +188,11 @@ test_undirected_graph(graph_type_t type)
      * - From 3 to: 1, 2
      */
 
-    graph_edge_add(graph, 0, 1);
-    graph_edge_add(graph, 0, 2);
-    graph_edge_add(graph, 1, 3);
-    graph_edge_add(graph, 2, 1);
-    graph_edge_add(graph, 3, 2);
+    graph_edge_add(graph, (edge_t) {0, 1}, NULL);
+    graph_edge_add(graph, (edge_t) {0, 2}, NULL);
+    graph_edge_add(graph, (edge_t) {1, 3}, NULL);
+    graph_edge_add(graph, (edge_t) {2, 1}, NULL);
+    graph_edge_add(graph, (edge_t) {3, 2}, NULL);
 
     CU_ASSERT_EQUAL(graph_neighbors_count(graph, 0), 2);
     CU_ASSERT_EQUAL(graph_neighbors_count(graph, 1), 3);
@@ -237,8 +237,8 @@ test_undirected_graph(graph_type_t type)
      * - From 2 to: 0, 3
      * - From 3 to: 1, 2
      */
-    graph_edge_remove(graph, 0, 1);
-    graph_edge_remove(graph, 2, 1);
+    graph_edge_remove(graph, (edge_t) {0, 1});
+    graph_edge_remove(graph, (edge_t) {2, 1});
 
     CU_ASSERT_EQUAL(graph_neighbors_count(graph, 0), 1);
     CU_ASSERT_EQUAL(graph_neighbors_count(graph, 1), 1);

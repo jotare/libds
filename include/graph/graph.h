@@ -16,7 +16,14 @@
 
 typedef void *graph_t;
 typedef int vertex_t;
-typedef int edge_t;
+struct edge_t {
+    vertex_t from, to;
+};
+
+typedef struct {
+    vertex_t from, to;
+} edge_t;
+
 typedef void *label_t;
 
 typedef enum {
@@ -34,10 +41,20 @@ int graph_init(graph_t * graph, int size, graph_type_t type);
  * Connect two vertices by an edge with label `edge` and get its id in
  * `edge`.
  */
-int graph_edge_add(graph_t graph, vertex_t tail, vertex_t head);
+int graph_edge_add(graph_t graph, edge_t edge, label_t label);
 
-/** Remove edge from vertices tail and head, if exists. */
-int graph_edge_remove(graph_t graph, vertex_t tail, vertex_t head);
+/**
+ * Remove edge from vertices tail and head, if exists.
+ * @return removed edge label or NULL
+ */
+label_t graph_edge_remove(graph_t graph, edge_t edge);
+
+/** Get edge `edge` label. */
+label_t graph_edge_label(graph_t graph, edge_t edge);
+
+/** Set edge `edge` label for `label`. */
+int graph_edge_set_label(graph_t graph, edge_t edge, label_t label);
+
 
 /**
  * Test whether there is an edge between tail and head vertices.

@@ -7,8 +7,11 @@ typedef void *adj_list_t;
 
 int adj_list_init(adj_list_t * adj_list, int size);
 
-int adj_list_edge_add(adj_list_t adj_list, vertex_t from, vertex_t to);
-int adj_list_edge_remove(adj_list_t adj_list, vertex_t from, vertex_t to);
+int adj_list_edge_add(adj_list_t adj_list, edge_t edge, label_t label);
+label_t adj_list_edge_remove(adj_list_t adj_list, edge_t edge);
+
+label_t adj_list_edge_label(adj_list_t adj_list, edge_t edge);
+int adj_list_edge_set_label(adj_list_t adj_list, edge_t edge, label_t label);
 
 bool adj_list_adjancent_vertices(adj_list_t adj_list, vertex_t from,
                                  vertex_t to);

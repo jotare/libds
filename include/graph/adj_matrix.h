@@ -7,9 +7,12 @@ typedef void *adj_matrix_t;
 
 int adj_matrix_init(adj_matrix_t * adj_matrix, unsigned int size);
 
-int adj_matrix_edge_add(adj_matrix_t adj_matrix, vertex_t from, vertex_t to);
-int adj_matrix_edge_remove(adj_matrix_t adj_matrix, vertex_t from,
-                           vertex_t to);
+int adj_matrix_edge_add(adj_matrix_t adj_matrix, edge_t edge, label_t label);
+label_t adj_matrix_edge_remove(adj_matrix_t adj_matrix, edge_t edge);
+
+label_t adj_matrix_edge_label(adj_matrix_t adj_matrix, edge_t edge);
+int adj_matrix_edge_set_label(adj_matrix_t adj_matrix, edge_t edge,
+                              label_t label);
 
 bool adj_matrix_adjancent_vertices(adj_matrix_t adj_matrix, vertex_t from,
                                    vertex_t to);
