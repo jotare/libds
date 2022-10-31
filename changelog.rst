@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+0.18.0
+------
+- Rename graph parameter on graph functions
+
 0.17.0
 ------
 - Add directed and undirected graph implementations using adjacency
