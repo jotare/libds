@@ -1,7 +1,7 @@
 #ifndef DIRECTED_GRAPH_ADJ_LIST_H
 #define DIRECTED_GRAPH_ADJ_LIST_H
 
-#include "graph/graph.h"
+#include "graph.h"
 
 typedef void *directed_graph_adj_list_t;
 

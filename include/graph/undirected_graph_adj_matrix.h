@@ -1,7 +1,7 @@
 #ifndef UNDIRECTED_GRAPH_ADJ_MATRIX_H
 #define UNDIRECTED_GRAPH_ADJ_MATRIX_H
 
-#include "graph/graph.h"
+#include "graph.h"
 
 typedef void *undirected_graph_adj_matrix_t;
 
