@@ -1,5 +1,5 @@
 # Makefile
-# Author: jare
+# Author: jotare
 
 headers := $(wildcard include/*/*.h)   # include/*/z.h
 sources := $(wildcard src/*/*.c)       # src/*/z.c
@@ -15,10 +15,8 @@ libraries := cunit
 
 CC := gcc
 CFLAGS := -Wall -g -std=c99
-# CPPFLAGS
 CPPFLAGS += $(addprefix -I,$(includes))
 
-# LDFLAGS
 LDFLAGS += $(addprefix -L,$(libraries))
 LDLIBS += $(addprefix -l,$(libraries))
 
@@ -31,6 +29,7 @@ all: lib tests
 # sources
 lib: libds.a
 libds.a: libds.a($(source_objects))
+
 
 # tests
 run-tests: tests
