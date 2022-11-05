@@ -107,5 +107,6 @@ TAGS
 .cache/
 
 # libds project
+libds.a
 test/test_libds
 depend
