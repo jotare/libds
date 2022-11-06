@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+0.20.0
+------
+- Add constants module with initial constant definitions for libds
+
 0.19.0
 ------
 - Refactor graph API
