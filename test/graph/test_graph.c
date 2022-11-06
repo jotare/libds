@@ -63,6 +63,7 @@ test_directed_graph(graph_type_t type)
     graph_t graph;
     vertex_t neighbors[4];
     vertex_t *neighbors_ptr = (vertex_t *) neighbors;
+    int n_neighbors;
 
     CU_ASSERT_EQUAL(graph_init(&graph, 4, type), 0);
 
@@ -95,18 +96,22 @@ test_directed_graph(graph_type_t type)
     CU_ASSERT_EQUAL(graph_neighbors_count(graph, 2), 1);
     CU_ASSERT_EQUAL(graph_neighbors_count(graph, 3), 1);
 
-    graph_neighbors(graph, 0, &neighbors_ptr);
+    n_neighbors = graph_neighbors(graph, 0, &neighbors_ptr);
+    CU_ASSERT_EQUAL(n_neighbors, 2);
     CU_ASSERT(neighbors[0] == 1 || neighbors[0] == 2);
     CU_ASSERT(neighbors[1] == 1 || neighbors[1] == 2);
     CU_ASSERT_NOT_EQUAL(neighbors[0], neighbors[1]);
 
-    graph_neighbors(graph, 1, &neighbors_ptr);
+    n_neighbors = graph_neighbors(graph, 1, &neighbors_ptr);
+    CU_ASSERT_EQUAL(n_neighbors, 1);
     CU_ASSERT_EQUAL(neighbors[0], 3);
 
-    graph_neighbors(graph, 2, &neighbors_ptr);
+    n_neighbors = graph_neighbors(graph, 2, &neighbors_ptr);
+    CU_ASSERT_EQUAL(n_neighbors, 1);
     CU_ASSERT_EQUAL(neighbors[0], 1);
 
-    graph_neighbors(graph, 3, &neighbors_ptr);
+    n_neighbors = graph_neighbors(graph, 3, &neighbors_ptr);
+    CU_ASSERT_EQUAL(n_neighbors, 1);
     CU_ASSERT_EQUAL(neighbors[0], 2);
 
     /*
@@ -135,13 +140,16 @@ test_directed_graph(graph_type_t type)
     CU_ASSERT_EQUAL(graph_neighbors_count(graph, 2), 0);
     CU_ASSERT_EQUAL(graph_neighbors_count(graph, 3), 1);
 
-    graph_neighbors(graph, 0, &neighbors_ptr);
+    n_neighbors = graph_neighbors(graph, 0, &neighbors_ptr);
+    CU_ASSERT_EQUAL(n_neighbors, 1);
     CU_ASSERT_EQUAL(neighbors[0], 2);
 
-    graph_neighbors(graph, 1, &neighbors_ptr);
+    n_neighbors = graph_neighbors(graph, 1, &neighbors_ptr);
+    CU_ASSERT_EQUAL(n_neighbors, 1);
     CU_ASSERT_EQUAL(neighbors[0], 3);
 
-    graph_neighbors(graph, 3, &neighbors_ptr);
+    n_neighbors = graph_neighbors(graph, 3, &neighbors_ptr);
+    CU_ASSERT_EQUAL(n_neighbors, 1);
     CU_ASSERT_EQUAL(neighbors[0], 2);
 
     graph_destroy(&graph);
@@ -166,6 +174,7 @@ test_undirected_graph(graph_type_t type)
     graph_t graph;
     vertex_t neighbors[4];
     vertex_t *neighbors_ptr = (vertex_t *) neighbors;
+    int n_neighbors;
 
     graph_init(&graph, 4, type);
 
@@ -199,22 +208,28 @@ test_undirected_graph(graph_type_t type)
     CU_ASSERT_EQUAL(graph_neighbors_count(graph, 2), 3);
     CU_ASSERT_EQUAL(graph_neighbors_count(graph, 3), 2);
 
-    graph_neighbors(graph, 0, &neighbors_ptr);
+    n_neighbors = graph_neighbors(graph, 0, &neighbors_ptr);
+    CU_ASSERT_EQUAL(n_neighbors, 2);
     CU_ASSERT(neighbors[0] == 1 || neighbors[0] == 2);
     CU_ASSERT(neighbors[1] == 1 || neighbors[1] == 2);
     CU_ASSERT_NOT_EQUAL(neighbors[0], neighbors[1]);
 
-    graph_neighbors(graph, 1, &neighbors_ptr);
+    n_neighbors = graph_neighbors(graph, 1, &neighbors_ptr);
+    CU_ASSERT_EQUAL(n_neighbors, 3);
     CU_ASSERT(neighbors[0] == 0 || neighbors[0] == 2 || neighbors[0] == 3);
     CU_ASSERT(neighbors[1] == 0 || neighbors[1] == 2 || neighbors[1] == 3);
     CU_ASSERT(neighbors[2] == 0 || neighbors[2] == 2 || neighbors[2] == 3);
-    CU_ASSERT(neighbors[0] != neighbors[1] && neighbors[1] != neighbors[2])
-        graph_neighbors(graph, 2, &neighbors_ptr);
+    CU_ASSERT(neighbors[0] != neighbors[1] && neighbors[1] != neighbors[2]);
+
+    n_neighbors = graph_neighbors(graph, 2, &neighbors_ptr);
+    CU_ASSERT_EQUAL(n_neighbors, 3);
     CU_ASSERT(neighbors[0] == 0 || neighbors[0] == 1 || neighbors[0] == 3);
     CU_ASSERT(neighbors[1] == 0 || neighbors[1] == 1 || neighbors[1] == 3);
     CU_ASSERT(neighbors[2] == 0 || neighbors[2] == 1 || neighbors[2] == 3);
-    CU_ASSERT(neighbors[0] != neighbors[1] && neighbors[1] != neighbors[2])
-        graph_neighbors(graph, 3, &neighbors_ptr);
+    CU_ASSERT(neighbors[0] != neighbors[1] && neighbors[1] != neighbors[2]);
+
+    n_neighbors = graph_neighbors(graph, 3, &neighbors_ptr);
+    CU_ASSERT_EQUAL(n_neighbors, 2);
     CU_ASSERT(neighbors[0] == 1 || neighbors[0] == 2);
     CU_ASSERT(neighbors[1] == 1 || neighbors[1] == 2);
     CU_ASSERT_NOT_EQUAL(neighbors[0], neighbors[1]);
@@ -245,18 +260,22 @@ test_undirected_graph(graph_type_t type)
     CU_ASSERT_EQUAL(graph_neighbors_count(graph, 2), 2);
     CU_ASSERT_EQUAL(graph_neighbors_count(graph, 3), 2);
 
-    graph_neighbors(graph, 0, &neighbors_ptr);
+    n_neighbors = graph_neighbors(graph, 0, &neighbors_ptr);
+    CU_ASSERT_EQUAL(n_neighbors, 1);
     CU_ASSERT_EQUAL(neighbors[0], 2);
 
-    graph_neighbors(graph, 1, &neighbors_ptr);
+    n_neighbors = graph_neighbors(graph, 1, &neighbors_ptr);
+    CU_ASSERT_EQUAL(n_neighbors, 1);
     CU_ASSERT_EQUAL(neighbors[0], 3);
 
-    graph_neighbors(graph, 2, &neighbors_ptr);
+    n_neighbors = graph_neighbors(graph, 2, &neighbors_ptr);
+    CU_ASSERT_EQUAL(n_neighbors, 2);
     CU_ASSERT(neighbors[0] == 0 || neighbors[0] == 3);
     CU_ASSERT(neighbors[1] == 0 || neighbors[1] == 3);
     CU_ASSERT_NOT_EQUAL(neighbors[0], neighbors[1]);
 
-    graph_neighbors(graph, 3, &neighbors_ptr);
+    n_neighbors = graph_neighbors(graph, 3, &neighbors_ptr);
+    CU_ASSERT_EQUAL(n_neighbors, 2);
     CU_ASSERT(neighbors[0] == 1 || neighbors[0] == 2);
     CU_ASSERT(neighbors[1] == 1 || neighbors[1] == 2);
     CU_ASSERT_NOT_EQUAL(neighbors[0], neighbors[1]);

@@ -42,7 +42,7 @@ edge_unset(_adj_matrix_t * adj_matrix, edge_t edge)
 }
 
 
-int
+status_t
 adj_matrix_init(adj_matrix_t * am, unsigned int size)
 {
     _adj_matrix_t *adj_matrix;
@@ -50,12 +50,12 @@ adj_matrix_init(adj_matrix_t * am, unsigned int size)
 
     adj_matrix = malloc(sizeof(_adj_matrix_t));
     if (adj_matrix == NULL)
-        return -1;
+        return ALLOC_ERROR;
 
     matrix = malloc(sizeof(adj_matrix_element_t) * size * size);
     if (matrix == NULL) {
         free(adj_matrix);
-        return -1;
+        return ALLOC_ERROR;
     }
 
     adj_matrix->matrix = matrix;
@@ -70,13 +70,13 @@ adj_matrix_init(adj_matrix_t * am, unsigned int size)
     return 0;
 }
 
-int
+status_t
 adj_matrix_edge_add(adj_matrix_t am, edge_t edge, label_t label)
 {
     _adj_matrix_t *adj_matrix = am;
 
     edge_set(adj_matrix, edge, label);
-    return 0;
+    return SUCCESS;
 }
 
 label_t
@@ -98,13 +98,13 @@ adj_matrix_edge_label(adj_matrix_t am, edge_t edge)
     return label;
 }
 
-int
+status_t
 adj_matrix_edge_set_label(adj_matrix_t am, edge_t edge, label_t label)
 {
     _adj_matrix_t *adj_matrix = am;
 
     edge_set(adj_matrix, edge, label);
-    return 0;
+    return SUCCESS;
 }
 
 bool
@@ -142,7 +142,7 @@ adj_matrix_neighbors(adj_matrix_t am, vertex_t vertex, vertex_t ** neighbors)
         }
     }
 
-    return 0;
+    return idx;
 }
 
 void

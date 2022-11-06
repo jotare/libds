@@ -5,14 +5,14 @@
 #include "graph/undirected_graph_adj_matrix.h"
 
 
-int
+status_t
 undirected_graph_adj_matrix_init(undirected_graph_adj_matrix_t *
                                  graph, int size)
 {
     return adj_matrix_init(graph, size);
 }
 
-int
+status_t
 undirected_graph_adj_matrix_edge_add(undirected_graph_adj_matrix_t graph,
                                      edge_t edge, label_t label)
 {
@@ -40,7 +40,7 @@ undirected_graph_adj_matrix_edge_label(undirected_graph_adj_matrix_t graph,
     return adj_matrix_edge_label(graph, edge);
 }
 
-int
+status_t
 undirected_graph_adj_matrix_edge_set_label(undirected_graph_adj_matrix_t
                                            graph, edge_t edge, label_t label)
 {

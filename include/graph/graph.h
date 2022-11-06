@@ -14,6 +14,8 @@
 
 #include <stdbool.h>
 
+#include "../constants.h"
+
 typedef void *graph_t;
 typedef int vertex_t;
 struct edge_t {
@@ -35,13 +37,13 @@ typedef enum {
 
 
 /** Create a new graph of `size` vertices and type `type` */
-int graph_init(graph_t * graph, int size, graph_type_t type);
+status_t graph_init(graph_t * graph, int size, graph_type_t type);
 
 /**
  * Connect two vertices by an edge with label `edge` and get its id in
  * `edge`.
  */
-int graph_edge_add(graph_t graph, edge_t edge, label_t label);
+status_t graph_edge_add(graph_t graph, edge_t edge, label_t label);
 
 /**
  * Remove edge from vertices tail and head, if exists.
@@ -53,7 +55,7 @@ label_t graph_edge_remove(graph_t graph, edge_t edge);
 label_t graph_edge_label(graph_t graph, edge_t edge);
 
 /** Set edge `edge` label for `label`. */
-int graph_edge_set_label(graph_t graph, edge_t edge, label_t label);
+status_t graph_edge_set_label(graph_t graph, edge_t edge, label_t label);
 
 
 /**
@@ -62,13 +64,14 @@ int graph_edge_set_label(graph_t graph, edge_t edge, label_t label);
 bool graph_adjancent_vertices(graph_t graph, vertex_t tail, vertex_t head);
 
 /**
- * Return the number of neighbors vertices of `vertex`
+ * @return the number of neighbors vertices of `vertex`
  */
 int graph_neighbors_count(graph_t graph, vertex_t vertex);
 
 /**
  * List al vertices v such that there is an edge from `vertex` to
  * v. User must ensure there's enough space in `neighbors` list.
+ * @return number of neighbors returned
  */
 int graph_neighbors(graph_t graph, vertex_t vertex, vertex_t ** neighbors);
 

@@ -5,13 +5,13 @@
 #include "graph/directed_graph_adj_matrix.h"
 
 
-int
+status_t
 directed_graph_adj_matrix_init(directed_graph_adj_matrix_t * graph, int size)
 {
     return adj_matrix_init(graph, size);
 }
 
-int
+status_t
 directed_graph_adj_matrix_edge_add(directed_graph_adj_matrix_t graph,
                                    edge_t edge, label_t label)
 {
@@ -32,7 +32,7 @@ directed_graph_adj_matrix_edge_label(directed_graph_adj_matrix_t graph,
     return adj_matrix_edge_label(graph, edge);
 }
 
-int
+status_t
 directed_graph_adj_matrix_edge_set_label(directed_graph_adj_matrix_t graph,
                                          edge_t edge, label_t label)
 {

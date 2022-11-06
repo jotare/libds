@@ -13,12 +13,12 @@ typedef struct {
 } graph_header_t;
 
 typedef struct {
-    int (*init)(graph_t * graph, int size);
+    status_t (*init)(graph_t * graph, int size);
 
-    int (*edge_add)(graph_t graph, edge_t edge, label_t label);
+    status_t (*edge_add)(graph_t graph, edge_t edge, label_t label);
     label_t (*edge_remove)(graph_t graph, edge_t edge);
     label_t (*edge_label)(graph_t graph, edge_t edge);
-    int (*edge_set_label)(graph_t graph, edge_t edge, label_t label);
+    status_t (*edge_set_label)(graph_t graph, edge_t edge, label_t label);
 
     bool (*adjancent_vertices)(graph_t graph, vertex_t tail, vertex_t head);
     int (*neighbors_count)(graph_t graph, vertex_t vertex);
@@ -98,7 +98,7 @@ interface(graph_type_t type)
     }
 }
 
-int
+status_t
 graph_init(graph_t * graph, int n, graph_type_t type)
 {
     graph_header_t *header;
@@ -140,7 +140,7 @@ graph_destroy(graph_t * graph)
         return ds->fun(header->graph, ## __VA_ARGS__);  \
     })
 
-int
+status_t
 graph_edge_add(graph_t graph, edge_t edge, label_t label)
 {
     call_graph_interface_function(edge_add, graph, edge, label);
@@ -158,7 +158,7 @@ graph_edge_label(graph_t graph, edge_t edge)
     call_graph_interface_function(edge_label, graph, edge);
 }
 
-int
+status_t
 graph_edge_set_label(graph_t graph, edge_t edge, label_t label)
 {
     call_graph_interface_function(edge_set_label, graph, edge, label);

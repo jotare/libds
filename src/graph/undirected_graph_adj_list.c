@@ -5,13 +5,13 @@
 #include "graph/undirected_graph_adj_list.h"
 
 
-int
+status_t
 undirected_graph_adj_list_init(undirected_graph_adj_list_t * graph, int size)
 {
     return adj_list_init(graph, size);
 }
 
-int
+status_t
 undirected_graph_adj_list_edge_add(undirected_graph_adj_list_t graph,
                                    edge_t edge, label_t label)
 {
@@ -38,7 +38,7 @@ undirected_graph_adj_list_edge_label(undirected_graph_adj_list_t graph,
     return adj_list_edge_label(graph, edge);
 }
 
-int
+status_t
 undirected_graph_adj_list_edge_set_label(undirected_graph_adj_list_t graph,
                                          edge_t edge, label_t label)
 {

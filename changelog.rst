@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+0.22.0
+------
+- Graph modules now use `status_t` to report operation status
+
 0.21.0
 ------
 - List modules now use `status_t` to report operation status

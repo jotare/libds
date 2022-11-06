@@ -15,7 +15,7 @@ typedef struct {
 } _adj_list_t;
 
 
-int
+status_t
 adj_list_init(adj_list_t * al, int size)
 {
     _adj_list_t *adj_list;
@@ -23,12 +23,12 @@ adj_list_init(adj_list_t * al, int size)
 
     adj_list = malloc(sizeof(_adj_list_t));
     if (adj_list == NULL)
-        return -1;
+        return ALLOC_ERROR;
 
     edges_list = malloc(sizeof(node_t) * size);
     if (edges_list == NULL) {
         free(adj_list);
-        return -1;
+        return ALLOC_ERROR;
     }
 
     adj_list->edges = edges_list;
@@ -36,11 +36,11 @@ adj_list_init(adj_list_t * al, int size)
 
     *al = adj_list;
 
-    return 0;
+    return SUCCESS;
 }
 
 
-int
+status_t
 adj_list_edge_add(adj_list_t al, edge_t edge, label_t label)
 {
     _adj_list_t *adj_list = al;
@@ -48,7 +48,7 @@ adj_list_edge_add(adj_list_t al, edge_t edge, label_t label)
     node_t *new = malloc(sizeof(node_t));
 
     if (new == NULL)
-        return -1;
+        return ALLOC_ERROR;
     new->vertex = edge.to;
     new->label = NULL;
 
@@ -60,7 +60,7 @@ adj_list_edge_add(adj_list_t al, edge_t edge, label_t label)
     /* insert it in the front of the linked list of edges */
     adj_list->edges[edge.from] = new;
 
-    return 0;
+    return SUCCESS;
 }
 
 label_t
@@ -109,7 +109,7 @@ adj_list_edge_label(adj_list_t al, edge_t edge)
     return NULL;
 }
 
-int
+status_t
 adj_list_edge_set_label(adj_list_t al, edge_t edge, label_t label)
 {
     _adj_list_t *adj_list = al;
@@ -119,12 +119,12 @@ adj_list_edge_set_label(adj_list_t al, edge_t edge, label_t label)
     while (ptr != NULL) {
         if (ptr->vertex == edge.to) {
             ptr->label = label;
-            return 0;
+            return SUCCESS;
         }
         ptr = ptr->next;
     }
 
-    return -1;
+    return NOT_FOUND;
 }
 
 bool
@@ -171,7 +171,7 @@ adj_list_neighbors(adj_list_t al, vertex_t vertex, vertex_t ** neighbors)
         ptr = ptr->next;
     }
 
-    return 0;
+    return idx;
 }
 
 void
