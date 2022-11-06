@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+0.21.0
+------
+- List modules now use `status_t` to report operation status
+
 0.20.0
 ------
 - Add constants module with initial constant definitions for libds

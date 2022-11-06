@@ -4,6 +4,7 @@
 #include <inttypes.h>
 #include <stdio.h>
 
+#include "constants.h"
 #include "list/list.h"
 
 #include "list/testconf.h"
@@ -83,7 +84,7 @@ test_list_get_insert_remove(list_type_t type)
     list_insert(list, 2, e0);
 
     // insert in illegal position
-    CU_ASSERT_EQUAL(list_insert(list, 8, e0), -1);
+    CU_ASSERT_EQUAL(list_insert(list, 8, e0), INDEX_ERROR);
 
     // check list elements
     CU_ASSERT_EQUAL(list_get(list, 0), e1);

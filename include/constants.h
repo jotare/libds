@@ -7,7 +7,7 @@ typedef int status_t;
 #define SUCCESS 0
 
 /** Error while allocating memory */
-#define ALLOC_ERRROR 1
+#define ALLOC_ERROR 1
 
 /** When trying to take from an empty data structure */
 #define EMPTY_ERROR 2

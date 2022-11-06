@@ -16,20 +16,20 @@ typedef struct {
 } _linked_list_t;
 
 
-int
+status_t
 linked_list_init(linked_list_t * llist)
 {
     _linked_list_t *list;
 
     list = malloc(sizeof(_linked_list_t));
     if (list == NULL)
-        return -1;
+        return ALLOC_ERROR;
 
     list->first = NULL;
     list->n = 0;
     *llist = list;
 
-    return 0;
+    return SUCCESS;
 }
 
 inline unsigned int
@@ -89,7 +89,7 @@ linked_list_get(const linked_list_t llist, unsigned int n)
     return node->elem;
 }
 
-int
+status_t
 linked_list_insert(linked_list_t llist, unsigned int n,
                    linked_list_element_t elem)
 {
@@ -100,12 +100,12 @@ linked_list_insert(linked_list_t llist, unsigned int n,
     node = list->first;
 
     if (n > list->n)
-        return -1;              /* can't insert in this position */
+        return INDEX_ERROR;     /* can't insert in this position */
 
     if (node == NULL) {         /* fisrt node */
         node = malloc(sizeof(node_t));
         if (node == NULL)
-            return -1;
+            return ALLOC_ERROR;
 
         node->elem = elem;
         node->next = NULL;
@@ -116,7 +116,7 @@ linked_list_insert(linked_list_t llist, unsigned int n,
 
         new_node = malloc(sizeof(node_t));
         if (new_node == NULL)
-            return -1;
+            return ALLOC_ERROR;
 
         new_node->elem = elem;
         if (n == 0) {
@@ -129,22 +129,18 @@ linked_list_insert(linked_list_t llist, unsigned int n,
     }
 
     list->n++;
-    return 0;
+    return SUCCESS;
 }
 
-int
+status_t
 linked_list_append(linked_list_t llist, linked_list_element_t elem)
 {
-    if (linked_list_is_full(llist))
-        return -1;
     return linked_list_insert(llist, linked_list_length(llist), elem);
 }
 
-int
+status_t
 linked_list_prepend(linked_list_t llist, linked_list_element_t elem)
 {
-    if (linked_list_is_empty(llist))
-        return -1;
     return linked_list_insert(llist, 0, elem);
 }
 

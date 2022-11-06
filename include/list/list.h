@@ -12,6 +12,8 @@
 #include <inttypes.h>
 #include <stdbool.h>
 
+#include "../constants.h"
+
 typedef void *list_t;
 typedef int list_element_t;     // TODO: change unsigned int to generic type
 typedef enum { DEFAULT_LIST, ARRAY_LIST, LINKED_LIST,
@@ -19,11 +21,10 @@ typedef enum { DEFAULT_LIST, ARRAY_LIST, LINKED_LIST,
 } list_type_t;
 
 /**
- * Initialize a `type` `list` of `n` elements. Use `n` = 0 when it's
+ * Initialize a `type` `list` of `n` elements. Use `n` = 0 when
  * possible to make an undefined length list.
- * @return status code indicating success of operation. If -1, the call failed.
  */
-int list_init(list_t * list, unsigned int n, list_type_t type);
+status_t list_init(list_t * list, unsigned int n, list_type_t type);
 
 /**
  * Size
@@ -42,9 +43,9 @@ list_element_t list_get(const list_t list, unsigned int n);
 /**
  * Insert
  */
-int list_insert(list_t list, unsigned int n, list_element_t elem);
-int list_append(list_t list, list_element_t elem);
-int list_prepend(list_t list, list_element_t elem);
+status_t list_insert(list_t list, unsigned int n, list_element_t elem);
+status_t list_append(list_t list, list_element_t elem);
+status_t list_prepend(list_t list, list_element_t elem);
 
 /**
  * Remove

@@ -18,21 +18,21 @@ typedef struct {
 } _doubly_linked_list_t;
 
 
-int
+status_t
 doubly_linked_list_init(doubly_linked_list_t * dllist)
 {
     _doubly_linked_list_t *list;
 
     list = malloc(sizeof(_doubly_linked_list_t));
     if (list == NULL)
-        return -1;
+        return ALLOC_ERROR;
 
     list->first = NULL;
     list->last = NULL;
     list->n = 0;
     *dllist = list;
 
-    return 0;
+    return SUCCESS;
 }
 
 inline unsigned int
@@ -94,7 +94,7 @@ doubly_linked_list_get(const doubly_linked_list_t dllist, unsigned int n)
     return node->elem;
 }
 
-int
+status_t
 doubly_linked_list_insert(doubly_linked_list_t dllist, unsigned int n,
                           doubly_linked_list_element_t elem)
 {
@@ -105,11 +105,11 @@ doubly_linked_list_insert(doubly_linked_list_t dllist, unsigned int n,
     list = dllist;
 
     if (n > list->n)
-        return -1;              /* can't insert in this position */
+        return INDEX_ERROR;     /* can't insert in this position */
 
     new_node = malloc(sizeof(node_t));
     if (new_node == NULL)
-        return -1;
+        return ALLOC_ERROR;
     new_node->elem = elem;
     length = doubly_linked_list_length(dllist);
 
@@ -145,25 +145,21 @@ doubly_linked_list_insert(doubly_linked_list_t dllist, unsigned int n,
     }
 
     list->n++;
-    return 0;
+    return SUCCESS;
 }
 
-int
+status_t
 doubly_linked_list_append(doubly_linked_list_t dllist,
                           doubly_linked_list_element_t elem)
 {
-    if (doubly_linked_list_is_full(dllist))
-        return -1;
     return doubly_linked_list_insert(dllist,
                                      doubly_linked_list_length(dllist), elem);
 }
 
-int
+status_t
 doubly_linked_list_prepend(doubly_linked_list_t dllist,
                            doubly_linked_list_element_t elem)
 {
-    if (doubly_linked_list_is_empty(dllist))
-        return -1;
     return doubly_linked_list_insert(dllist, 0, elem);
 }
 

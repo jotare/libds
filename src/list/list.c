@@ -11,20 +11,20 @@ typedef struct {
 } list_header_t;
 
 typedef struct {
-    int (*init)(list_t * list, unsigned int n);
+    status_t(*init) (list_t * list, unsigned int n);
     unsigned int (*length)(const list_t list);
     bool (*is_empty)(const list_t list);
     bool (*is_full)(const list_t list);
       list_element_t(*first) (const list_t list);
       list_element_t(*last) (const list_t list);
       list_element_t(*get) (const list_t list, unsigned int n);
-    int (*insert)(list_t list, unsigned int n, list_element_t elem);
-    int (*append)(list_t list, list_element_t elem);
-    int (*prepend)(list_t list, list_element_t elem);
+      status_t(*insert) (list_t list, unsigned int n, list_element_t elem);
+      status_t(*append) (list_t list, list_element_t elem);
+      status_t(*prepend) (list_t list, list_element_t elem);
       list_element_t(*remove) (list_t list, unsigned int n);
     void (*clear)(list_t list);
     int (*locate)(const list_t list, list_element_t elem,
-                  int (*cmp)(list_element_t a, list_element_t b));
+                  int(*cmp)(list_element_t a, list_element_t b));
     void (*destroy)(list_t * list);
 } ilist_t;
 
@@ -46,7 +46,7 @@ static const ilist_t array_list = {
     array_list_destroy
 };
 
-static int
+static status_t
 _linked_list_init(linked_list_t * llist, unsigned int fake_n)
 {
     return linked_list_init(llist);
@@ -69,7 +69,7 @@ static const ilist_t linked_list = {
     linked_list_destroy
 };
 
-static int
+static status_t
 _doubly_linked_list_init(doubly_linked_list_t * dlist, unsigned int fake_n)
 {
     return doubly_linked_list_init(dlist);
@@ -111,7 +111,7 @@ interface(list_type_t type)
 }
 
 
-int
+status_t
 list_init(list_t * list, unsigned int n, list_type_t type)
 {
     list_header_t *header;
@@ -190,19 +190,19 @@ list_get(const list_t list, unsigned int n)
     call_list_interface_function(get, list, n);
 }
 
-int
+status_t
 list_insert(list_t list, unsigned int n, list_element_t elem)
 {
     call_list_interface_function(insert, list, n, elem);
 }
 
-int
+status_t
 list_append(list_t list, list_element_t elem)
 {
     call_list_interface_function(append, list, elem);
 }
 
-int
+status_t
 list_prepend(list_t list, list_element_t elem)
 {
     call_list_interface_function(prepend, list, elem);

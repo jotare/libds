@@ -17,23 +17,24 @@ typedef struct {
 /*
  * Public functions
  */
-int
+status_t
 array_list_init(array_list_t * alist, unsigned int n)
 {
     _array_list_t *list;
 
     list = malloc(sizeof(_array_list_t));
     if (list == NULL)
-        return -1;
+        return ALLOC_ERROR;
+
     list->l = calloc(n, sizeof(array_list_element_t));
     if (list->l == NULL) {
         free(list);
-        return -1;
+        return ALLOC_ERROR;
     }
     list->n = 0;
     list->max_length = n;
     *alist = list;
-    return 0;
+    return SUCCESS;
 }
 
 unsigned int
@@ -45,10 +46,7 @@ array_list_length(const array_list_t alist)
 bool
 array_list_is_empty(const array_list_t alist)
 {
-    _array_list_t *list;
-
-    list = alist;
-    return list->n == 0;
+    return ((_array_list_t *) alist)->n == 0;
 }
 
 bool
@@ -89,7 +87,7 @@ array_list_get(const array_list_t alist, unsigned int n)
     return list->l[n];
 }
 
-int
+status_t
 array_list_insert(array_list_t alist, unsigned int n,
                   array_list_element_t elem)
 {
@@ -98,31 +96,27 @@ array_list_insert(array_list_t alist, unsigned int n,
     list = alist;
 
     if (list->n >= list->max_length)
-        return -1;
+        return FULL_ERROR;
 
     if (n > list->n)
-        return -1;              /* can't insert in this position */
+        return INDEX_ERROR;     /* can't insert in this position */
 
     memmove(list->l + n + 1,
             list->l + n, (list->n - n) * sizeof(array_list_element_t));
     list->l[n] = elem;
     list->n++;
-    return 0;
+    return SUCCESS;
 }
 
-int
+status_t
 array_list_append(array_list_t alist, array_list_element_t elem)
 {
-    if (array_list_is_full(alist))
-        return -1;
     return array_list_insert(alist, array_list_length(alist), elem);
 }
 
-int
+status_t
 array_list_prepend(array_list_t alist, array_list_element_t elem)
 {
-    if (array_list_is_full(alist))
-        return -1;
     return array_list_insert(alist, 0, elem);
 }
 
@@ -133,6 +127,10 @@ array_list_remove(array_list_t alist, unsigned int n)
     array_list_element_t removed;
 
     list = alist;
+    /* TODO: add this condition */
+    /* if (n > list->n) */
+    /*     return INDEX_ERROR; */
+
     removed = list->l[n];
     memmove(list->l + n,
             list->l + n + 1,
