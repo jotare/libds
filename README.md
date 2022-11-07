@@ -2,7 +2,11 @@
 
 ## Yet another C data structures library
 
-*libds* is a C library implementing common data structures.
+*libds* is a C library implementing common data structures like lists,
+stacks, queues, sets, graphs...
+
+If you are interested in common algorithms built on top of *libds*,
+check out [libposidonia](https://github.com/jotare/libposidonia)
 
 ## Use libds
 
