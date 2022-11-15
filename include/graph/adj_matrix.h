@@ -20,6 +20,8 @@ typedef void *adj_matrix_t;
 
 status_t adj_matrix_init(adj_matrix_t * adj_matrix, unsigned int size);
 
+unsigned int adj_matrix_size(adj_matrix_t adj_matrix);
+
 status_t adj_matrix_edge_add(adj_matrix_t adj_matrix, edge_t edge,
                              label_t label);
 label_t adj_matrix_edge_remove(adj_matrix_t adj_matrix, edge_t edge);

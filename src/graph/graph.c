@@ -15,6 +15,8 @@ typedef struct {
 typedef struct {
     status_t (*init)(graph_t * graph, int size);
 
+    unsigned int (*size)(graph_t graph);
+
     status_t (*edge_add)(graph_t graph, edge_t edge, label_t label);
     label_t (*edge_remove)(graph_t graph, edge_t edge);
     label_t (*edge_label)(graph_t graph, edge_t edge);
@@ -29,6 +31,7 @@ typedef struct {
 
 static const igraph_t directed_graph_adj_list = {
     directed_graph_adj_list_init,
+    directed_graph_adj_list_size,
     directed_graph_adj_list_edge_add,
     directed_graph_adj_list_edge_remove,
     directed_graph_adj_list_edge_label,
@@ -41,6 +44,7 @@ static const igraph_t directed_graph_adj_list = {
 
 static const igraph_t directed_graph_adj_matrix = {
     directed_graph_adj_matrix_init,
+    directed_graph_adj_matrix_size,
     directed_graph_adj_matrix_edge_add,
     directed_graph_adj_matrix_edge_remove,
     directed_graph_adj_matrix_edge_label,
@@ -53,6 +57,7 @@ static const igraph_t directed_graph_adj_matrix = {
 
 static const igraph_t undirected_graph_adj_list = {
     undirected_graph_adj_list_init,
+    undirected_graph_adj_list_size,
     undirected_graph_adj_list_edge_add,
     undirected_graph_adj_list_edge_remove,
     undirected_graph_adj_list_edge_label,
@@ -65,6 +70,7 @@ static const igraph_t undirected_graph_adj_list = {
 
 static const igraph_t undirected_graph_adj_matrix = {
     undirected_graph_adj_matrix_init,
+    undirected_graph_adj_matrix_size,
     undirected_graph_adj_matrix_edge_add,
     undirected_graph_adj_matrix_edge_remove,
     undirected_graph_adj_matrix_edge_label,
@@ -139,6 +145,13 @@ graph_destroy(graph_t * graph)
         igraph_t const *ds = interface(header->type);   \
         return ds->fun(header->graph, ## __VA_ARGS__);  \
     })
+
+
+unsigned int
+graph_size(graph_t graph)
+{
+    call_graph_interface_function(size, graph);
+}
 
 status_t
 graph_edge_add(graph_t graph, edge_t edge, label_t label)

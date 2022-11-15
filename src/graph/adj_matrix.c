@@ -70,6 +70,12 @@ adj_matrix_init(adj_matrix_t * am, unsigned int size)
     return 0;
 }
 
+unsigned int
+adj_matrix_size(adj_matrix_t al)
+{
+    return ((_adj_matrix_t *) al)->size;
+}
+
 status_t
 adj_matrix_edge_add(adj_matrix_t am, edge_t edge, label_t label)
 {

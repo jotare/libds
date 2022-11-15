@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+0.23.0
+------
+- Add `graph_size` function
+
 0.22.0
 ------
 - Graph modules now use `status_t` to report operation status

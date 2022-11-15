@@ -39,6 +39,9 @@ typedef enum {
 /** Create a new graph of `size` vertices and type `type` */
 status_t graph_init(graph_t * graph, int size, graph_type_t type);
 
+/** @return Graph size (number of vertices) */
+unsigned int graph_size(graph_t graph);
+
 /**
  * Connect two vertices by an edge with label `edge` and get its id in
  * `edge`.

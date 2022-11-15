@@ -20,6 +20,8 @@ typedef void *adj_list_t;
 
 status_t adj_list_init(adj_list_t * adj_list, int size);
 
+unsigned int adj_list_size(adj_list_t adj_list);
+
 status_t adj_list_edge_add(adj_list_t adj_list, edge_t edge, label_t label);
 label_t adj_list_edge_remove(adj_list_t adj_list, edge_t edge);
 

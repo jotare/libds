@@ -11,6 +11,12 @@ undirected_graph_adj_list_init(undirected_graph_adj_list_t * graph, int size)
     return adj_list_init(graph, size);
 }
 
+unsigned int
+undirected_graph_adj_list_size(undirected_graph_adj_list_t graph)
+{
+    return adj_list_size(graph);
+}
+
 status_t
 undirected_graph_adj_list_edge_add(undirected_graph_adj_list_t graph,
                                    edge_t edge, label_t label)

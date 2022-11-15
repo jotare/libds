@@ -14,6 +14,9 @@ typedef void *directed_graph_adj_matrix_t;
 status_t directed_graph_adj_matrix_init(directed_graph_adj_matrix_t *
                                         graph, int size);
 
+unsigned int directed_graph_adj_matrix_size(directed_graph_adj_matrix_t
+                                            graph);
+
 status_t directed_graph_adj_matrix_edge_add(directed_graph_adj_matrix_t graph,
                                             edge_t edge, label_t label);
 

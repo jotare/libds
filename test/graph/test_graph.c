@@ -66,6 +66,7 @@ test_directed_graph(graph_type_t type)
     int n_neighbors;
 
     CU_ASSERT_EQUAL(graph_init(&graph, 4, type), 0);
+    CU_ASSERT_EQUAL(graph_size(graph), 4);
 
     /*
      * +---+       +---+
@@ -177,6 +178,7 @@ test_undirected_graph(graph_type_t type)
     int n_neighbors;
 
     graph_init(&graph, 4, type);
+    CU_ASSERT_EQUAL(graph_size(graph), 4);
 
     /*
      * +---+       +---+

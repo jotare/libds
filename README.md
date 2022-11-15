@@ -63,7 +63,7 @@ To run all tests execute:
 ```
 make run-tests
 ```
-it will build all necessary targets and run the tests.
+it will build and link all necessary targets and run the tests.
 
 ## Formatting
 

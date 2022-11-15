@@ -14,6 +14,9 @@ typedef void *undirected_graph_adj_matrix_t;
 status_t undirected_graph_adj_matrix_init(undirected_graph_adj_matrix_t *
                                           graph, int size);
 
+unsigned int undirected_graph_adj_matrix_size(undirected_graph_adj_matrix_t
+                                              graph);
+
 status_t undirected_graph_adj_matrix_edge_add(undirected_graph_adj_matrix_t
                                               graph, edge_t edge,
                                               label_t label);

@@ -12,6 +12,12 @@ undirected_graph_adj_matrix_init(undirected_graph_adj_matrix_t *
     return adj_matrix_init(graph, size);
 }
 
+unsigned int
+undirected_graph_adj_matrix_size(undirected_graph_adj_matrix_t graph)
+{
+    return adj_matrix_size(graph);
+}
+
 status_t
 undirected_graph_adj_matrix_edge_add(undirected_graph_adj_matrix_t graph,
                                      edge_t edge, label_t label)

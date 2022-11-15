@@ -39,6 +39,11 @@ adj_list_init(adj_list_t * al, int size)
     return SUCCESS;
 }
 
+unsigned int
+adj_list_size(adj_list_t al)
+{
+    return ((_adj_list_t *) al)->size;
+}
 
 status_t
 adj_list_edge_add(adj_list_t al, edge_t edge, label_t label)

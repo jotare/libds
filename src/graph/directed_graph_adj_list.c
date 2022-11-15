@@ -11,6 +11,12 @@ directed_graph_adj_list_init(directed_graph_adj_list_t * graph, int size)
     return adj_list_init(graph, size);
 }
 
+unsigned int
+directed_graph_adj_list_size(directed_graph_adj_list_t graph)
+{
+    return adj_list_size(graph);
+}
+
 status_t
 directed_graph_adj_list_edge_add(directed_graph_adj_list_t graph, edge_t edge,
                                  label_t label)

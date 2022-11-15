@@ -14,6 +14,9 @@ typedef void *undirected_graph_adj_list_t;
 status_t undirected_graph_adj_list_init(undirected_graph_adj_list_t *
                                         graph, int size);
 
+unsigned int undirected_graph_adj_list_size(undirected_graph_adj_list_t
+                                            graph);
+
 status_t undirected_graph_adj_list_edge_add(undirected_graph_adj_list_t graph,
                                             edge_t edge, label_t label);
 label_t undirected_graph_adj_list_edge_remove(undirected_graph_adj_list_t
