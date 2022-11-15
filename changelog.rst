@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+0.24.0
+------
+- Split main header file in two: abstractions and implementations
 0.23.0
 ------
 - Add `graph_size` function

@@ -23,6 +23,18 @@ make lib
 A static library file `libds.a` will be created in the root
 directory.
 
+### Header files
+
+*libds* has two main header files:
+
+- *libds.h* includes only abstraction modules (list, stack, queue, set...)
+- *libds-ext.h* includes implementation modules (linked list, dynamic
+  stack, adjacency matrix directed graph...)
+
+The recommended way to work is always using the main header file
+*libds.h* and use the abstractions to be more implementation
+resilient.
+
 ## Implemented data structures
 
 *libds* implements de following data structures:
