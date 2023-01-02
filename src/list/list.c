@@ -15,13 +15,14 @@ typedef struct {
     unsigned int (*length)(const list_t list);
     bool (*is_empty)(const list_t list);
     bool (*is_full)(const list_t list);
-      list_element_t(*first) (const list_t list);
-      list_element_t(*last) (const list_t list);
-      list_element_t(*get) (const list_t list, unsigned int n);
-      status_t(*insert) (list_t list, unsigned int n, list_element_t elem);
-      status_t(*append) (list_t list, list_element_t elem);
-      status_t(*prepend) (list_t list, list_element_t elem);
-      list_element_t(*remove) (list_t list, unsigned int n);
+    list_element_t(*first) (const list_t list);
+    list_element_t(*last) (const list_t list);
+    list_element_t(*get) (const list_t list, unsigned int n);
+    status_t(*insert) (list_t list, unsigned int n, list_element_t elem);
+    status_t(*append) (list_t list, list_element_t elem);
+    status_t(*prepend) (list_t list, list_element_t elem);
+    status_t(*set) (list_t list, unsigned int n, list_element_t elem);
+    list_element_t(*remove) (list_t list, unsigned int n);
     void (*clear)(list_t list);
     int (*locate)(const list_t list, list_element_t elem,
                   int(*cmp)(list_element_t a, list_element_t b));
@@ -40,6 +41,7 @@ static const ilist_t array_list = {
     array_list_insert,
     array_list_append,
     array_list_prepend,
+    array_list_set,
     array_list_remove,
     array_list_clear,
     array_list_locate,
@@ -63,6 +65,7 @@ static const ilist_t linked_list = {
     linked_list_insert,
     linked_list_append,
     linked_list_prepend,
+    linked_list_set,
     linked_list_remove,
     linked_list_clear,
     linked_list_locate,
@@ -86,6 +89,7 @@ static const ilist_t doubly_linked_list = {
     doubly_linked_list_insert,
     doubly_linked_list_append,
     doubly_linked_list_prepend,
+    doubly_linked_list_set,
     doubly_linked_list_remove,
     doubly_linked_list_clear,
     doubly_linked_list_locate,
@@ -206,6 +210,12 @@ status_t
 list_prepend(list_t list, list_element_t elem)
 {
     call_list_interface_function(prepend, list, elem);
+}
+
+status_t
+list_set(list_t list, unsigned int n, list_element_t elem)
+{
+    call_list_interface_function(set, list, n, elem);
 }
 
 list_element_t

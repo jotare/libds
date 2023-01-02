@@ -32,6 +32,9 @@ status_t linked_list_insert(linked_list_t llist, unsigned int n,
 status_t linked_list_append(linked_list_t llist, linked_list_element_t elem);
 status_t linked_list_prepend(linked_list_t llist, linked_list_element_t elem);
 
+status_t linked_list_set(linked_list_t alist, unsigned int n,
+                         linked_list_element_t elem);
+
 linked_list_element_t linked_list_remove(linked_list_t llist, unsigned int n);
 void linked_list_clear(linked_list_t llist);
 

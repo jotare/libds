@@ -31,6 +31,9 @@ status_t array_list_insert(array_list_t alist, unsigned int n,
 status_t array_list_append(array_list_t alist, array_list_element_t elem);
 status_t array_list_prepend(array_list_t alist, array_list_element_t elem);
 
+status_t array_list_set(array_list_t alist, unsigned int n,
+                        array_list_element_t elem);
+
 array_list_element_t array_list_remove(array_list_t alist, unsigned int n);
 void array_list_clear(array_list_t alist);
 

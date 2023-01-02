@@ -55,7 +55,7 @@ test_doubly_linked_list_init_destroy(void)
 
 
 static void
-test_list_get_insert_remove(list_type_t type)
+test_list_get_insert_set_remove(list_type_t type)
 {
     list_t list;
     list_element_t e0 = 0, e1 = 1, e2 = 2, e3 = 3;
@@ -92,25 +92,31 @@ test_list_get_insert_remove(list_type_t type)
     CU_ASSERT_EQUAL(list_get(list, 2), e0);
     CU_ASSERT_EQUAL(list_get(list, 3), e3);
 
+    // update values
+    list_set(list, 0, e2);
+    CU_ASSERT_EQUAL(list_get(list, 0), e2);
+    list_set(list, 3, e0);
+    CU_ASSERT_EQUAL(list_get(list, 3), e0);
+
     list_destroy(&list);
 }
 
 static void
-test_array_list_get_insert_remove(void)
+test_array_list_get_insert_set_remove(void)
 {
-    test_list_get_insert_remove(ARRAY_LIST);
+    test_list_get_insert_set_remove(ARRAY_LIST);
 }
 
 static void
-test_linked_list_get_insert_remove(void)
+test_linked_list_get_insert_set_remove(void)
 {
-    test_list_get_insert_remove(LINKED_LIST);
+    test_list_get_insert_set_remove(LINKED_LIST);
 }
 
 static void
-test_doubly_linked_list_get_insert_remove(void)
+test_doubly_linked_list_get_insert_set_remove(void)
 {
-    test_list_get_insert_remove(DOUBLY_LINKED_LIST);
+    test_list_get_insert_set_remove(DOUBLY_LINKED_LIST);
 }
 
 
@@ -322,7 +328,8 @@ test_doubly_linked_list_locate(void)
 
 static CU_TestInfo list_tests[] = {
     {"array list: init, destroy", test_array_list_init_destroy},
-    {"array list: get, insert, remove", test_array_list_get_insert_remove},
+    {"array list: get, insert, set, remove",
+     test_array_list_get_insert_set_remove},
     {"array list: first, last", test_array_list_first_last},
     {"array list: append, prepend", test_array_list_append_prepend},
     {"array list: is_empty, is_full", test_array_list_is_empty_is_full},
@@ -330,7 +337,8 @@ static CU_TestInfo list_tests[] = {
     {"array list: locate", test_array_list_locate},
 
     {"linked list: init, destroy", test_linked_list_init_destroy},
-    {"linked list: get, insert, remove", test_linked_list_get_insert_remove},
+    {"linked list: get, insert, set, remove",
+     test_linked_list_get_insert_set_remove},
     {"linked list: first, last", test_linked_list_first_last},
     {"linked list: append, prepend", test_linked_list_append_prepend},
     {"linked list: is_empty, is_full", test_linked_list_is_empty_is_full},
@@ -339,8 +347,8 @@ static CU_TestInfo list_tests[] = {
 
     {"doubly linked list: init, destroy",
      test_doubly_linked_list_init_destroy},
-    {"doubly linked list: get, insert, remove",
-     test_doubly_linked_list_get_insert_remove},
+    {"doubly linked list: get, insert, set, remove",
+     test_doubly_linked_list_get_insert_set_remove},
     {"doubly linked list: first, last", test_doubly_linked_list_first_last},
     {"doubly linked list: append, prepend",
      test_doubly_linked_list_append_prepend},

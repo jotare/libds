@@ -48,6 +48,11 @@ status_t list_append(list_t list, list_element_t elem);
 status_t list_prepend(list_t list, list_element_t elem);
 
 /**
+ * Update
+ */
+status_t list_set(list_t list, unsigned int n, list_element_t elem);
+
+/**
  * Remove
  */
 list_element_t list_remove(list_t list, unsigned int n);

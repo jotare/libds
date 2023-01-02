@@ -40,6 +40,9 @@ status_t doubly_linked_list_append(doubly_linked_list_t dlist,
 status_t doubly_linked_list_prepend(doubly_linked_list_t dlist,
                                     doubly_linked_list_element_t elem);
 
+status_t doubly_linked_list_set(doubly_linked_list_t alist, unsigned int n,
+                                doubly_linked_list_element_t elem);
+
 doubly_linked_list_element_t doubly_linked_list_remove(doubly_linked_list_t
                                                        dlist, unsigned int n);
 void doubly_linked_list_clear(doubly_linked_list_t dlist);

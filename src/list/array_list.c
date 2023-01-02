@@ -120,6 +120,19 @@ array_list_prepend(array_list_t alist, array_list_element_t elem)
     return array_list_insert(alist, 0, elem);
 }
 
+status_t
+array_list_set(array_list_t alist, unsigned int n, array_list_element_t elem)
+{
+    _array_list_t *list;
+
+    list = alist;
+    if (n > list->n)
+        return INDEX_ERROR;
+
+    list->l[n] = elem;
+    return SUCCESS;
+}
+
 array_list_element_t
 array_list_remove(array_list_t alist, unsigned int n)
 {

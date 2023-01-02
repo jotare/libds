@@ -144,6 +144,24 @@ linked_list_prepend(linked_list_t llist, linked_list_element_t elem)
     return linked_list_insert(llist, 0, elem);
 }
 
+status_t
+linked_list_set(linked_list_t llist, unsigned int n,
+                linked_list_element_t elem)
+{
+    /* TODO: INDEX_ERROR if set an invalid index?  */
+    _linked_list_t *list;
+    node_t *node;
+
+    list = llist;
+    node = list->first;
+
+    for (int i = 0; i < n; i++)
+        node = node->next;
+
+    node->elem = elem;
+    return SUCCESS;
+}
+
 linked_list_element_t
 linked_list_remove(linked_list_t llist, unsigned int n)
 {

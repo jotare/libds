@@ -163,6 +163,24 @@ doubly_linked_list_prepend(doubly_linked_list_t dllist,
     return doubly_linked_list_insert(dllist, 0, elem);
 }
 
+status_t
+doubly_linked_list_set(doubly_linked_list_t dllist, unsigned int n,
+                       doubly_linked_list_element_t elem)
+{
+    /* TODO: INDEX_ERROR if set an invalid index?  */
+    _doubly_linked_list_t *list;
+    node_t *node;
+
+    list = dllist;
+    node = list->first;
+
+    for (int i = 0; i < n; i++)
+        node = node->next;
+
+    node->elem = elem;
+    return SUCCESS;
+}
+
 doubly_linked_list_element_t
 doubly_linked_list_remove(doubly_linked_list_t dllist, unsigned int n)
 {
